@@ -20,9 +20,14 @@ b ::= true \
 \begin{enumerate}[label=(\alph*)]
   \item Estendere per composizione la funzione $\mathcal{B}$ definita 
 precedentemente
-  \item Dimostrare che $\forall b' \in$ \textbf{Bexp'} $\exists b \in$ 
-\textbf{Bexp} t.c. $b' \equiv b$
+  \item Due espressioni booleane sono \textit{equivalenti} se:  
+    \begin{align*}
+      \forall s \in State.\Bext{b_1} = \B{b_2}
+    \end{align*}
+    Dimostrare che $\forall b' \in$ \textbf{Bexp'} $\exists b \in$ 
+\textbf{Bexp} t.c. b' \textit{equivale a} b
 \end{enumerate}
+
 \paragraph{Svolgimento}  
 \begin{enumerate}[label=(\alph*)]
   \item 
@@ -114,6 +119,15 @@ precedentemente
   \mbox{if} \ \Bext{b_1} \neq \Bext{b_2}\\        
   \end{cases} 
 \end{align*}
+\item
+  \begin{itemize}
+    \item I primi sei casi di $\mathcal{B'}$ corrispondono esattamente ai sei casi di $\mathcal{B}$ pertanto 
+    \begin{align*}
+      \forall b' \in \ \mbox{\textbf{Bexp'}}.\exists b \in 
+      \ \mbox{\textbf{Bexp}}.b' \equiv b
+    \end{align*}
+    è banalmente vera
+  \end{itemize}
 \end{enumerate}
 
 
