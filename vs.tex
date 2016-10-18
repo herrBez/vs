@@ -3,6 +3,8 @@
 a4paper, % Paper type, use 'letterpaper' for US Letter paper
 oneside, % One page layout (no page indentation)
 %twoside, % Two page layout (page indentation for binding and different headers)
+fleqn,
+leqno,
 headinclude,footinclude, % Extra spacing for the header and footer
 BCOR5mm, % Binding correction
 ]{scrartcl}
@@ -28,15 +30,12 @@ BCOR5mm, % Binding correction
 {Prove that the equation of Table 1.1 define a total function in $\mathcal{A}$ in $Aexp \rightarrow (State \rightarrow \mathbb{Z})$.}
 {
  This is the solution of the exercise and is pretty cool.
-  $$
-  \begin{array}{lll}
-  \B{\syntrue} & = & \semtrue \\
-  & & \\
-  \B{\synfalse} & = & \semfalse \\ 
-  & & \\
-  \B{a_1 = a_2} & = & \caseFun{\semtrue}{\A{a_1} = \A{a_2}}{\semfalse}{\A{a_1} \neq \A{a_2}}\\
-  \end{array}
-  $$
+  \begin{align*}
+  \B{\syntrue} = \semtrue \\ \\
+  \B{\synfalse} = \semfalse \\ \\
+  \B{a_1 = a_2} = \caseFun{\semtrue}{\A{a_1} = \A{a_2}}{\semfalse}{\A{a_1} \neq 
+\A{a_2}} \\ \\
+  \end{align*}
 }
 
 \end{document}
