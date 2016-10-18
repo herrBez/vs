@@ -124,10 +124,10 @@ precedentemente
     \item I primi sei casi di $\mathcal{B'}$ corrispondono esattamente ai sei 
 casi di $\mathcal{B}$ pertanto 
       \begin{align*}
-        \forall b' \in \ \mbox{\textbf{Bexp'}}.\exists b \in 
-        \ \mbox{\textbf{Bexp}}.b' \equiv b
+        \forall b' \in \ \textbf{Bexp'}.\exists b \in 
+        \ \textbf{Bexp}.b' \equiv b
       \end{align*}
-      per i primi sei casi è banalmente vera
+      \textit{per i primi sei casi} è banalmente vera
     \item $b' \equiv a_1 \neq a_2. a_1, a_2 \in Aexp$ \\ 
       \begin{align*}
         \Bext{a_1 \neq a_2} = 
@@ -267,27 +267,46 @@ casi di $\mathcal{B}$ pertanto
       \rightarrow
       \begin{cases} 
       \semtrue & 
-      \mbox{if} \ \lnot ( \lnot (\Bext{b_1} = \semfalse) 
+      \mbox{if} \ \lnot ( \lnot (\B{b_1} = \semfalse) 
                 \ \mbox{ and } \
-                \lnot ((\Bext{b_1} \ \mbox{and} \ \Bext{b_2}) = \semtrue))\\ 
+                \lnot ((\B{b_1} \ \mbox{and} \ \B{b_2}) = \semtrue))\\ 
       \semfalse & 
-      \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ and } \ 
-                \Bext{b_2} = \semfalse \\ 
+      \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \ 
+                \B{b_2} = \semfalse \\ 
       \end{cases}  \\ \\ 
       \rightarrow
       \begin{cases} 
       \semtrue & 
-      \mbox{if} \ \lnot ( \Bext{b_1} = \semtrue 
+      \mbox{if} \ \lnot ( \B{b_1} = \semtrue 
                 \ \mbox{ and } \
-                (\Bext{b_1} \ \mbox{and} \ \Bext{b_2}) = \semfalse)\\ 
+                (\B{b_1} \ \mbox{and} \ \B{b_2}) = \semfalse)\\ 
       \semfalse & 
-      \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ and } \ 
-                \Bext{b_2} = \semfalse \\ 
+      \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \ 
+                \B{b_2} = \semfalse \\ 
       \end{cases} 
     \end{align*} 
     \item $ b' \equiv b_1 \ \Leftrightarrow \ b_2. b_1, b_2 \in Bexp $ \\ 
-
+    \begin{align*}
+      \Bext{b_1 \ \Leftrightarrow \ b_2} = 
+      \begin{cases} 
+      \semtrue & 
+      \mbox{if} \ \Bext{b_1} = \Bext{b_2}\\
+      \semfalse & 
+      \mbox{if} \ \Bext{b_1} \neq \Bext{b_2}\\        
+      \end{cases} 
+      \rightarrow
+      \begin{cases} 
+      \semtrue & 
+      \mbox{if} \ \B{b_1} = \B{b_2}\\
+      \semfalse & 
+      \mbox{if} \ \lnot (\B{b_1} = \B{b_2})\\        
+      \end{cases} 
+    \end{align*} 
   \end{itemize}
 \end{enumerate}
-
-
+Nei punti precedenti sono stati considerati tutti i casi di $\mathcal{B}$. Quindi
+$\forall b' \in \textbf{Bexp'}.\exists b \in \ \textbf{Bexp}.b' \equiv b$
+è sempre vera
+\begin{flushright}
+$\Box$
+\end{flushright}
