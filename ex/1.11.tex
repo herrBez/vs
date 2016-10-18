@@ -216,7 +216,43 @@ casi di $\mathcal{B}$ pertanto
         \end{cases}
       \end{align*} 
     \item $ b' \equiv a_1 \geq a_2. a_1, a_2 \in Aexp $ \\
-
+    \begin{align*}
+      \Bext{a_1 \geq a_2} = 
+      \begin{cases} 
+      \semtrue & 
+      \mbox{if} \ \A{a_1} \geq \A{a_2}\\ 
+      \semfalse & 
+      \mbox{if} \ \A{a_1} \not \geq \A{a_2}\\
+      \end{cases} 
+      \rightarrow
+      \begin{cases} 
+      \semtrue & 
+      \mbox{if} \ (\A{a_1} \not \leq \A{a_2})  \ \mbox{ or } \ (\A{a_1} = \A{a_2})\\ 
+      \semfalse & 
+      \mbox{if} \  (\A{a_1} \leq \A{a_2})  \ \mbox{ and } \ (\A{a_1} \not = \A{a_2})\\
+      \end{cases} \\ \\
+      \rightarrow
+      \begin{cases} 
+      \semtrue & 
+      \mbox{if} \ \lnot (\A{a_1} \leq \A{a_2})  \ \mbox{ or } \ (\A{a_1} = \A{a_2})\\ 
+      \semfalse & 
+      \mbox{if} \  (\A{a_1} \leq \A{a_2})  \ \mbox{ and } \ \lnot (\A{a_1} = \A{a_2})\\
+      \end{cases} \\ \\ 
+      \rightarrow
+      \begin{cases} 
+      \semtrue & 
+      \mbox{if} \ \lnot ( \lnot ( \lnot (\A{a_1} \leq \A{a_2}))  \ \mbox{ and } \ \lnot (\A{a_1} = \A{a_2}))\\ 
+      \semfalse & 
+      \mbox{if} \  (\A{a_1} \leq \A{a_2})  \ \mbox{ and } \ \lnot (\A{a_1} = \A{a_2})\\
+      \end{cases} \\ \\ 
+      \rightarrow
+      \begin{cases} 
+      \semtrue & 
+      \mbox{if} \ \lnot ( (\A{a_1} \leq \A{a_2})  \ \mbox{ and } \ \lnot (\A{a_1} = \A{a_2}))\\ 
+      \semfalse & 
+      \mbox{if} \  (\A{a_1} \leq \A{a_2})  \ \mbox{ and } \ \lnot (\A{a_1} = \A{a_2})\\
+      \end{cases} \\ \\ 
+    \end{align*} 
     \item $ b' \equiv b_1 \ \Rightarrow \ b_2. b_1, b_2 \in Bexp $ \\
 
     \item $ b' \equiv b_1 \ \Leftrightarrow \ b_2. b_1, b_2 \in Bexp $ \\ 
