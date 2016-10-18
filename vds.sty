@@ -1,0 +1,98 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{vds}
+  [2011/01/11 v0.01 LaTeX package for vds]
+
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[cm]{fullpage}
+\RequirePackage[italian]{babel}
+\RequirePackage{amsthm}
+\RequirePackage{stmaryrd}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{amsmath} 
+\RequirePackage{mathtools}
+\RequirePackage{enumitem}
+\RequirePackage{wasysym}
+\RequirePackage{centernot}
+\RequirePackage{multirow}
+\RequirePackage{syntax}
+\RequirePackage{hyperref}
+\RequirePackage[inference]{semantic}
+\RequirePackage{framed}
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[section]
+\newtheorem*{thm1}{Teorema}
+\newtheorem{cor}[thm]{Corollario}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{Oss}{Osservazione}
+\newtheorem{regola}{Regola}
+
+\newtheorem{prop}[thm]{Proposizione}
+\newtheorem{mydef}{Definizione}
+\newtheorem*{notation}{Notazione}
+\newtheorem{congettura}{Congettura}
+\newtheorem*{controesempio}{Controesempio}
+\RequirePackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\rewrite}{\longrightarrow_N}
+\newcommand{\nrewrite}{\centernot\longrightarrow_N}
+\newcommand{\rewriteTillPossible}{\rewrite^!}
+
+\newcommand{\Var}{\ensuremath{\mathcal{V}ar} \myspace}
+\RequirePackage{listings}
+\RequirePackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}}
+\RequirePackage[dvipsnames]{xcolor}
+\definecolor{background}{HTML}{EEEEEE}
+\lstset{ 
+	basicstyle=\small\ttfamily\small,
+	keywordstyle=\color{Plum},
+	keywordstyle=[2]\color{ForestGreen},
+	showstringspaces=false,
+	frameround=ftff,
+	frame=lines,
+	morekeywords={if, while, else, do, then, until},
+	keywords=[2]{skip},
+	commentstyle=\color{yellow},
+	backgroundcolor=\color{background}
+}
+
+\lstset{emph={%  
+		true, false%
+	},emphstyle={\color{Magenta}\bfseries}%
+}%
+
+
+\newenvironment{dimostrazione}%
+{% apertura
+	\begin{proof}[Dimostrazione]
+	}{% chiusura
+\end{proof}
+}
+
+\newcommand{\Bcal}{\ensuremath{\mathcal{B}}}
+
+
+\newcommand{\semanticFunction}[3]{\ensuremath{\mathcal{#1} \llbracket #2 \rrbracket s}}
+
+
+\newcommand{\N}[1]{\semanticFunction{N}{#1}{s}}
+\newcommand{\B}[1]{\semanticFunction{B}{#1}{s}}
+\newcommand{\A}[1]{\semanticFunction{A}{#1}{s}}
+
+\newcommand{\caseFun}[4]{\ensuremath{\left\lbrace 
+		\begin{array}{ll}
+			#1 & \mbox{if } #2  \\
+			&  \\
+			#3 & #4  \\
+		\end{array}	
+		\right.
+	}
+}
+\newcommand{\caseFunOtw}[3]{\caseFun{#1}{#2}{#3}{\mbox{otherwise}}}
+\theoremstyle{definition}
+\endinput
+%%
+%% End of file `mypackage.sty'.
