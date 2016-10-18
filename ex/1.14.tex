@@ -27,7 +27,7 @@ Applicando la definizione \A{n} a destra e sinistra dell'uguaglianza si ottiene:
 
 $n = n$, che è banalmente vero.
 
-\subsection{a = x} Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si ha:
+\subsection{a = $x$} Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si ha:
 \\
 
 $\A{x [y \mapsto{} a_0]} = \semanticFunction{A}{x}{(s [y \mapsto{} \A{a_0}])} $
@@ -59,6 +59,53 @@ Applicando la definizione di \A{x} a sinistra dell'uguaglianza si ha infine:
 
 $s x = s x$,
 banalmente vero.
+
+\subsection{a = $a_1 + a_2$} Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si
+ha:
+\\
+
+$\A{(a_1 + a_2) [y \mapsto{} a_0]} =
+\semanticFunction{A}{a_1 + a_2}{(s [y \mapsto{} \A{a_0}])} $
+\\
+
+Applicando la definizione \A{a_1 + a_2} a destra dell'uguaglianza si ottiene:
+\\
+
+$\A{(a_1 + a_2) [y \mapsto{} a_0]} =
+\semanticFunction{A}{a_1}{(s [y \mapsto{} \A{a_0}])} +
+\semanticFunction{A}{a_2}{(s [y \mapsto{} \A{a_0}])} $
+\\
+
+Applicando la definizione $(a_1 + a_2)[y \mapsto{} a_0]$ a sinistra si ottiene:
+\\
+
+$\A{(a_1 [y \mapsto{} a_0]) + (a_2[y \mapsto{} a_0]) } =
+\semanticFunction{A}{a_1}{(s [y \mapsto{} \A{a_0}])} +
+\semanticFunction{A}{a_2}{(s [y \mapsto{} \A{a_0}])} $
+\\
+
+Applicando la definizione \A{a_1 + a_2} a sinistra dell'uguaglianza si ottiene:
+\\
+
+(*) $\A{(a_1 [y \mapsto{} a_0])} + \A{(a_2[y \mapsto{} a_0])} =
+\semanticFunction{A}{a_1}{(s [y \mapsto{} \A{a_0}])} +
+\semanticFunction{A}{a_2}{(s [y \mapsto{} \A{a_0}])} $
+\\
+
+Siccome $a_1$ e $a_2$ sono sotto-espressioni di $a$, l'ipotesi induttiva vale
+su di esse. Dato $i \in{} \{1, 2\}$ possiamo dunque asserire che:
+\\
+
+$\A{(a_i [y \mapsto{} a_0])} =
+\semanticFunction{A}{a_i}{(s [y \mapsto{} \A{a_0}])}$
+\\
+
+Sostituendo in (*) si ha quindi:
+\\
+
+$\A{(a_1 [y \mapsto{} a_0])} + \A{(a_2[y \mapsto{} a_0]) } =
+ \A{(a_1 [y \mapsto{} a_0])} + \A{(a_2[y \mapsto{} a_0]) }$,
+ che è banalmente vero.
 
 }
 
