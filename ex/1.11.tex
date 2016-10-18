@@ -254,7 +254,37 @@ casi di $\mathcal{B}$ pertanto
       \end{cases} \\ \\ 
     \end{align*} 
     \item $ b' \equiv b_1 \ \Rightarrow \ b_2. b_1, b_2 \in Bexp $ \\
-
+    \begin{align*}
+      \Bext{b_1 \ \Rightarrow \ b_2} = 
+      \begin{cases} 
+      \semtrue & 
+      \mbox{if} \ \Bext{b_1} = \semfalse \ \mbox{ or } \
+                (\Bext{b_1} = \semtrue \ \mbox{and} \ \Bext{b_2} = \semtrue)\\ 
+      \semfalse & 
+      \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ and } \ 
+                \Bext{b_2} = \semfalse \\ 
+      \end{cases} \\ \\  
+      \rightarrow
+      \begin{cases} 
+      \semtrue & 
+      \mbox{if} \ \lnot ( \lnot (\Bext{b_1} = \semfalse) 
+                \ \mbox{ and } \
+                \lnot ((\Bext{b_1} \ \mbox{and} \ \Bext{b_2}) = \semtrue))\\ 
+      \semfalse & 
+      \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ and } \ 
+                \Bext{b_2} = \semfalse \\ 
+      \end{cases}  \\ \\ 
+      \rightarrow
+      \begin{cases} 
+      \semtrue & 
+      \mbox{if} \ \lnot ( \Bext{b_1} = \semtrue 
+                \ \mbox{ and } \
+                (\Bext{b_1} \ \mbox{and} \ \Bext{b_2}) = \semfalse)\\ 
+      \semfalse & 
+      \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ and } \ 
+                \Bext{b_2} = \semfalse \\ 
+      \end{cases} 
+    \end{align*} 
     \item $ b' \equiv b_1 \ \Leftrightarrow \ b_2. b_1, b_2 \in Bexp $ \\ 
 
   \end{itemize}
