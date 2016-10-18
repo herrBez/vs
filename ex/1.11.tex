@@ -1,0 +1,23 @@
+\section{1.11}
+\paragraph{Consegna} 
+La categoria sintattica \textbf{Bexp'} è definita come estensione di \textbf{Bexp} nel modo seguente:
+\begin{align*}
+b ::= true \
+| \ false \ 
+| \ a_1 = a_2 \
+| \ a_1 \not = a_2 \
+| \ a_1 \leq a_2 \
+| \ a_1 \geq a_2 \
+| \ a_1 < a_2 \
+| \ a_1 > a_2 \
+| \ \lnot b \
+| \ b_1 \land b_2 \
+| \ b_1 \lor b_2 \
+| \ b_1 \Rightarrow b_2 \
+| \ b_1 \Leftrightarrow b_2    
+\end{align*}
+\begin{enumerate}
+  \item Estendere per composizione la funzione $\mathcal{B}$ definita precedentemente
+  \item Dimostra che $\forall b' \in$ \textbf{Bexp'} $\exists b \in$ \textbf{Bexp} t.c. $b' \equiv b$
+\end{enumerate}
+
