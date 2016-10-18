@@ -9,13 +9,30 @@ BCOR5mm, % Binding correction
 
 \usepackage{vds}
 \input{header.tex} % define header elements
+%Esercizio #1 = nome dell'esercizio
+% 		   #2 = consegna
+%		   #3 = risoluzione
+
+
+\newcommand{\exercise}[3]{\section{#1}\emph{#2}
+	\vspace{10pt}
+	\\
+	#3}
 
 \begin{document}
 
 \maketitle 
 \setcounter{tocdepth}{3} 
+\setcounter{secnumdepth}{0}
 \tableofcontents 
 
 \newpage 
+
+\exercise{1.8}
+{Prove that the equation of Table 1.1 define a total function in $\mathcal{A}$ in $Aexp \rightarrow (State \rightarrow \mathbb{Z})$}
+{
+ This is the solution of the exercise and is pretty cool.
+	
+}
 
 \end{document}
