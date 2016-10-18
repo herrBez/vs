@@ -1,6 +1,7 @@
 \section{1.11}
 \paragraph{Consegna} 
-La categoria sintattica \textbf{Bexp'} è definita come estensione di \textbf{Bexp} nel modo seguente:
+La categoria sintattica \textbf{Bexp'} è definita come estensione di 
+\textbf{Bexp} nel modo seguente:
 \begin{align*}
 b ::= true \
 | \ false \ 
@@ -16,8 +17,103 @@ b ::= true \
 | \ b_1 \Rightarrow b_2 \
 | \ b_1 \Leftrightarrow b_2    
 \end{align*}
-\begin{enumerate}
-  \item Estendere per composizione la funzione $\mathcal{B}$ definita precedentemente
-  \item Dimostra che $\forall b' \in$ \textbf{Bexp'} $\exists b \in$ \textbf{Bexp} t.c. $b' \equiv b$
+\begin{enumerate}[label=(\alph*)]
+  \item Estendere per composizione la funzione $\mathcal{B}$ definita 
+precedentemente
+  \item Dimostrare che $\forall b' \in$ \textbf{Bexp'} $\exists b \in$ 
+\textbf{Bexp} t.c. $b' \equiv b$
 \end{enumerate}
+\paragraph{Svolgimento}  
+\begin{enumerate}[label=(\alph*)]
+  \item 
+\begin{align*}
+\mathcal{B'}: Bexp' \rightarrow State \rightarrow T \\ \\
+\Bext{\syntrue} = \semtrue \\ \\ 
+\Bext{\synfalse} = \semfalse \\ \\
+\Bext{a_1 = a_2} = 
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \A{a_1} = \A{a_2}\\ 
+  \semfalse & 
+  \mbox{if}  \ \A{a_1} \neq \A{a_2}\\
+  \end{cases} \\ \\
+\Bext{a_1 \leq a_2} = 
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \A{a_1} \leq \A{a_2}\\ 
+  \semfalse & 
+  \mbox{if} \ \A{a_1} \not \leq \A{a_2}\\
+  \end{cases} \\ \\
+\Bext{\neg b} =         
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \Bext{b} = \semfalse\\ 
+  \semfalse & 
+  \mbox{if} \ \Bext{b} = \semtrue\\
+  \end{cases} \\ \\
+\Bext{b_1 \ \land \ b_2} = 
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \Bext{b_1} = \mbox{tt and } 
+            \Bext{b_2} = \semtrue \\ 
+  \semfalse & 
+  \mbox{if} \ \Bext{b_1} = \mbox{ff or } 
+            \Bext{b_2} = \semfalse \\ 
+  \end{cases} \\ \\
+\Bext{a_1 \neq a_2} = 
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \A{a_1} \neq \A{a_2}\\ 
+  \semfalse & 
+  \mbox{if}  \ \A{a_1} = \A{a_2}\\
+  \end{cases} \\ \\
+\Bext{b_1 \ \lor \ b_2} = 
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ or } \ 
+            \Bext{b_2} = \semtrue \\ 
+  \semfalse & 
+  \mbox{if} \ \Bext{b_1} = \semfalse \ \mbox{ and } \ 
+            \Bext{b_2} = \semfalse \\ 
+  \end{cases} \\ \\
+\Bext{a_1 > a_2} = 
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \A{a_1} > \A{a_2}\\ 
+  \semfalse & 
+  \mbox{if} \ \A{a_1} \not > \A{a_2}\\
+  \end{cases} \\ \\
+\Bext{a_1 < a_2} = 
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \A{a_1} < \A{a_2}\\ 
+  \semfalse & 
+  \mbox{if} \ \A{a_1} \not < \A{a_2}\\
+  \end{cases} \\ \\
+\Bext{a_1 \geq a_2} = 
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \A{a_1} \geq \A{a_2}\\ 
+  \semfalse & 
+  \mbox{if} \ \A{a_1} \not \geq \A{a_2}\\
+  \end{cases} \\ \\
+\Bext{b_1 \ \Rightarrow \ b_2} = 
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \Bext{b_1} = \semfalse \ \mbox{ or } \
+            (\Bext{b_1} = \semtrue \ \mbox{and} \ \Bext{b_2} = \semtrue)\\ 
+  \semfalse & 
+  \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ and } \ 
+            \Bext{b_2} = \semfalse \\ 
+  \end{cases} \\ \\
+\Bext{b_1 \ \Leftrightarrow \ b_2} = 
+  \begin{cases} 
+  \semtrue & 
+  \mbox{if} \ \Bext{b_1} = \Bext{b_2}\\
+  \semfalse & 
+  \mbox{if} \ \Bext{b_1} \neq \Bext{b_2}\\        
+  \end{cases} 
+\end{align*}
+\end{enumerate}
+
 
