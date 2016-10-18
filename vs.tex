@@ -14,10 +14,6 @@ BCOR5mm, % Binding correction
 %		   #3 = risoluzione
 
 
-\newcommand{\exercise}[3]{\section{#1}\emph{#2}
-	\vspace{10pt}
-	\\
-	#3}
 
 \begin{document}
 
@@ -29,10 +25,16 @@ BCOR5mm, % Binding correction
 \newpage 
 
 \exercise{1.8}
-{Prove that the equation of Table 1.1 define a total function in $\mathcal{A}$ in $Aexp \rightarrow (State \rightarrow \mathbb{Z})$}
+{Prove that the equation of Table 1.1 define a total function in $\mathcal{A}$ in $Aexp \rightarrow (State \rightarrow \mathbb{Z})$.}
 {
  This is the solution of the exercise and is pretty cool.
-	
+  $$
+  \begin{array}{lll}
+  \B{\synTrue} & = & \semTrue \\
+  \B{\synFalse} & = & \semFalse \\ 
+  \B{a_1 = a_2} & = & \caseFun{\semTrue}{\A{a_1} = \A{a_2}}{\semFalse}{\A{a_1} \neq \A{a_2}}\\
+  \end{array}
+  $$
 }
 
 \end{document}

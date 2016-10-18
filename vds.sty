@@ -76,23 +76,35 @@
 \newcommand{\Bcal}{\ensuremath{\mathcal{B}}}
 
 
-\newcommand{\semanticFunction}[3]{\ensuremath{\mathcal{#1} \llbracket #2 \rrbracket s}}
+\newcommand{\semanticFunction}[3]{\ensuremath{\mathcal{#1} \llbracket #2 \rrbracket #3}}
 
 
 \newcommand{\N}[1]{\semanticFunction{N}{#1}{s}}
 \newcommand{\B}[1]{\semanticFunction{B}{#1}{s}}
 \newcommand{\A}[1]{\semanticFunction{A}{#1}{s}}
 
+% Commands used to model the semantic boolean
+\newcommand{\semTrue}{\ensuremath{\mbox{\textit{tt}}}}
+\newcommand{\semFalse}{\ensuremath{\mbox{\textit{ff}}}}
+% Commands used to model the syntactic boolean 
+\newcommand{\synTrue}{\ensuremath{\mbox{\tt true}}}
+\newcommand{\synFalse}{\ensuremath{\mbox{\tt false}}}
+
 \newcommand{\caseFun}[4]{\ensuremath{\left\lbrace 
 		\begin{array}{ll}
 			#1 & \mbox{if } #2  \\
 			&  \\
-			#3 & #4  \\
+			#3 & \mbox{if } #4  \\
 		\end{array}	
 		\right.
 	}
 }
 \newcommand{\caseFunOtw}[3]{\caseFun{#1}{#2}{#3}{\mbox{otherwise}}}
+\newcommand{\exercise}[3]{\section{#1}\emph{#2}
+	\vspace{10pt}
+	\\
+	#3}
+
 \theoremstyle{definition}
 \endinput
 %%
