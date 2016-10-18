@@ -121,12 +121,69 @@ precedentemente
 \end{align*}
 \item
   \begin{itemize}
-    \item I primi sei casi di $\mathcal{B'}$ corrispondono esattamente ai sei casi di $\mathcal{B}$ pertanto 
-    \begin{align*}
-      \forall b' \in \ \mbox{\textbf{Bexp'}}.\exists b \in 
-      \ \mbox{\textbf{Bexp}}.b' \equiv b
-    \end{align*}
-    è banalmente vera
+    \item I primi sei casi di $\mathcal{B'}$ corrispondono esattamente ai sei 
+casi di $\mathcal{B}$ pertanto 
+      \begin{align*}
+        \forall b' \in \ \mbox{\textbf{Bexp'}}.\exists b \in 
+        \ \mbox{\textbf{Bexp}}.b' \equiv b
+      \end{align*}
+      per i primi sei casi è banalmente vera
+    \item $b' \equiv a_1 \neq a_2. a_1, a_2 \in Aexp$ \\ 
+      \begin{align*}
+        \Bext{a_1 \neq a_2} = 
+        \begin{cases} 
+          \semtrue & 
+          \mbox{if} \ \lnot \Bext{a_1 = a_2} \\ 
+          \semfalse & 
+          \mbox{if}  \ \Bext{a_1 = a_2}\\
+        \end{cases}
+        \rightarrow
+        \begin{cases} 
+          \semtrue & 
+          \mbox{if} \ \lnot \B{a_1 = a_2} \\ 
+          \semfalse & 
+          \mbox{if}  \ \B{a_1 = a_2}\\
+        \end{cases}
+        \rightarrow
+        \begin{cases} 
+          \semtrue & 
+          \mbox{if} \ \lnot (\A{a_1} = \A{a_2}) \\ 
+          \semfalse & 
+          \mbox{if}  \ \A{a_1} = \A{a_2}\\
+        \end{cases} 
+      \end{align*}
+    
+    \item $ b' \equiv b_1 \lor b_2. b_1, b_2 \in Bexp$ \\
+      \begin{align*}  
+        \Bext{b_1 \ \lor \ b_2} = 
+        \begin{cases} 
+        \semtrue & 
+        \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ or } \ 
+              \Bext{b_2} = \semtrue \\ 
+        \semfalse & 
+        \mbox{if} \ \Bext{b_1} = \semfalse \ \mbox{ and } \ 
+              \Bext{b_2} = \semfalse \\ 
+        \end{cases} 
+        \rightarrow
+        \begin{cases} 
+        \semtrue & 
+        \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ or } \ 
+              \B{b_2} = \semtrue \\ 
+        \semfalse & 
+        \mbox{if} \ \B{b_1} = \semfalse \ \mbox{ and } \ 
+              \B{b_2} = \semfalse \\ 
+        \end{cases}
+      \end{align*}
+    \item $ b' \equiv a_1 > a_2. a_1, a_2 \in Aexp$ \\
+
+    \item $ b' \equiv a_1 < a_2. a_1, a_2 \in Aexp$ \\
+
+    \item $ b' \equiv a_1 \geq a_2. a_1, a_2 \in Aexp $ \\
+
+    \item $ b' \equiv b_1 \ \Rightarrow \ b_2. b_1, b_2 \in Bexp $ \\
+
+    \item $ b' \equiv b_1 \ \Leftrightarrow \ b_2. b_1, b_2 \in Bexp $ \\ 
+
   \end{itemize}
 \end{enumerate}
 
