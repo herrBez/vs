@@ -1,3 +1,4 @@
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
 \exercise{1.14}
 {
 	Provare che
@@ -6,5 +7,59 @@
 	\states.
 }
 {
-	\mbox{ }
+Si vuole provare che:
+
+$\forall{a,a_0} \in \aexp.\mbox{ }
+\forall{s} \in \states.\mbox{ }
+\A{a [y \mapsto{} a_0]} =
+\semanticFunction{A}{a}{(s [y \mapsto{} \A{a_0}])}$.
+
+Ciò viene dimostrato per induzione strutturale sull'espressione $a$.
+
+\subsection{a = n} Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si ha:
+\\
+
+$\A{n [y \mapsto{} a_0]} = \semanticFunction{A}{n}{(s [y \mapsto{} \A{a_0}])} $
+\\
+
+Applicando la definizione \A{n} a destra e sinistra dell'uguaglianza si ottiene:
+\\
+
+$n = n$, che è banalmente vero.
+
+\subsection{a = x} Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si ha:
+\\
+
+$\A{x [y \mapsto{} a_0]} = \semanticFunction{A}{x}{(s [y \mapsto{} \A{a_0}])} $
+\\
+
+Applicando la definizione \A{x} a destra dell'uguaglianza si ottiene:
+\\
+
+$\A{x [y \mapsto{} a_0]} = (s [y \mapsto{} \A{a_0}]) \mbox{ } x $
+\\
+
+Distinguiamo i casi in cui $x$ è uguale o meno a $y$.
+
+\paragraph{x = y} Facendo un semplice passo di riduzione si ottiene:
+\\
+
+$\A{a_0} = \A{a_0}$,
+banalmente vero.
+
+\paragraph{x $\neq$ y} Riducendo a destra e sinistra per come è definita la
+sostituzione si ottiene:
+\\
+
+$\A{x} = s x$
+\\
+
+Applicando la definizione di \A{x} a sinistra dell'uguaglianza si ha infine:
+\\
+
+$s x = s x$,
+banalmente vero.
+
 }
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
