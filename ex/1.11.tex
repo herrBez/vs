@@ -292,42 +292,42 @@ casi di $\mathcal{B}$ pertanto
       \end{cases}
     \end{align*} \\
       Perciò \Bext{a_1 \geq a_2} =
-      \B{(\A{a_1} \leq \A{a_2}) \land \lnot (\A{a_1} =  \A{a_2})}. \\.
+      \B{\lnot (\lnot (\lnot (a_1 \leq a_2)) \land \lnot (a_1 = a_2) )}. \\.
 
     \item $ b' \equiv b_1 \ \Rightarrow \ b_2$, dove $b_1, b_2 \in \bexp$. \\
     \begin{align*}
-      \Bext{b_1 \ \Rightarrow \ b_2} =
+      \B{\lnot(b_1 \land \lnot(b_2))} =
       \begin{cases}
       \semtrue &
-      \mbox{if} \ \B{b_1} = \semfalse \ \mbox{ or } \
-                \B{b_2} = \semtrue\\
+      \mbox{if} \ \B{b_1 \land \lnot(b_2)} = \semfalse \\
       \semfalse &
-      \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \
-                \B{b_2} = \semfalse \\
-      \end{cases} \\ \\
+      \mbox{if} \ \B{b_1 \land \lnot(b_2)} = \semtrue \\
+      \end{cases}
       \rightarrow
       \begin{cases}
       \semtrue &
-      \mbox{if} \ \lnot ( \lnot (\B{b_1} = \semfalse)
-                \ \mbox{ and } \
-                \lnot (\B{b_2} = \semtrue))\\
+      \mbox{if} \ \B{b_1} = \semfalse
+                  \mbox{ or }
+                  \B{\lnot(b_2)} = \semfalse \\
       \semfalse &
-      \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \
-                \B{b_2} = \semfalse \\
-      \end{cases}  \\ \\
-      \rightarrow
+      \mbox{if} \ \B{b_1} = \semtrue
+                  \mbox{ and }
+                  \B{\lnot(b_2)} = \semtrue \\
+      \end{cases}
+      \rightarrow \\ \\
       \begin{cases}
       \semtrue &
-      \mbox{if} \ \lnot ( \B{b_1} = \semtrue
-                \ \mbox{ and } \
-                \lnot (\B{b_2} = \semtrue))\\
+      \mbox{if} \ \B{b_1} = \semfalse
+                  \mbox{ or }
+                  \B{b_2} = \semtrue \\
       \semfalse &
-      \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \
-                \B{b_2} = \semfalse \\
+      \mbox{if} \ \B{b_1} = \semtrue
+                  \mbox{ and }
+                  \B{b_2} = \semfalse \\
       \end{cases}
     \end{align*} \\
       Perciò \Bext{b_1 \ \Rightarrow \ b_2} =
-      \B{\lnot ( \B{b_1} \land \lnot (\B{b_2}))}. \\.
+      \B{\lnot(b_1 \land \lnot(b_2))}. \\.
 
     \item $ b' \equiv b_1 \ \Leftrightarrow \ b_2$, dove $b_1, b_2 \in \bexp$.
     \\
