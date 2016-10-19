@@ -27,21 +27,12 @@
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{Oss}{Osservazione}
 \newtheorem{regola}{Regola}
-
 \newtheorem{prop}[thm]{Proposizione}
 \newtheorem{mydef}{Definizione}
 \newtheorem*{notation}{Notazione}
 \newtheorem{congettura}{Congettura}
 \newtheorem*{controesempio}{Controesempio}
-
 \RequirePackage{pifont}% http://ctan.org/pkg/pifont
-\newcommand{\cmark}{\ding{51}}%
-\newcommand{\xmark}{\ding{55}}
-\newcommand{\rewrite}{\longrightarrow_N}
-\newcommand{\nrewrite}{\centernot\longrightarrow_N}
-\newcommand{\rewriteTillPossible}{\rewrite^!}
-
-\newcommand{\Var}{\ensuremath{\mathcal{V}ar} \myspace}
 \RequirePackage{listings}
 \RequirePackage{array}   % for \newcolumntype macro
 \newcolumntype{L}{>{$}l<{$}}
@@ -73,8 +64,12 @@
 \end{proof}
 }
 
-\newcommand{\Bcal}{\ensuremath{\mathcal{B}}}
+\newcommand{\myspace}{\ensuremath{\mbox{ }}}
 
+\newcommand{\Bcal}{\ensuremath{\mathcal{B}}}
+\newcommand{\Acal}{\ensuremath{\mathcal{A}}}
+\newcommand{\Scal}{\ensuremath{\mathcal{S}}}
+\newcommand{\Ncal}{\ensuremath{\mathcal{N}}}
 
 \newcommand{\semanticFunction}[3]{\ensuremath{\mathcal{#1} \llbracket #2 \rrbracket #3}}
 
@@ -109,8 +104,8 @@
 \newcommand{\aexp}{\syntacticCategory{Aexp}}
 \newcommand{\bexp}{\syntacticCategory{Bexp}}
 \newcommand{\var}{\syntacticCategory{Var}}
-\newcommand{\num}{\syntacticCategory{Num}}
-
+\newcommand{\num}{\syntacticCategory{Z}}
+\RequirePackage{tabularx}
 \theoremstyle{definition}
 \endinput
 %%

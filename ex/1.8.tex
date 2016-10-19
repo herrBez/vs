@@ -16,10 +16,49 @@
 		\end{itemize} 
 		abbiamo che rispettivamente:
 		\begin{itemize}
-			\item $n \mapsto \N{n}$ che sappiamo essere un valore $\mathbf{v}$ univoco, dato che $\mathcal{N}$ è una funzione che mappa numerali in numeri.
-			\item $s  x$
-			\N
+			\item $\boxed{\A{n} \mapsto \N{n}}$ che sappiamo essere un valore $\mathbf{v}$ univoco, dato che $\mathcal{N}$ è una funzione che mappa numerali in numeri.
+			\item $\boxed{\A{x} \mapsto s\myspace x}$, visto che $s$ è una funzione (totale) $\var \rightarrow \num$  allora
+			alla variabile $x$ verrà associato un unico valore $\mathbf{v} \in \num$.
+			
+			Le espressioni composite sono formate da un operatore binario e due sottoespressioni
+			$a_1$ e $a_2$.
+			Sia $a_1$ che $a_2$ vengono associate ad un unico valore $\mathbf{v_1}, \mathbf{v_2} \in \num$.
+			Siccome gli operatori semantici $+, -, *$ per definizione prendono in input due
+			valori e ne restituiscono rispettivamente la somma, la differenza e il prodotto, che
+			non sono altro che valori, l'asserto è dimostrato.
+		
 			
 		\end{itemize}
+			\item Procedo per induzione strutturale su \aexp, formalizzando quanto argomentato
+			in precedenza.
+			\begin{table}[h!]
+				\begin{center}
+			\begin{tabular}{| l| L | p{0.4\linewidth} |}
+				\hline
+				\textbf{Caso Base} & \A{n}=\N{n}=\mathbf{v} & 
+				è banalmente vero perchè \Ncal associa ad un numerale un (unico) numero per definizione.\\
+				& &\\
+				& \A{x} = s \myspace x = \mathbf{v}&$s$ è una funzione che ho come dominio tutte le variabile e quindi ritorna un valore univoco $\mathbf{v}$ dipendentemente dallo stato.\\
+				& & \\
+				\hline
+				& &\\
+				\textbf{Casi Compositi} & \A{a_1 + a_2} = \A{a_1} + \A{a_2} & Definizione di \A{a_1 + a_2}\\
+				& = \mathbf{v_1} + \mathbf{v_2}  &  Ipotesi induttiva applicata a \A{a_1} e \A{a_2}\\
+				& = \mathbf{v} & Definizione dell'operatore semantico\\
+				& & \\
+				& \A{a_1 + a_2} = \A{a_1} - \A{a_2} & Definizione di \A{a_1 - a_2}\\
+				& = \mathbf{v_1} - \mathbf{v_2}  &  Ipotesi induttiva applicata a \A{a_1} e \A{a_2}\\
+				& = \mathbf{v} & Definizione dell'operatore semantico\\
+				& & \\
+				& \A{a_1 + a_2} = \A{a_1} * \A{a_2} & Definizione di \A{a_1 * a_2}\\
+				& = \mathbf{v_1} * \mathbf{v_2}  & Ipotesi induttiva applicata a \A{a_1} e \A{a_2}\\
+				& = \mathbf{v} & Definizione dell'operatore semantico\\
+				& & \\
+				\hline
+			\end{tabular}
+				
+				\end{center}
+			\end{table}
+			
 	\end{enumerate}
 }
