@@ -22,7 +22,7 @@ b ::= true \
 precedentemente
   \item Due espressioni booleane sono \textit{equivalenti} se:  
     \begin{align*}
-      \forall s \in State.\Bext{b_1} = \B{b_2}
+      \forall s \in \states.\Bext{b_1} = \B{b_2}
     \end{align*}
     Dimostrare che $\forall b' \in$ \textbf{Bexp'} $\exists b \in$ 
 \textbf{Bexp} t.c. b' \textit{equivale a} b
@@ -32,7 +32,7 @@ precedentemente
 \begin{enumerate}[label=(\alph*)]
   \item \mbox{ } \\
 
-  $\mathcal{B'}: Bexp' \rightarrow State \rightarrow T$ \\
+  $\mathcal{B'}: \bexp' \rightarrow \states \rightarrow T$ \\
 
   \Bext{\syntrue} = \semtrue \\
 
@@ -109,6 +109,7 @@ precedentemente
           {\Bext{b_1} = \Bext{b_2}}
           {\semfalse}
           {\Bext{b_1} \neq \Bext{b_2}} \\ \\
+  %TODO: sistemare
 
 \item
   \begin{itemize}
@@ -119,7 +120,8 @@ casi di $\mathcal{B}$ pertanto
         \ \textbf{Bexp}.b' \equiv b
       \end{align*}
       \textit{per i primi sei casi} è banalmente vera.
-    \item $b' \equiv a_1 \neq a_2. a_1, a_2 \in Aexp$ \\ 
+
+    \item $b' \equiv a_1 \neq a_2$, dove $a_1, a_2 \in \aexp$. \\ 
       \begin{align*}
         \Bext{a_1 \neq a_2} = 
         \begin{cases} 
@@ -142,30 +144,34 @@ casi di $\mathcal{B}$ pertanto
           \semfalse & 
           \mbox{if}  \ \A{a_1} = \A{a_2}\\
         \end{cases} 
-      \end{align*}
-    
-    \item $ b' \equiv b_1 \lor b_2. b_1, b_2 \in Bexp$ \\
-      \begin{align*}  
-        \Bext{b_1 \ \lor \ b_2} = 
-        \begin{cases} 
-        \semtrue & 
+      \end{align*} \\
+      Perciò \Bext{a_1 \neq a_2} = \B{\lnot (\A{a_1} = \A{a_2})}. \\
+
+    \item $ b' \equiv b_1 \lor b_2$, dove $b_1, b_2 \in \bexp$. \\
+      \begin{align*}
+        \Bext{b_1 \ \lor \ b_2} =
+        \begin{cases}
+        \semtrue &
         \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ or } \ 
-              \Bext{b_2} = \semtrue \\ 
-        \semfalse & 
+              \Bext{b_2} = \semtrue \\
+        \semfalse &
         \mbox{if} \ \Bext{b_1} = \semfalse \ \mbox{ and } \ 
-              \Bext{b_2} = \semfalse \\ 
-        \end{cases} 
-        \rightarrow
-        \begin{cases} 
-        \semtrue & 
-        \mbox{if} \ \lnot (\lnot (\B{b_1}) \ \mbox{ and } \ 
-              \lnot (\B{b_2})) = \semtrue \\ 
-        \semfalse & 
-        \mbox{if} \ \B{b_1} = \semfalse \ \mbox{ and } \ 
-              \B{b_2} = \semfalse \\ 
+              \Bext{b_2} = \semfalse \\
         \end{cases}
-      \end{align*}
-    \item $ b' \equiv a_1 > a_2. a_1, a_2 \in Aexp$ \\
+        \rightarrow
+        \begin{cases}
+        \semtrue &
+        \mbox{if} \ \lnot (\lnot (\B{b_1}) \ \mbox{ and } \
+              \lnot (\B{b_2})) = \semtrue \\
+        \semfalse &
+        \mbox{if} \ \B{b_1} = \semfalse \ \mbox{ and } \
+              \B{b_2} = \semfalse \\
+        \end{cases}
+      \end{align*} \\
+      Perciò \Bext{b_1 \lor b_2} = \B{\lnot (\lnot (\B{b_1}) \land
+        \lnot (\B{b_2}))}. \\.
+
+    \item $ b' \equiv a_1 > a_2$, dove $a_1, a_2 \in \aexp$. \\
       \begin{align*} 
        \Bext{a_1 > a_2} = 
         \begin{cases} 
@@ -181,8 +187,10 @@ casi di $\mathcal{B}$ pertanto
         \semfalse & 
         \mbox{if} \ \A{a_1} \leq \A{a_2}\\
         \end{cases} 
-      \end{align*}
-    \item $ b' \equiv a_1 < a_2. a_1, a_2 \in Aexp$ \\
+      \end{align*} \\
+      Perciò \Bext{a_1 > a_2} = \B{\lnot (\A{a_1} \leq \A{a_2})}. \\.
+
+    \item $ b' \equiv a_1 < a_2$, dove $a_1, a_2 \in \aexp$. \\
       \begin{align*}
         \Bext{a_1 < a_2} = 
         \begin{cases} 
@@ -205,8 +213,11 @@ casi di $\mathcal{B}$ pertanto
         \semfalse & 
         \mbox{if} \ \lnot ((\A{a_1} \leq \A{a_2}) \ \mbox{ and } \ \lnot (\A{a_1} = \A{a_2}))\\
         \end{cases}
-      \end{align*} 
-    \item $ b' \equiv a_1 \geq a_2. a_1, a_2 \in Aexp $ \\
+      \end{align*} \\
+      Perciò \Bext{a_1 < a_2} =
+      \B{(\A{a_1} \leq \A{a_2}) \land \lnot (\A{a_1} =  \A{a_2})}. \\.
+
+    \item $ b' \equiv a_1 \geq a_2$, dove $a_1, a_2 \in \aexp$. \\
     \begin{align*}
       \Bext{a_1 \geq a_2} = 
       \begin{cases} 
@@ -243,8 +254,11 @@ casi di $\mathcal{B}$ pertanto
       \semfalse & 
       \mbox{if} \  (\A{a_1} \leq \A{a_2})  \ \mbox{ and } \ \lnot (\A{a_1} = \A{a_2})\\
       \end{cases} \\ \\ 
-    \end{align*} 
-    \item $ b' \equiv b_1 \ \Rightarrow \ b_2. b_1, b_2 \in Bexp $ \\
+    \end{align*} \\
+      Perciò \Bext{a_1 < a_2} =
+      \B{(\A{a_1} \leq \A{a_2}) \land \lnot (\A{a_1} =  \A{a_2})}. \\.
+
+    \item $ b' \equiv b_1 \ \Rightarrow \ b_2$, dove $b_1, b_2 \in \bexp$. \\
     \begin{align*}
       \Bext{b_1 \ \Rightarrow \ b_2} = 
       \begin{cases} 
@@ -275,29 +289,42 @@ casi di $\mathcal{B}$ pertanto
       \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \ 
                 \B{b_2} = \semfalse \\ 
       \end{cases} 
-    \end{align*} 
-    \item $ b' \equiv b_1 \ \Leftrightarrow \ b_2. b_1, b_2 \in Bexp $ \\ 
+    \end{align*} \\
+      Perciò \Bext{b_1 \ \Rightarrow \ b_2} = \B{...}. \\.
+      % TODO: sistemare
+
+    \item $ b' \equiv b_1 \ \Leftrightarrow \ b_2$, dove $b_1, b_2 \in \bexp$.
+    \\
     \begin{align*}
       \Bext{b_1 \ \Leftrightarrow \ b_2} = 
       \begin{cases} 
       \semtrue & 
       \mbox{if} \ \Bext{b_1} = \Bext{b_2}\\
       \semfalse & 
-      \mbox{if} \ \Bext{b_1} \neq \Bext{b_2}\\        
+      \mbox{if} \ \Bext{b_1} \neq \Bext{b_2}\\
       \end{cases} 
       \rightarrow
       \begin{cases} 
       \semtrue & 
       \mbox{if} \ \B{b_1} = \B{b_2}\\
       \semfalse & 
-      \mbox{if} \ \lnot (\B{b_1} = \B{b_2})\\        
+      \mbox{if} \ \lnot (\B{b_1} = \B{b_2})\\
       \end{cases} 
-    \end{align*} 
+    \end{align*} \\
+      Perciò \Bext{b_1 \ \Rightarrow \ b_2} = \B{...}. \\
+      % TODO: sistemare
+
   \end{itemize}
 \end{enumerate}
-Nei punti precedenti sono stati considerati tutti i casi di $\mathcal{B}$. Quindi
-$\forall b' \in \textbf{Bexp'}.\exists b \in \ \textbf{Bexp}.b' \equiv b$
-è sempre vera
+
+Nei punti sopra esposti sono state considerate tutte le possibili definizioni
+di \bexp'.
+
+Per ognuna di queste è stato trovato un elemento equivalente nella
+categoria sintattica \bexp. Possiamo quindi asserire che: \\
+
+$\forall b' \in \textbf{Bexp'}.\exists b \in \ \textbf{Bexp}.b' \equiv b$.
+
 \begin{flushright}
 $\Box$
 \end{flushright}
