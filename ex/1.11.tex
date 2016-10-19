@@ -1,5 +1,5 @@
-\section{1.11}
-\paragraph{Consegna} 
+\exercise{1.11}
+{
 La categoria sintattica \textbf{Bexp'} è definita come estensione di 
 \textbf{Bexp} nel modo seguente:
 \begin{align*}
@@ -27,98 +27,89 @@ precedentemente
     Dimostrare che $\forall b' \in$ \textbf{Bexp'} $\exists b \in$ 
 \textbf{Bexp} t.c. b' \textit{equivale a} b
 \end{enumerate}
-
-\paragraph{Svolgimento}  
+}% fine consegna
+{
 \begin{enumerate}[label=(\alph*)]
-  \item 
-\begin{align*}
-\mathcal{B'}: Bexp' \rightarrow State \rightarrow T \\ \\
-\Bext{\syntrue} = \semtrue \\ \\ 
-\Bext{\synfalse} = \semfalse \\ \\
-\Bext{a_1 = a_2} = 
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \A{a_1} = \A{a_2}\\ 
-  \semfalse & 
-  \mbox{if}  \ \A{a_1} \neq \A{a_2}\\
-  \end{cases} \\ \\
-\Bext{a_1 \leq a_2} = 
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \A{a_1} \leq \A{a_2}\\ 
-  \semfalse & 
-  \mbox{if} \ \A{a_1} \not \leq \A{a_2}\\
-  \end{cases} \\ \\
-\Bext{\neg b} =         
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \Bext{b} = \semfalse\\ 
-  \semfalse & 
-  \mbox{if} \ \Bext{b} = \semtrue\\
-  \end{cases} \\ \\
-\Bext{b_1 \ \land \ b_2} = 
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \Bext{b_1} = \mbox{tt and } 
-            \Bext{b_2} = \semtrue \\ 
-  \semfalse & 
-  \mbox{if} \ \Bext{b_1} = \mbox{ff or } 
-            \Bext{b_2} = \semfalse \\ 
-  \end{cases} \\ \\
-\Bext{a_1 \neq a_2} = 
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \A{a_1} \neq \A{a_2}\\ 
-  \semfalse & 
-  \mbox{if}  \ \A{a_1} = \A{a_2}\\
-  \end{cases} \\ \\
-\Bext{b_1 \ \lor \ b_2} = 
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ or } \ 
-            \Bext{b_2} = \semtrue \\ 
-  \semfalse & 
-  \mbox{if} \ \Bext{b_1} = \semfalse \ \mbox{ and } \ 
-            \Bext{b_2} = \semfalse \\ 
-  \end{cases} \\ \\
-\Bext{a_1 > a_2} = 
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \A{a_1} > \A{a_2}\\ 
-  \semfalse & 
-  \mbox{if} \ \A{a_1} \not > \A{a_2}\\
-  \end{cases} \\ \\
-\Bext{a_1 < a_2} = 
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \A{a_1} < \A{a_2}\\ 
-  \semfalse & 
-  \mbox{if} \ \A{a_1} \not < \A{a_2}\\
-  \end{cases} \\ \\
-\Bext{a_1 \geq a_2} = 
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \A{a_1} \geq \A{a_2}\\ 
-  \semfalse & 
-  \mbox{if} \ \A{a_1} \not \geq \A{a_2}\\
-  \end{cases} \\ \\
-\Bext{b_1 \ \Rightarrow \ b_2} = 
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \Bext{b_1} = \semfalse \ \mbox{ or } \
-            (\Bext{b_1} = \semtrue \ \mbox{and} \ \Bext{b_2} = \semtrue)\\ 
-  \semfalse & 
-  \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ and } \ 
-            \Bext{b_2} = \semfalse \\ 
-  \end{cases} \\ \\
-\Bext{b_1 \ \Leftrightarrow \ b_2} = 
-  \begin{cases} 
-  \semtrue & 
-  \mbox{if} \ \Bext{b_1} = \Bext{b_2}\\
-  \semfalse & 
-  \mbox{if} \ \Bext{b_1} \neq \Bext{b_2}\\        
-  \end{cases} 
-\end{align*}
+  \item \mbox{ } \\
+
+  $\mathcal{B'}: Bexp' \rightarrow State \rightarrow T$ \\
+
+  \Bext{\syntrue} = \semtrue \\
+
+  \Bext{\synfalse} = \semfalse \\
+
+  \Bext{a_1 = a_2} =
+  \caseFun{\semtrue}
+          {\A{a_1} = \A{a_2}}
+          {\semfalse}
+          {\A{a_1} \neq \A{a_2}} \\ \\
+
+  \Bext{a_1 \leq a_2} =
+  \caseFun{\semtrue}
+          {\A{a_1} \leq \A{a_2}}
+          {\semfalse}
+          {\A{a_1} \not \leq \A{a_2}} \\ \\
+
+  \Bext{\neg b} =
+  \caseFun{\semtrue}
+          {\Bext{b} = \semfalse}
+          {\semfalse}
+          {\Bext{b} = \semtrue} \\ \\
+
+  \Bext{b_1 \ \land \ b_2} =
+  \caseFun{\semtrue}
+          {\Bext{b_1} = \semtrue \mbox{ and }
+            \Bext{b_2} = \semtrue}
+          {\semfalse}
+          {\Bext{b_1} = \semfalse \mbox{ or }
+            \Bext{b_2} = \semfalse} \\ \\
+
+  \Bext{a_1 \neq a_2} =
+  \caseFun{\semtrue}
+          {\A{a_1} \neq \A{a_2}}
+          {\semfalse}
+          {\A{a_1} = \A{a_2}} \\ \\
+
+  \Bext{b_1 \ \lor \ b_2} =
+  \caseFun{\semtrue}
+          {\Bext{b_1} = \semtrue \mbox{ or } \ 
+            \Bext{b_2} = \semtrue}
+          {\semfalse}
+          {\Bext{b_1} = \semfalse \mbox{ and } \ 
+               \Bext{b_2} = \semfalse} \\ \\
+
+  \Bext{a_1 > a_2} =
+  \caseFun{\semtrue}
+          {\A{a_1} > \A{a_2}}
+          {\semfalse}
+          {\A{a_1} \not > \A{a_2}} \\ \\
+
+  \Bext{a_1 < a_2} =
+  \caseFun{\semtrue}
+          {\A{a_1} < \A{a_2}}
+          {\semfalse}
+          {\A{a_1} \not < \A{a_2}} \\ \\
+
+  \Bext{a_1 \geq a_2} =
+  \caseFun{\semtrue}
+          {\A{a_1} \geq \A{a_2}}
+          {\semfalse}
+          {\A{a_1} \not \geq \A{a_2}} \\ \\
+
+  \Bext{b_1 \ \Rightarrow \ b_2} = 
+  \caseFun{\semtrue}
+          {\Bext{b_1} = \semfalse \ \mbox{ or } \
+            (\Bext{b_1} = \semtrue \ \mbox{and} \ \Bext{b_2} = \semtrue)}
+          {\semfalse}
+          {\Bext{b_1} = \semtrue \ \mbox{ and } \ 
+            \Bext{b_2} = \semfalse} \\ \\
+
+  \Bext{b_1 \ \Leftrightarrow \ b_2} =
+  \caseFun{\semtrue}
+          {\Bext{b_1} = \Bext{b_2}}
+          {\semfalse}
+          {\Bext{b_1} \neq \Bext{b_2}} \\ \\
+
 \item
   \begin{itemize}
     \item I primi sei casi di $\mathcal{B'}$ corrispondono esattamente ai sei 
@@ -127,7 +118,7 @@ casi di $\mathcal{B}$ pertanto
         \forall b' \in \ \textbf{Bexp'}.\exists b \in 
         \ \textbf{Bexp}.b' \equiv b
       \end{align*}
-      \textit{per i primi sei casi} è banalmente vera
+      \textit{per i primi sei casi} è banalmente vera.
     \item $b' \equiv a_1 \neq a_2. a_1, a_2 \in Aexp$ \\ 
       \begin{align*}
         \Bext{a_1 \neq a_2} = 
@@ -310,3 +301,4 @@ $\forall b' \in \textbf{Bexp'}.\exists b \in \ \textbf{Bexp}.b' \equiv b$
 \begin{flushright}
 $\Box$
 \end{flushright}
+}
