@@ -163,22 +163,22 @@ casi di $\mathcal{B}$ pertanto
 
     \item $ b' \equiv a_1 > a_2$, dove $a_1, a_2 \in \aexp$. \\
       \begin{align*} 
-       \Bext{a_1 > a_2} = 
-        \begin{cases} 
-        \semtrue & 
-        \mbox{if} \ \A{a_1} > \A{a_2}\\ 
+       \B{\lnot(a_1 \leq a_2)} = 
+        \begin{cases}
+        \semtrue &
+        \mbox{if} \ \B{a_1 \leq a_2} = \semfalse \\
         \semfalse & 
-        \mbox{if} \ \A{a_1} \not > \A{a_2}\\
+        \mbox{if} \ \B{a_1 \leq a_2} = \semtrue \\
         \end{cases} 
         \rightarrow
         \begin{cases} 
         \semtrue & 
-        \mbox{if} \ \lnot (\A{a_1} \leq \A{a_2})\\ 
+        \mbox{if} \ (\A{a_1} \not \leq \A{a_2})\\ 
         \semfalse & 
         \mbox{if} \ \A{a_1} \leq \A{a_2}\\
         \end{cases} 
       \end{align*} \\
-      Perciò \Bext{a_1 > a_2} = \B{\lnot (\A{a_1} \leq \A{a_2})}. \\.
+      Perciò \Bext{a_1 > a_2} = \B{\lnot(a_1 \leq a_2)}. \\.
 
     \item $ b' \equiv a_1 < a_2$, dove $a_1, a_2 \in \aexp$. \\
       \begin{align*}
