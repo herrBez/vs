@@ -301,22 +301,49 @@ casi di $\mathcal{B}$ pertanto
     \\
     \begin{align*}
       \Bext{b_1 \ \Leftrightarrow \ b_2} = 
-      \begin{cases} 
-      \semtrue & 
-      \mbox{if} \ \Bext{b_1} = \Bext{b_2}\\
-      \semfalse & 
-      \mbox{if} \ \Bext{b_1} \neq \Bext{b_2}\\
-      \end{cases} 
-      \rightarrow
-      \begin{cases} 
-      \semtrue & 
-      \mbox{if} \ \B{b_1} = \B{b_2}\\
-      \semfalse & 
-      \mbox{if} \ \lnot (\B{b_1} = \B{b_2})\\
-      \end{cases} 
+      \caseFun{\semtrue}
+          {(\Bext{b_1} = \semtrue \mbox{ and } \Bext{b_2} = \semtrue)
+           \mbox{ or }
+           (\Bext{b_1} = \semfalse \mbox{ and } \Bext{b_2} = \semfalse)}
+          {\semfalse}
+          {(\Bext{b_1} = \semtrue \mbox{ or } \Bext{b_2} = \semfalse)
+           \mbox{ and }
+           (\Bext{b_1} = \semfalse \mbox{ or } \Bext{b_2} = \semtrue)}
+      \rightarrow \\ \\ % becomes
+      \caseFun{\semtrue}
+        {\lnot(
+          \lnot (\Bext{b_1} = \semtrue \mbox{ and } \Bext{b_2} = \semtrue)
+          \mbox{ and }
+          \lnot (\Bext{b_1} = \semfalse \mbox{ and } \Bext{b_2} = \semfalse))}
+        {\semfalse}
+        {\lnot (\lnot (\Bext{b_1} = \semtrue)
+                \mbox{ and }
+                \lnot (\Bext{b_2} = \semfalse))
+         \mbox{ and }
+         \lnot(\lnot (\Bext{b_1} = \semfalse)
+               \mbox{ and }
+               \lnot (\Bext{b_2} = \semtrue))}
+      \rightarrow \\ \\ % becomes
+      \caseFun{\semtrue}
+        {\lnot(
+          \lnot (\Bext{b_1} = \semtrue \mbox{ and } \Bext{b_2} = \semtrue)
+          \mbox{ and }
+          \lnot (\Bext{b_1} = \semfalse \mbox{ and } \Bext{b_2} = \semfalse))}
+        {\semfalse}
+        {\lnot (\Bext{b_1} = \semfalse
+                \mbox{ and }
+                \Bext{b_2} = \semtrue)
+         \mbox{ and }
+         \lnot(\Bext{b_1} = \semtrue
+               \mbox{ and }
+               \Bext{b_2} = \semfalse)}
     \end{align*} \\
-      Perciò \Bext{b_1 \ \Rightarrow \ b_2} = \B{...}. \\
-      % TODO: sistemare
+      Perciò \Bext{b_1 \ \Rightarrow \ b_2} =
+      \B{\lnot(
+        \lnot (\Bext{b_1} = \semtrue \land \Bext{b_2} = \semtrue)
+        \land
+        \lnot (\Bext{b_1} = \semfalse \land \Bext{b_2} = \semfalse))}.
+        \\
 
   \end{itemize}
 \end{enumerate}
