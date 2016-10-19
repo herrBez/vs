@@ -106,10 +106,14 @@ precedentemente
 
   \Bext{b_1 \ \Leftrightarrow \ b_2} =
   \caseFun{\semtrue}
-          {\Bext{b_1} = \Bext{b_2}}
+          {(\Bext{b_1} = \semtrue \mbox{ and } \Bext{b_2} = \semtrue)
+           \mbox{ or }
+           (\Bext{b_1} = \semfalse \mbox{ and } \Bext{b_2} = \semfalse)}
           {\semfalse}
-          {\Bext{b_1} \neq \Bext{b_2}} \\ \\
-  %TODO: sistemare
+          {(\Bext{b_1} = \semtrue \mbox{ or } \Bext{b_2} = \semfalse)
+           \mbox{ and }
+           (\Bext{b_1} = \semfalse \mbox{ or } \Bext{b_2} = \semtrue)}
+          \\ \\
 
 \item
   \begin{itemize}
