@@ -260,38 +260,38 @@ casi di $\mathcal{B}$ pertanto
 
     \item $ b' \equiv b_1 \ \Rightarrow \ b_2$, dove $b_1, b_2 \in \bexp$. \\
     \begin{align*}
-      \Bext{b_1 \ \Rightarrow \ b_2} = 
-      \begin{cases} 
-      \semtrue & 
+      \Bext{b_1 \ \Rightarrow \ b_2} =
+      \begin{cases}
+      \semtrue &
       \mbox{if} \ \Bext{b_1} = \semfalse \ \mbox{ or } \
-                (\Bext{b_1} = \semtrue \ \mbox{and} \ \Bext{b_2} = \semtrue)\\ 
-      \semfalse & 
-      \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ and } \ 
-                \Bext{b_2} = \semfalse \\ 
-      \end{cases} \\ \\  
+                \Bext{b_2} = \semtrue\\
+      \semfalse &
+      \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ and } \
+                \Bext{b_2} = \semfalse \\
+      \end{cases} \\ \\
       \rightarrow
-      \begin{cases} 
-      \semtrue & 
-      \mbox{if} \ \lnot ( \lnot (\B{b_1} = \semfalse) 
+      \begin{cases}
+      \semtrue &
+      \mbox{if} \ \lnot ( \lnot (\B{b_1} = \semfalse)
                 \ \mbox{ and } \
-                \lnot ((\B{b_1} \ \mbox{and} \ \B{b_2}) = \semtrue))\\ 
-      \semfalse & 
-      \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \ 
-                \B{b_2} = \semfalse \\ 
-      \end{cases}  \\ \\ 
+                \lnot (\B{b_2} = \semtrue))\\
+      \semfalse &
+      \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \
+                \B{b_2} = \semfalse \\
+      \end{cases}  \\ \\
       \rightarrow
-      \begin{cases} 
-      \semtrue & 
-      \mbox{if} \ \lnot ( \B{b_1} = \semtrue 
+      \begin{cases}
+      \semtrue &
+      \mbox{if} \ \lnot ( \B{b_1} = \semtrue
                 \ \mbox{ and } \
-                (\B{b_1} \ \mbox{and} \ \B{b_2}) = \semfalse)\\ 
-      \semfalse & 
-      \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \ 
-                \B{b_2} = \semfalse \\ 
-      \end{cases} 
+                \lnot (\B{b_2} = \semtrue))\\
+      \semfalse &
+      \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \
+                \B{b_2} = \semfalse \\
+      \end{cases}
     \end{align*} \\
-      Perciò \Bext{b_1 \ \Rightarrow \ b_2} = \B{...}. \\.
-      % TODO: sistemare
+      Perciò \Bext{b_1 \ \Rightarrow \ b_2} =
+      \B{\lnot ( \B{b_1} \land \lnot (\B{b_2}))}. \\.
 
     \item $ b' \equiv b_1 \ \Leftrightarrow \ b_2$, dove $b_1, b_2 \in \bexp$.
     \\
