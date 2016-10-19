@@ -34,35 +34,17 @@ precedentemente
 
   $\mathcal{B'}: \bexp' \rightarrow \states \rightarrow T$ \\
 
-  \Bext{\syntrue} = \semtrue \\
+  \Bext{\syntrue} = \B{\syntrue} \\
 
-  \Bext{\synfalse} = \semfalse \\
+  \Bext{\synfalse} = \B{\synfalse} \\
 
-  \Bext{a_1 = a_2} =
-  \caseFun{\semtrue}
-          {\A{a_1} = \A{a_2}}
-          {\semfalse}
-          {\A{a_1} \neq \A{a_2}} \\ \\
+  \Bext{a_1 = a_2} = \B{a_1 = a_2} \\
 
-  \Bext{a_1 \leq a_2} =
-  \caseFun{\semtrue}
-          {\A{a_1} \leq \A{a_2}}
-          {\semfalse}
-          {\A{a_1} \not \leq \A{a_2}} \\ \\
+  \Bext{a_1 \leq a_2} = \B{a_1 \leq a_2} \\
 
-  \Bext{\neg b} =
-  \caseFun{\semtrue}
-          {\B{b} = \semfalse}
-          {\semfalse}
-          {\B{b} = \semtrue} \\ \\
+  \Bext{\neg b} = \B{\neg b} \\
 
-  \Bext{b_1 \ \land \ b_2} =
-  \caseFun{\semtrue}
-          {\B{b_1} = \semtrue \mbox{ and }
-            \B{b_2} = \semtrue}
-          {\semfalse}
-          {\B{b_1} = \semfalse \mbox{ or }
-            \B{b_2} = \semfalse} \\ \\
+  \Bext{b_1 \ \land \ b_2} = \B{b_1 \ \land \ b_2} \\
 
   \Bext{a_1 \neq a_2} =
   \caseFun{\semtrue}
@@ -72,11 +54,11 @@ precedentemente
 
   \Bext{b_1 \ \lor \ b_2} =
   \caseFun{\semtrue}
-          {\B{b_1} = \semtrue \mbox{ or } \ 
-            \B{b_2} = \semtrue}
+          {\Bext{b_1} = \semtrue \mbox{ or } \ 
+            \Bext{b_2} = \semtrue}
           {\semfalse}
-          {\B{b_1} = \semfalse \mbox{ and } \ 
-               \B{b_2} = \semfalse} \\ \\
+          {\Bext{b_1} = \semfalse \mbox{ and } \ 
+               \Bext{b_2} = \semfalse} \\ \\
 
   \Bext{a_1 > a_2} =
   \caseFun{\semtrue}
@@ -98,27 +80,27 @@ precedentemente
 
   \Bext{b_1 \ \Rightarrow \ b_2} = 
   \caseFun{\semtrue}
-          {\B{b_1} = \semfalse \ \mbox{ or } \
-            \B{b_2} = \semtrue}
+          {\Bext{b_1} = \semfalse \ \mbox{ or } \
+            \Bext{b_2} = \semtrue}
           {\semfalse}
-          {\B{b_1} = \semtrue \ \mbox{ and } \ 
-            \B{b_2} = \semfalse} \\ \\
+          {\Bext{b_1} = \semtrue \ \mbox{ and } \ 
+            \Bext{b_2} = \semfalse} \\ \\
 
   \Bext{b_1 \ \Leftrightarrow \ b_2} =
   \caseFun{\semtrue}
-          {(\B{b_1} = \semtrue \mbox{ and } \B{b_2} = \semtrue)
+          {(\Bext{b_1} = \semtrue \mbox{ and } \Bext{b_2} = \semtrue)
            \mbox{ or }
-           (\B{b_1} = \semfalse \mbox{ and } \B{b_2} = \semfalse)}
+           (\Bext{b_1} = \semfalse \mbox{ and } \Bext{b_2} = \semfalse)}
           {\semfalse}
-          {(\B{b_1} = \semtrue \mbox{ or } \B{b_2} = \semfalse)
+          {(\Bext{b_1} = \semtrue \mbox{ or } \Bext{b_2} = \semfalse)
            \mbox{ and }
-           (\B{b_1} = \semfalse \mbox{ or } \B{b_2} = \semtrue)}
+           (\Bext{b_1} = \semfalse \mbox{ or } \Bext{b_2} = \semtrue)}
           \\ \\
 
 \item
   \begin{itemize}
-    \item I primi sei casi di $\mathcal{B'}$ corrispondono esattamente ai sei 
-casi di $\mathcal{B}$ pertanto 
+    \item I primi sei casi di $\mathcal{B'}$ corrispondono esattamente ai sei
+casi di $\mathcal{B}$ pertanto
       \begin{align*}
         \forall b' \in \ \textbf{Bexp'}.\exists b \in 
         \ \textbf{Bexp}.b' \equiv b
@@ -127,53 +109,57 @@ casi di $\mathcal{B}$ pertanto
 
     \item $b' \equiv a_1 \neq a_2$, dove $a_1, a_2 \in \aexp$. \\ 
       \begin{align*}
-        \Bext{a_1 \neq a_2} = 
-        \begin{cases} 
-          \semtrue & 
-          \mbox{if} \ \lnot \B{a_1 = a_2} \\ 
-          \semfalse & 
-          \mbox{if}  \ \B{a_1 = a_2}\\
+        \B{\lnot (a_1 = a_2)} =
+        \begin{cases}
+          \semtrue &
+          \mbox{if} \ \B{a_1 = a_2} = \semfalse \\
+          \semfalse &
+          \mbox{if} \ \B{a_1 = a_2} = \semtrue \\
         \end{cases}
         \rightarrow
-        \begin{cases} 
-          \semtrue & 
-          \mbox{if} \ \lnot \B{a_1 = a_2} \\ 
-          \semfalse & 
-          \mbox{if}  \ \B{a_1 = a_2}\\
+        \begin{cases}
+          \semtrue &
+          \mbox{if} \ \A{a_1} \neq  \A{a_2} \\
+          \semfalse &
+          \mbox{if} \ \A{a_1} = \A{a_2} \\
         \end{cases}
-        \rightarrow
-        \begin{cases} 
-          \semtrue & 
-          \mbox{if} \ \lnot (\A{a_1} = \A{a_2}) \\ 
-          \semfalse & 
-          \mbox{if}  \ \A{a_1} = \A{a_2}\\
-        \end{cases} 
       \end{align*} \\
-      Perciò \Bext{a_1 \neq a_2} = \B{\lnot (\A{a_1} = \A{a_2})}. \\
+      Perciò \Bext{a_1 \neq a_2} = \B{\lnot (a_1 = a_2)}. \\
 
     \item $ b' \equiv b_1 \lor b_2$, dove $b_1, b_2 \in \bexp$. \\
       \begin{align*}
-        \Bext{b_1 \ \lor \ b_2} =
+        \B{\lnot (\lnot (\B{b_1}) \land \lnot (\B{b_2}))} =
         \begin{cases}
         \semtrue &
-        \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ or } \ 
-              \B{b_2} = \semtrue \\
+        \mbox{if} \ \B{\lnot \B{b_1} \land \lnot \B{b_2}} = \semfalse \\
         \semfalse &
-        \mbox{if} \ \B{b_1} = \semfalse \ \mbox{ and } \ 
-              \B{b_2} = \semfalse \\
+        \mbox{if} \ \B{\lnot \B{b_1} \land \lnot \B{b_2}} = \semtrue \\
         \end{cases}
-        \rightarrow
+        \rightarrow \\ \\
         \begin{cases}
         \semtrue &
-        \mbox{if} \ \lnot (\lnot (\B{b_1}) \ \mbox{ and } \
-              \lnot (\B{b_2})) = \semtrue \\
+        \mbox{if} \ \B {\lnot \B{b_1}} = \semfalse
+                    \mbox{ or }
+                    \B {\lnot \B{b_2}} = \semfalse \\
         \semfalse &
-        \mbox{if} \ \B{b_1} = \semfalse \ \mbox{ and } \
-              \B{b_2} = \semfalse \\
+        \mbox{if} \ \B{\lnot \B{b_1}} = \semtrue
+                    \mbox{ and }
+                    \B{\lnot \B{b_2}} = \semtrue \\
+        \end{cases}
+        \rightarrow \\ \\
+        \begin{cases}
+        \semtrue &
+        \mbox{if} \ \B {\B{b_1}} = \semtrue
+                    \mbox{ or }
+                    \B {\B{b_2}} = \semtrue \\
+        \semfalse &
+        \mbox{if} \ \B{\B{b_1}} = \semfalse
+                    \mbox{ and }
+                    \B{\B{b_2}} = \semfalse \\
         \end{cases}
       \end{align*} \\
-      Perciò \Bext{b_1 \lor b_2} = \B{\lnot (\lnot (\B{b_1}) \land
-        \lnot (\B{b_2}))}. \\.
+      Perciò \Bext{b_1 \lor b_2} =
+      \B{\lnot (\lnot (\B{b_1}) \land \lnot (\B{b_2}))}. \\.
 
     \item $ b' \equiv a_1 > a_2$, dove $a_1, a_2 \in \aexp$. \\
       \begin{align*} 
