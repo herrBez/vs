@@ -52,17 +52,17 @@ precedentemente
 
   \Bext{\neg b} =
   \caseFun{\semtrue}
-          {\Bext{b} = \semfalse}
+          {\B{b} = \semfalse}
           {\semfalse}
-          {\Bext{b} = \semtrue} \\ \\
+          {\B{b} = \semtrue} \\ \\
 
   \Bext{b_1 \ \land \ b_2} =
   \caseFun{\semtrue}
-          {\Bext{b_1} = \semtrue \mbox{ and }
-            \Bext{b_2} = \semtrue}
+          {\B{b_1} = \semtrue \mbox{ and }
+            \B{b_2} = \semtrue}
           {\semfalse}
-          {\Bext{b_1} = \semfalse \mbox{ or }
-            \Bext{b_2} = \semfalse} \\ \\
+          {\B{b_1} = \semfalse \mbox{ or }
+            \B{b_2} = \semfalse} \\ \\
 
   \Bext{a_1 \neq a_2} =
   \caseFun{\semtrue}
@@ -72,11 +72,11 @@ precedentemente
 
   \Bext{b_1 \ \lor \ b_2} =
   \caseFun{\semtrue}
-          {\Bext{b_1} = \semtrue \mbox{ or } \ 
-            \Bext{b_2} = \semtrue}
+          {\B{b_1} = \semtrue \mbox{ or } \ 
+            \B{b_2} = \semtrue}
           {\semfalse}
-          {\Bext{b_1} = \semfalse \mbox{ and } \ 
-               \Bext{b_2} = \semfalse} \\ \\
+          {\B{b_1} = \semfalse \mbox{ and } \ 
+               \B{b_2} = \semfalse} \\ \\
 
   \Bext{a_1 > a_2} =
   \caseFun{\semtrue}
@@ -98,21 +98,21 @@ precedentemente
 
   \Bext{b_1 \ \Rightarrow \ b_2} = 
   \caseFun{\semtrue}
-          {\Bext{b_1} = \semfalse \ \mbox{ or } \
-            \Bext{b_2} = \semtrue}
+          {\B{b_1} = \semfalse \ \mbox{ or } \
+            \B{b_2} = \semtrue}
           {\semfalse}
-          {\Bext{b_1} = \semtrue \ \mbox{ and } \ 
-            \Bext{b_2} = \semfalse} \\ \\
+          {\B{b_1} = \semtrue \ \mbox{ and } \ 
+            \B{b_2} = \semfalse} \\ \\
 
   \Bext{b_1 \ \Leftrightarrow \ b_2} =
   \caseFun{\semtrue}
-          {(\Bext{b_1} = \semtrue \mbox{ and } \Bext{b_2} = \semtrue)
+          {(\B{b_1} = \semtrue \mbox{ and } \B{b_2} = \semtrue)
            \mbox{ or }
-           (\Bext{b_1} = \semfalse \mbox{ and } \Bext{b_2} = \semfalse)}
+           (\B{b_1} = \semfalse \mbox{ and } \B{b_2} = \semfalse)}
           {\semfalse}
-          {(\Bext{b_1} = \semtrue \mbox{ or } \Bext{b_2} = \semfalse)
+          {(\B{b_1} = \semtrue \mbox{ or } \B{b_2} = \semfalse)
            \mbox{ and }
-           (\Bext{b_1} = \semfalse \mbox{ or } \Bext{b_2} = \semtrue)}
+           (\B{b_1} = \semfalse \mbox{ or } \B{b_2} = \semtrue)}
           \\ \\
 
 \item
@@ -130,9 +130,9 @@ casi di $\mathcal{B}$ pertanto
         \Bext{a_1 \neq a_2} = 
         \begin{cases} 
           \semtrue & 
-          \mbox{if} \ \lnot \Bext{a_1 = a_2} \\ 
+          \mbox{if} \ \lnot \B{a_1 = a_2} \\ 
           \semfalse & 
-          \mbox{if}  \ \Bext{a_1 = a_2}\\
+          \mbox{if}  \ \B{a_1 = a_2}\\
         \end{cases}
         \rightarrow
         \begin{cases} 
@@ -156,11 +156,11 @@ casi di $\mathcal{B}$ pertanto
         \Bext{b_1 \ \lor \ b_2} =
         \begin{cases}
         \semtrue &
-        \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ or } \ 
-              \Bext{b_2} = \semtrue \\
+        \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ or } \ 
+              \B{b_2} = \semtrue \\
         \semfalse &
-        \mbox{if} \ \Bext{b_1} = \semfalse \ \mbox{ and } \ 
-              \Bext{b_2} = \semfalse \\
+        \mbox{if} \ \B{b_1} = \semfalse \ \mbox{ and } \ 
+              \B{b_2} = \semfalse \\
         \end{cases}
         \rightarrow
         \begin{cases}
@@ -267,11 +267,11 @@ casi di $\mathcal{B}$ pertanto
       \Bext{b_1 \ \Rightarrow \ b_2} =
       \begin{cases}
       \semtrue &
-      \mbox{if} \ \Bext{b_1} = \semfalse \ \mbox{ or } \
-                \Bext{b_2} = \semtrue\\
+      \mbox{if} \ \B{b_1} = \semfalse \ \mbox{ or } \
+                \B{b_2} = \semtrue\\
       \semfalse &
-      \mbox{if} \ \Bext{b_1} = \semtrue \ \mbox{ and } \
-                \Bext{b_2} = \semfalse \\
+      \mbox{if} \ \B{b_1} = \semtrue \ \mbox{ and } \
+                \B{b_2} = \semfalse \\
       \end{cases} \\ \\
       \rightarrow
       \begin{cases}
@@ -302,13 +302,13 @@ casi di $\mathcal{B}$ pertanto
     \begin{align*}
       \Bext{b_1 \ \Leftrightarrow \ b_2} = 
       \caseFun{\semtrue}
-          {(\Bext{b_1} = \semtrue \mbox{ and } \Bext{b_2} = \semtrue)
+          {(\B{b_1} = \semtrue \mbox{ and } \B{b_2} = \semtrue)
            \mbox{ or }
-           (\Bext{b_1} = \semfalse \mbox{ and } \Bext{b_2} = \semfalse)}
+           (\B{b_1} = \semfalse \mbox{ and } \B{b_2} = \semfalse)}
           {\semfalse}
-          {(\Bext{b_1} = \semtrue \mbox{ or } \Bext{b_2} = \semfalse)
+          {(\B{b_1} = \semtrue \mbox{ or } \B{b_2} = \semfalse)
            \mbox{ and }
-           (\Bext{b_1} = \semfalse \mbox{ or } \Bext{b_2} = \semtrue)}
+           (\B{b_1} = \semfalse \mbox{ or } \B{b_2} = \semtrue)}
       \rightarrow \\ \\ % becomes
       \caseFun{\semtrue}
         {\lnot(
