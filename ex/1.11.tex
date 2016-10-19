@@ -123,7 +123,7 @@ casi di $\mathcal{B}$ pertanto
           \semfalse &
           \mbox{if} \ \A{a_1} = \A{a_2} \\
         \end{cases}
-      \end{align*} \\
+      \end{align*} \\ \\
       Perciò \Bext{a_1 \neq a_2} = \B{\lnot (a_1 = a_2)}. \\
 
     \item $ b' \equiv b_1 \lor b_2$, dove $b_1, b_2 \in \bexp$. \\
@@ -157,7 +157,7 @@ casi di $\mathcal{B}$ pertanto
                     \mbox{ and }
                     \B{\B{b_2}} = \semfalse \\
         \end{cases}
-      \end{align*} \\
+      \end{align*} \\ \\
       Perciò \Bext{b_1 \lor b_2} =
       \B{\lnot (\lnot (\B{b_1}) \land \lnot (\B{b_2}))}. \\.
 
@@ -177,33 +177,52 @@ casi di $\mathcal{B}$ pertanto
         \semfalse & 
         \mbox{if} \ \A{a_1} \leq \A{a_2}\\
         \end{cases} 
-      \end{align*} \\
+      \end{align*} \\ \\
       Perciò \Bext{a_1 > a_2} = \B{\lnot(a_1 \leq a_2)}. \\.
 
     \item $ b' \equiv a_1 < a_2$, dove $a_1, a_2 \in \aexp$. \\
       \begin{align*}
-        \Bext{a_1 < a_2} = 
-        \begin{cases} 
-        \semtrue & 
-        \mbox{if} \ \A{a_1} < \A{a_2}\\ 
-        \semfalse & 
-        \mbox{if} \ \A{a_1} \not < \A{a_2}\\
+        \B{(a_1 \leq a_2) \land \lnot(a_1 = a_2)} = 
+        \begin{cases}
+        \semtrue &
+        \mbox{if} \ \B{a_1 \leq a_2} = \semtrue
+                    \mbox{ and }
+                    \B{\lnot(a_1 = a_2)} = \semtrue \\
+        \semfalse &
+        \mbox{if} \ \B{a_1 \leq a_2} = \semfalse
+                    \mbox{ or }
+                    \B{\lnot(a_1 = a_2)} = \semfalse \\
         \end{cases}
-        \rightarrow
-        \begin{cases} 
-        \semtrue & 
-        \mbox{if} \ (\A{a_1} \leq \A{a_2}) \ \mbox{ and } \ (\A{a_1} \not =  \A{a_2})\\ 
-        \semfalse & 
-        \mbox{if} \ \lnot ((\A{a_1} \leq \A{a_2}) \ \mbox{ and } \ (\A{a_1} \not =  \A{a_2}))\\
-        \end{cases} \\ \\
-        \rightarrow
-        \begin{cases} 
-        \semtrue & 
-        \mbox{if} \ (\A{a_1} \leq \A{a_2}) \ \mbox{ and } \ \lnot (\A{a_1} =  \A{a_2})\\ 
-        \semfalse & 
-        \mbox{if} \ \lnot ((\A{a_1} \leq \A{a_2}) \ \mbox{ and } \ \lnot (\A{a_1} = \A{a_2}))\\
+        \rightarrow \\ \\
+        \begin{cases}
+        \semtrue &
+        \mbox{if} \ \A{a_1} \leq A{a_2}
+                    \mbox{ and }
+                    \B{a_1 = a_2} = \semfalse \\
+        \semfalse &
+        \mbox{if} \ \A{a_1} \not \leq \A{a_2}
+                    \mbox{ or }
+                    \B{a_1 = a_2} = \semtrue \\
         \end{cases}
-      \end{align*} \\
+        \rightarrow \\ \\
+        \begin{cases}
+        \semtrue &
+        \mbox{if} \ \A{a_1} \leq \A{a_2}
+                    \mbox{ and }
+                    \A{a_1} \neq \A{a_2} \\
+        \semfalse &
+        \mbox{if} \ \A{a_1} \not \leq \A{a_2}
+                    \mbox{ or }
+                    \A{a_1} = \A{a_2} \\
+        \end{cases}
+        \rightarrow \\ \\
+        \begin{cases}
+        \semtrue &
+        \mbox{if} \ \A{a_1} < \A{a_2} \\
+        \semfalse &
+        \mbox{if} \ \A{a_1} \geq \A{a_2} \\
+        \end{cases}
+      \end{align*} \\ \\
       Perciò \Bext{a_1 < a_2} =
       \B{(\A{a_1} \leq \A{a_2}) \land \lnot (\A{a_1} =  \A{a_2})}. \\.
 
