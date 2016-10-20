@@ -1,0 +1,95 @@
+\exercise{1.8}
+{Provare che le equazioni della tabella 1.1 definiscono una funzione totale 
+$\mathcal{A}:\aexp \rightarrow \states \rightarrow \Z$: 
+	\begin{enumerate}
+		\item Argomentare che è sufficiente provare che  
+$\forall a \in \aexp$ e $\forall s \in \states$
+		c'é esattamente un valore $\mathbf{v} \in \mathbf{Z}.\A{a} = 
+\mathbf{v}$
+		\item Usare l'induzione strutturale sulle espressioni 
+aritmetiche per provare che è effettivamente così.
+	\end{enumerate}
+}
+{
+	\begin{enumerate}
+		\item 
+                \begin{itemize}
+                  \item Per i casi base
+                    \begin{itemize}
+                            \item $\boxed{a = n \in Num}$
+                            \item $\boxed{a = x \in Var}$
+                    \end{itemize} 
+                    abbiamo rispettivamente:
+                    \begin{itemize}
+                            \item $\boxed{\A{n} \mapsto \N{n}}$ \\
+                              che $\forall s \in \states$ sappiamo essere un 
+                              valore $\mathbf{v} \in \mathbf{Z}$ univoco, poichè 
+                              per definizione $\mathcal{N}:\mathbf{Num} 
+                              \rightarrow \mathbf{Z}$ è una funzione (totale) 
+                              iniettiva.
+                            \item $\boxed{\A{x} \mapsto s\myspace x}$ \\
+                              poichè $s:\var \rightarrow \Z$ è una funzione 
+                              (totale) allora $\forall s \in \states$ 
+                              alla variabile $x$ verrà associato un unico valore 
+                              $\mathbf{v} \in \Z$.
+			
+		  \item Per le espressioni composite \\
+                        Ogni espressione composita è formata da un operatore 
+                        binario e due sottoespressioni aritmetiche $a_1$ e 
+                        $a_2$. $a_1$ ed $a_2$ vengono associate ad un unico 
+                        valore $\mathbf{v_1}, \mathbf{v_2} \in \Z$.
+			Per definizione gli operatori semantici $+, -, *$ 
+                        prendono in input due valori e ne restituiscono 
+                        rispettivamente la somma, la differenza e il prodotto. 
+                        Gli operatori semantici restituiscono in tutti i
+                        casi dei valori, l'asserto è dimostrato.
+	        \end{itemize}	
+			
+		\end{itemize}
+			\item Procedo per induzione strutturale su \aexp, 
+                              formalizzando quanto argomentato in precedenza.
+			\begin{table}[h!]
+				\begin{center}
+			\begin{tabular}{| l| L | p{0.4\linewidth} |}
+				\hline
+				\textbf{Casi Base} & \A{n}=\N{n}=\mathbf{v} & 
+				è banalmente vero perchè per definizione \Ncal 
+                                associa ad un numerale un (unico) numero intero.\\
+				& &\\
+				& \A{x} = s \myspace x = \mathbf{v}&$s$ è una 
+                                funzione che ha come dominio tutte le variabili,
+                                quindi ritorna un valore univoco $\mathbf{v}$ 
+                                dipendentemente dallo stato.\\
+				& & \\
+				\hline
+				& &\\
+				\textbf{Casi Compositi} & 
+                                \A{a_1 + a_2} = \A{a_1} + \A{a_2} & 
+                                Definizione di \A{a_1 + a_2}\\
+				& = \mathbf{v_1} + \mathbf{v_2}  &  
+                                Ipotesi induttiva applicata a \A{a_1} e \A{a_2}\\
+				& = \mathbf{v} & 
+                                Definizione dell'operatore semantico\\
+				& & \\
+				& \A{a_1 - a_2} = \A{a_1} - \A{a_2} & 
+                                Definizione di \A{a_1 - a_2}\\
+				& = \mathbf{v_1} - \mathbf{v_2}  &  
+                                Ipotesi induttiva applicata a \A{a_1} e \A{a_2}\\
+				& = \mathbf{v} & 
+                                Definizione dell'operatore semantico\\
+				& & \\
+				& \A{a_1 * a_2} = \A{a_1} * \A{a_2} & 
+                                Definizione di \A{a_1 * a_2}\\
+				& = \mathbf{v_1} * \mathbf{v_2}  & 
+                                Ipotesi induttiva applicata a \A{a_1} e \A{a_2}\\
+				& = \mathbf{v} & 
+                                Definizione dell'operatore semantico\\
+				& & \\
+				\hline
+			\end{tabular}
+				
+				\end{center}
+			\end{table}
+			
+	\end{enumerate}
+}
