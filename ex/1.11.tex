@@ -128,7 +128,7 @@ casi di $\mathcal{B}$ pertanto
 
     \item $ b' \equiv b_1 \lor b_2$, dove $b_1, b_2 \in \bexp$. \\
       \begin{align*}
-        \B{\lnot (\lnot (b_1) \land \lnot (b_2))} =
+        \B{\lnot (\lnot b_1 \land \lnot b_2)} =
         \begin{cases}
         \semtrue &
         \mbox{if} \ \B{\lnot b_1 \land \lnot b_2} = \semfalse \\
@@ -159,7 +159,7 @@ casi di $\mathcal{B}$ pertanto
         \end{cases}
       \end{align*} \\ \\
       Perciò $\forall s \in \states$.\Bext{b_1 \lor b_2} =
-      \B{\lnot (\lnot (b_1) \land \lnot (b_2))}. \\.
+      \B{\lnot (\lnot b_1 \land \lnot b_2)}. \\.
 
     \item $ b' \equiv a_1 > a_2$, dove $a_1, a_2 \in \aexp$. \\
       \begin{align*} 
@@ -173,7 +173,7 @@ casi di $\mathcal{B}$ pertanto
         \rightarrow
         \begin{cases} 
         \semtrue & 
-        \mbox{if} \ (\A{a_1} \not \leq \A{a_2})\\ 
+        \mbox{if} \ \A{a_1} \not \leq \A{a_2}\\ 
         \semfalse & 
         \mbox{if} \ \A{a_1} \leq \A{a_2}\\
         \end{cases} 
