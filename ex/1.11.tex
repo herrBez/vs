@@ -20,11 +20,11 @@ b ::= true \
 \begin{enumerate}[label=(\alph*)]
   \item Estendere per composizione la funzione $\mathcal{B}$ definita 
 precedentemente
-  \item Due espressioni booleane sono \textit{equivalenti} se:  
+  \item Due espressioni booleane sono \textit{equivalenti} se:
     \begin{align*}
       \forall s \in \states.\Bext{b_1} = \B{b_2}
     \end{align*}
-    Dimostrare che $\forall b' \in$ \textbf{Bexp'} $\exists b \in$ 
+    Dimostrare che $\forall b' \in$ \textbf{Bexp'} $\exists b \in$
 \textbf{Bexp} t.c. b' \textit{equivale a} b
 \end{enumerate}
 }% fine consegna
@@ -105,7 +105,7 @@ casi di $\mathcal{B}$ pertanto
         \forall b' \in \ \textbf{Bexp'}.\exists b \in 
         \ \textbf{Bexp}.b' \equiv b
       \end{align*}
-      \textit{per i primi sei casi} è banalmente vera.
+      \textit{per i primi sei casi} è banalmente vera
 
     \item $b' \equiv a_1 \neq a_2$, dove $a_1, a_2 \in \aexp$. \\ 
       \begin{align*}
@@ -124,7 +124,7 @@ casi di $\mathcal{B}$ pertanto
           \mbox{if} \ \A{a_1} = \A{a_2} \\
         \end{cases}
       \end{align*} \\ \\
-      Perciò $\forall s \in \states$.\Bext{a_1 \neq a_2} = \B{\lnot (a_1 = a_2)}. \\
+      Perciò $\forall s \in \states$.\Bext{a_1 \neq a_2} = \B{\lnot (a_1 = a_2)} \\
 
     \item $ b' \equiv b_1 \lor b_2$, dove $b_1, b_2 \in \bexp$. \\
       \begin{align*}
@@ -159,7 +159,7 @@ casi di $\mathcal{B}$ pertanto
         \end{cases}
       \end{align*} \\ \\
       Perciò $\forall s \in \states$.\Bext{b_1 \lor b_2} =
-      \B{\lnot (\lnot b_1 \land \lnot b_2)}. \\.
+      \B{\lnot (\lnot b_1 \land \lnot b_2)} \\
 
     \item $ b' \equiv a_1 > a_2$, dove $a_1, a_2 \in \aexp$. \\
       \begin{align*} 
@@ -178,7 +178,7 @@ casi di $\mathcal{B}$ pertanto
         \mbox{if} \ \A{a_1} \leq \A{a_2}\\
         \end{cases} 
       \end{align*} \\ \\
-      Perciò $\forall s \in \states$.\Bext{a_1 > a_2} = \B{\lnot(a_1 \leq a_2)}. \\.
+      Perciò $\forall s \in \states$.\Bext{a_1 > a_2} = \B{\lnot(a_1 \leq a_2)} \\
 
     \item $ b' \equiv a_1 < a_2$, dove $a_1, a_2 \in \aexp$. \\
       \begin{align*}
@@ -224,7 +224,7 @@ casi di $\mathcal{B}$ pertanto
         \end{cases}
       \end{align*} \\ \\
       Perciò $\forall s \in \states$.\Bext{a_1 < a_2} =
-      \B{(a_1 \leq a_2) \land \lnot (a_1 = a_2)}. \\.
+      \B{(a_1 \leq a_2) \land \lnot (a_1 = a_2)} \\
 
     \item $ b' \equiv a_1 \geq a_2$, dove $a_1, a_2 \in \aexp$. \\
     \begin{align*}
@@ -292,7 +292,7 @@ casi di $\mathcal{B}$ pertanto
       \end{cases}
     \end{align*} \\
       Perciò $\forall s \in \states$.\Bext{a_1 \geq a_2} =
-      \B{\lnot (\lnot (\lnot (a_1 \leq a_2)) \land \lnot (a_1 = a_2) )}. \\.
+      \B{\lnot (\lnot (\lnot (a_1 \leq a_2)) \land \lnot (a_1 = a_2) )} \\
 
     \item $ b' \equiv b_1 \ \Rightarrow \ b_2$, dove $b_1, b_2 \in \bexp$. \\
     \begin{align*}
@@ -334,7 +334,7 @@ casi di $\mathcal{B}$ pertanto
       \end{cases}
     \end{align*} \\
       Perciò $\forall s \in \states$.\Bext{b_1 \ \Rightarrow \ b_2} =
-      \B{\lnot( \lnot( \lnot b_1) \land \lnot b_2)} . \\.
+      \B{\lnot( \lnot( \lnot b_1) \land \lnot b_2)} \\
     
     \item $ b' \equiv b_1 \ \Leftrightarrow \ b_2$, dove $b_1, b_2 \in \bexp$.
     \\
@@ -402,7 +402,7 @@ casi di $\mathcal{B}$ pertanto
                 \B{b_2} = \semtrue)}
     \end{align*} \\
       Perciò $\forall s \in \states$.\Bext{b_1 \ \Leftrightarrow \ b_2} =
-      \B{\lnot(\lnot(b_1 \land b_2) \land \lnot(\lnot b_1 \land \lnot b_2))}.
+      \B{\lnot(\lnot(b_1 \land b_2) \land \lnot(\lnot b_1 \land \lnot b_2))}
         \\
 
   \end{itemize}
@@ -414,7 +414,7 @@ di \bexp'.
 Per ognuna di queste è stato trovato un elemento equivalente nella
 categoria sintattica \bexp. Possiamo quindi asserire che: \\
 
-$\forall b' \in \textbf{Bexp'}.\exists b \in \ \textbf{Bexp}.b' \equiv b$.
+$\forall b' \in \textbf{Bexp'}.\exists b \in \ \textbf{Bexp}.b' \equiv b$
 
 \begin{flushright}
 $\Box$
