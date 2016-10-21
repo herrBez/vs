@@ -26,6 +26,36 @@ perchè definita $\forall \syntrue \in \bexp$
     \begin{itemize}
    
       \item $\boxed{b \equiv a_1 = a_2.a_1,a_2 \in \aexp}$ \\
+        \begin{table}[h!]
+          \begin{center}
+          \begin{tabular}{| l | L | p{0.4\linewidth} |}
+            \hline
+              $a_1 = a_2 \equiv \syntrue$ &
+              $\B{a_1 = a_2} = \A{a_1} = \A{a_2}$ &
+              Definizione di $\B{a_1 = a_2}$ 
+              \\ &
+              = \mathbf{v_1} = \mathbf{v_2} &
+              Ipotesi induttiva applicata a $\A{a_1}$ e $\A{a_2}$ 
+              \\ & 
+              $= \semtrue$ & 
+              Applicazione dell'operatore semantico = \\
+              & & \\
+              \hline
+              & & \\ 
+              $a_1 = a_2 \equiv \synfalse$ &
+              \B{a_1 = a_2}  = \A{a_1} = \A{a_2} &
+              Definizione di $\B{a_1 = a_2}$   
+              \\ &
+              = \mathbf{v_1} = \mathbf{v_2} &
+              Ipotesi induttiva applicata a $\A{a_1}$ e $\A{a_2}$ 
+              \\ &              
+              $= \semfalse$ & 
+              Applicazione dell'operatore semantico = \\
+              & & \\ 
+            \hline
+          \end{tabular}
+          \end{center}
+        \end{table}
 
       \item $\boxed{b \equiv a_1 \leq a_2.a_1,a_2 \in \aexp}$ \\
 
