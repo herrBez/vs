@@ -1,4 +1,25 @@
 \exercise{1.10}
 {Dimostrare che la tabella 1.2 definisce una funzione totale 
 $\Bcal: \bexp \rightarrow (\state \rightarrow \T)$}
-{}
+{
+\begin{itemize}
+  \item (base)
+    \begin{itemize}
+      
+      \item $\boxed{b \equiv \syntrue \in \bexp}$ \\
+            Banalmente vera: $\forall s \in \states$ la funzione $\Bcal$ mappa 
+un unico elemento booleano sintattico ($\syntrue$) in un unico elemento 
+booleano semantico ($\semtrue$). Quindi $\B{\syntrue}$ è una funzione totale 
+perchè definita $\forall \syntrue \in \bexp$
+      
+      \item  $\boxed{b \equiv \synfalse \in \bexp}$ \\
+            La dimostrazione è identica al punto precedente sostituendo:
+            \begin{enumerate}[label=(\alph*)] 
+              \item $\syntrue$ con $\synfalse$
+              \item $\semtrue$ con $\semfalse$
+            \end{enumerate} 
+ 
+    \end{itemize}
+  \item (induttivo)
+\end{itemize}  
+}
