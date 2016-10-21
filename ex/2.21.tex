@@ -8,5 +8,53 @@
   segue.
 }
 {
+La seguente dimostrazione è sviluppata per induzione sulla lunghezza $k$ della
+derivazione: \\
+
+$\forall k,S_1,S_2,s,s'. if \mbox{ } \confSs{S_1}{s} \Rar{k} s' \mbox{ }
+          then \mbox{ } \confSs{S_1; S_2}{s} \Rar{k} \confSs{S_2}{s'}$
+
+\subsection{Caso base}
+
+L'asserzione è vacuamente verificata per $k = 0$: non esistono derivazioni di
+lunghezza nulla tali che $\confSs{S_1; S_2}{s} \Rar{0} s'$.
+
+\subsection{Passo induttivo}
+
+In questo caso assumiamo che la proprietà valga su ogni $k \leq k_0$ e si vuole
+provare che questa vale su $k_0 + 1$.
+
+Fissando $S_1, S_2, s, s'$ si ha dunque che è sempre valida l'ipotesi
+$\confSs{S_1}{s} \Rar{k+1} s'$ o, con maggiore generalità, \\
+$\confSs{S_1}{s} \Rar{1} \gamma{} \Rar{k} s'$.
+
+Il ragionamento procede quindi considerando le varie strutture che $\gamma$ può
+assumere:
+
+\begin{itemize}
+\item $\gamma$ è $s''$. Tuttavia tale configurazione non può essere
+  ulteriormente derivata, perciò si conclude che in questo caso:
+  \begin{itemize}
+    \item $k = 0$; e
+    \item $\confSs{S_1}{s} \Rar{1} \gamma{} = s'' = s'$.
+  \end{itemize}
+
+  Applicando la regola $[comp^2_{SOS}]$ si ha quindi verificata la correttezza
+  della conseguenza $\confSs{S_1; S_2}{s} \Rar{k} \confSs{S_2}{s'}$.
+
+\item $\gamma$ è \confSs{S_1'}{s''}, avendo
+  quindi $\confSs{S_1}{s} \Rar{1} \confSs{S_1'}{s''} \Rar{k} s'$. Per ipotesi
+  induttiva, se $\confSs{S_1'}{s''} \Rar{k} s'$ allora \\
+  $\confSs{S_1'; S_2}{s''} \Rar{k} \confSs{S_2}{s'}$. Per la regola
+  $[comp^1_{SOS}]$, si ha:
+
+\begin{prooftree}
+  \AxiomC{$\confSs{S_1}{s} \Rar{1} \confSs{S_1'}{s''}$}
+  \UnaryInfC{$\confSs{S_1; S_2}{s} \Rar{1} \confSs{S_1'; S_2}{s''}$}
+\end{prooftree}
+
+  Sapendo che $\confSs{S_1'; S_2}{s''} \Rar{k} \confSs{S_2}{s'}$ è dunque
+  verificata la tesi $\confSs{S_1; S_2}{s} \Rar{k+1} \confSs{S_2}{s'}$.
+\end{itemize}
 }
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
