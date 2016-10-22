@@ -9,8 +9,8 @@ $\Bcal: \bexp \rightarrow (\state \rightarrow \T)$}
       
       \item $\boxed{b \equiv \syntrue \in \bexp}$ \\
             Banalmente vera: $\forall s \in \states$ la funzione $\Bcal$ mappa 
-un unico elemento booleano sintattico ($\syntrue$) in un unico elemento 
-booleano semantico ($\semtrue$). Quindi $\B{\syntrue}$ è una funzione totale 
+un unico elemento sintattico booleano ($\syntrue$) in un unico elemento 
+semantico booleano ($\semtrue$). Quindi $\B{\syntrue}$ è una funzione totale 
 perchè definita $\forall \syntrue \in \bexp$
       
       \item $\boxed{b \equiv \synfalse \in \bexp}$ \\
@@ -19,35 +19,30 @@ perchè definita $\forall \syntrue \in \bexp$
               \item $\syntrue$ con $\synfalse$
               \item $\semtrue$ con $\semfalse$
             \end{enumerate} 
- 
-    \end{itemize}
-
-  \item (induttivo)
-    \begin{itemize}
    
       \item $\boxed{b \equiv a_1 = a_2.a_1,a_2 \in \aexp}$ \\
         \begin{table}[h!]
           \begin{center}
-          \begin{tabular}{| l | L | p{0.4\linewidth} |}
+          \begin{tabular}{| l | l | p{0.4\linewidth} |}
             \hline
-              $a_1 = a_2 \equiv \syntrue$ &
+              $\A{a_1} = \A{a_2}$ &
               $\B{a_1 = a_2} = \A{a_1} = \A{a_2}$ &
               Definizione di $\B{a_1 = a_2}$ 
               \\ &
-              = \mathbf{v_1} = \mathbf{v_2} &
-              Ipotesi induttiva applicata a $\A{a_1}$ e $\A{a_2}$ 
+              $= \mathbf{v_1} = \mathbf{v_2}$ &
+              $\A{a_1}$ e $\A{a_2}$: funzioni totali che restituiscono valori interi (dimostrato in 1.8) 
               \\ & 
               $= \semtrue$ & 
               Applicazione dell'operatore semantico = \\
               & & \\
               \hline
               & & \\ 
-              $a_1 = a_2 \equiv \synfalse$ &
-              \B{a_1 = a_2}  = \A{a_1} = \A{a_2} &
+              $\A{a_1} \not = \A{a_2}$ &
+              $\B{a_1 = a_2}  = \A{a_1} = \A{a_2}$ &
               Definizione di $\B{a_1 = a_2}$   
               \\ &
-              = \mathbf{v_1} = \mathbf{v_2} &
-              Ipotesi induttiva applicata a $\A{a_1}$ e $\A{a_2}$ 
+              $= \mathbf{v_1} = \mathbf{v_2}$ &
+              $\A{a_1}$ e $\A{a_2}$: funzioni totali che restituiscono valori interi (dimostrato in 1.8)  
               \\ &              
               $= \semfalse$ & 
               Applicazione dell'operatore semantico = \\
@@ -58,12 +53,110 @@ perchè definita $\forall \syntrue \in \bexp$
         \end{table}
 
       \item $\boxed{b \equiv a_1 \leq a_2.a_1,a_2 \in \aexp}$ \\
+        \begin{table}[h!]
+          \begin{center}
+          \begin{tabular}{| l | l | p{0.4\linewidth} |}
+            \hline
+              $\A{a_1} \leq \A{a_2}$ &
+              $\B{a_1 \leq a_2} = \A{a_1} \leq \A{a_2}$ &
+              Definizione di $\B{a_1 \leq  a_2}$ 
+              \\ &
+              $= \mathbf{v_1} \leq \mathbf{v_2}$ &
+              $\A{a_1}$ e $\A{a_2}$: funzioni totali che restituiscono valori interi (dimostrato in 1.8)  
+              \\ &
+              $= \semtrue$ &
+              Applicazione dell'operatore semantico $\leq$ \\ 
+              & & \\
+              \hline
+              & & \\ 
+              $\A{a_1} \not \leq \A{a_2}$ &
+              $\B{a_1 \leq a_2} = \A{a_1} \leq \A{a_2}$ & 
+              Definizione di $\B{a_1 \leq a_2}$   
+              \\ &
+              $= \mathbf{v_1} \leq \mathbf{v_2}$ &
+              $\A{a_1}$ e $\A{a_2}$: funzioni totali che restituiscono valori interi (dimostrato in 1.8) 
+              \\ &              
+              $= \semfalse$ & 
+              Applicazione dell'operatore semantico $\leq$ \\
+              & & \\ 
+            \hline
+          \end{tabular}
+          \end{center}
+        \end{table}
 
-      \item $\boxed{b' \equiv \lnot b \in \bexp}$ \\
-
-      \item $\boxed{b \equiv b_1 \land b_2.b_1,b_2 \in \bexp}$ \\
-   
     \end{itemize}
 
-\end{itemize}  
+  \item (induttivo)
+    \begin{itemize}
+      \item $\boxed{b' \equiv \lnot b \in \bexp}$ \\
+        \begin{table}[h!]
+          \begin{center}
+          \begin{tabular}{| l | l | p{0.4\linewidth} |}
+            \hline
+              $\B{b} = \semfalse$ &
+              $\B{\lnot b} = \B{b} = \semfalse$ &
+              Definizione di $\B{\lnot b}$ 
+              \\ &
+              $= \mathbf{v} = \semfalse$ &
+              Ipotesi induttiva applicata a $\B{b}$ 
+              \\ & 
+              $= \semtrue$ & 
+              Applicazione dell'operatore semantico = \\
+              & & \\
+              \hline
+              & & \\ 
+              $\B{b} = \semtrue$ &
+              $\B{\lnot b}  = \B{b} = \semfalse$ &
+              Definizione di $\B{\lnot b}$   
+              \\ &
+              $= \mathbf{v} = \semfalse$ &
+              Ipotesi induttiva applicata a $\B{b}$ 
+              \\ &              
+              $= \semfalse$ & 
+              Applicazione dell'operatore semantico = \\
+              & & \\ 
+            \hline
+          \end{tabular}
+          \end{center}
+        \end{table}
+\newpage
+      \item $\boxed{b \equiv b_1 \land b_2.b_1,b_2 \in \bexp}$ \\
+         \begin{table}[h!]
+          \begin{center}
+          \begin{tabular}{| l | l | p{0.4\linewidth} |}
+            \hline
+              $\B{b_1} = \semtrue \ and \ \B{b_2} = \semtrue$ &
+              $\B{b_1 \land b_2} = \B{b_1} \ and \ \B{b_2}$ &
+              Definizione di $\B{b_1 \land b_2}$ 
+              \\ &
+              $= \mathbf{v_1} \ and \ \mathbf{v_2}$ &
+              Ipotesi induttiva applicata a $\B{b_1} \ $ e $ \ \B{b_2}$ 
+              \\ & 
+              $= \semtrue$ & 
+              Applicazione dell'operatore semantico $and$ \\
+              & & \\
+              \hline
+              & & \\ 
+              $\B{b_1} = \semfalse \ or \ \B{b_2} = \semfalse$ &
+              $\B{b_1 \land b_2} = \B{b_1} \ and \ \B{b_2}$ &
+              Definizione di $\B{b_1 \land b_2}$ 
+              \\ &
+              $= \mathbf{v_1} \ and \ \mathbf{v_2}$ &
+              Ipotesi induttiva applicata a $\B{b_1} \ $ e $ \ \B{b_2}$ 
+              \\ & 
+              $= \semfalse$ & 
+              Applicazione dell'operatore semantico $and$ \\
+              & & \\
+            \hline
+          \end{tabular}
+          \end{center}
+        \end{table}  
+    \end{itemize}
+
+\end{itemize}
+Per i punti precedenti $\Bcal: \bexp \rightarrow (\state \rightarrow \T)$ vale $\forall b \in \bexp, \forall s \in \state$ \\
+$\Bcal$ è quindi una funzione definita per ogni input del suo dominio, ovvero una funzione totale
+\begin{flushright}
+$\Box$
+\end{flushright}  
 }
