@@ -48,7 +48,8 @@
 % \boxer{``while \ b \ do \ S$''$ \ and
 %      \ ``if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip$''$}. 
     \begin{itemize}
-      \item $(\rightarrow)$ Assumiamo vera $\confSs{while \ b \ do \ S}{s} \Rar{*} s'$. \\
+      \item $(\rightarrow)$ Assumiamo vera $\confSs{while \ b \ do \ S}{s} 
+         \Rar{*} s'$. \\
          Per ipotesi $while \ b \ do \ S$ termina \textit{sempre} in un
          numero finito di passi, \\ quindi per il lemma di decomposizione esiste 
          uno stato intermedio $s''$ t.c. \\
@@ -62,9 +63,10 @@
          $\confSs{while \ b \ do \ S}{s} \Rar{*} s' \rightarrow 
          \confSs{if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip}{s} 
          \Rar{*} s'$ risulta valida.
-      \item $(\leftarrow)$ Assumiamo vera $\confSs{if  \ b \ then \ (S; \ while \ b \ do \              S) \ else \ skip}{s} \Rar{*} s'$. \\
-            Notiamo che per ipotesi $if  \ b \ then \ (S; \ while \ b \ do \ S) \ else 
-            \ skip$ termina \textit{sempre}. \\
+      \item $(\leftarrow)$ Assumiamo vera $\confSs{if  \ b \ then \ (S; 
+            \ while \ b \ do \              S) \ else \ skip}{s} \Rar{*} s'$. \\
+            Notiamo che per ipotesi $if  \ b \ then \ (S; \ while \ b \ do \ S) 
+            \ else \ skip$ termina \textit{sempre}. \\
             Per il lemma di composizione $\confSs{while \ b \ do \ S}{s} \Rar{*} 
             \confSs{skip}{s'}$. \\
             L'unica regola applicabile è $[skip_{SOS}]$, quindi 
@@ -85,8 +87,36 @@
             \confSs{(S_1; \ S_2); \ S_3}{s} \Rar{*} s'} 
 % \boxer{``S_1; \ (S_2; \ S_3)$''$ \ and \ ``(S_1; \ S_2); \ S_3$''$}.
     \begin{itemize}
-      \item $(\rightarrow)$ Assumiamo vera $\confSs{S_1; \ (S_2; \ S_3)}{s} \Rar{*} s'$.
-      \item $(\leftarrow)$ Assumiamo vera $\confSs{(S_1; \ S_2); \ S_3}{s} \Rar{*} s'$.
+      \item $(\rightarrow)$ Assumiamo vera $\confSs{S_1; \ (S_2; \ S_3)}{s} 
+      \Rar{*} s'$. \\
+      Per il lemma di decomposizione esiste uno stato intermedio $s''$ t.c. 
+      $\confSs{S_1; \ S_2}{s} \Rar{*} s''$ e $\confSs{S_3}{s''} \Rar{*} s'$. \\
+      Applicando l'assioma $\confSs{S}{s} \Rar{} s'$ si ha che lo statement 
+      $S_3$ si riduce in un passo alla configurazione terminale $s'$: 
+      $\confSs{S_3}{s''} \Rar{} s'$. Questo vale per ipotesi, infatti la 
+      composizione degli statement $S_1;S_2;S_3$ si riduce \textit{sempre} in 
+      un numero finito di passi ad una configurazione terminale. \\
+      Dunque vale 
+      $\confSs{S_1; \ (S_2; \ S_3)}{s} \Rar{*} s' \rightarrow  
+      \confSs{(S_1; \ S_2); \ S_3}{s} \Rar{*} s'$.
+      \item $(\leftarrow)$ Assumiamo vera $\confSs{(S_1; \ S_2); \ S_3}{s} 
+      \Rar{*} s'$. \\
+      Per il lemma di composizione $\confSs{S_1; \ (S_2; \ S_3)}{s} 
+      \Rar{*} \confSs{S_2; \ S_3}{s'}$. \\
+      Per ipotesi la composizione degli statement $S_1;S_2;S_3$ si riduce 
+      \textit{sempre} in un numero finito di passi ad una configurazione 
+      terminale. \\ In questo caso si ha una composizione di due regole 
+      $[skip_{SOS}]$, che porta a $\confSs{skip; skip}{s'} 
+      \Rar{2} s'$. \\
+      Vale $\confSs{(S_1; \ S_2); \ S_3}{s} \Rar{*} s' \rightarrow 
+      \confSs{S_1; \ (S_2; \ S_3)}{s} \Rar{*} s'$.  
     \end{itemize}
+         Dall'unione dei due punti precedenti si ottiene \\ 
+         $\confSs{S_1; \ (S_2; \ S_3)}{s} \Rar{*} s' \leftrightarrow  
+         \confSs{(S_1; \ S_2); \ S_3}{s} \Rar{*} s'$
+         \begin{flushright}
+         $\Box$
+         \end{flushright}
+
   \end{enumerate}
 }
