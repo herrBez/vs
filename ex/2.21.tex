@@ -11,8 +11,8 @@
 La seguente dimostrazione è sviluppata per induzione sulla lunghezza $k$ della
 derivazione: \\
 
-$\forall k,S_1,S_2,s,s'. if \mbox{ } \confSs{S_1}{s} \Rar{k} s' \mbox{ }
-          then \mbox{ } \confSs{S_1; S_2}{s} \Rar{k} \confSs{S_2}{s'}$
+$\forall k,S_1,S_2,s,s'. \mbox{ if } \confSs{S_1}{s} \Rar{k} s' \mbox{ then }
+           \confSs{S_1; S_2}{s} \Rar{k} \confSs{S_2}{s'}$
 
 \subsection{Caso base}
 
@@ -32,7 +32,7 @@ Il ragionamento procede quindi considerando le varie strutture che $\gamma$ può
 assumere:
 
 \begin{itemize}
-\item $\gamma$ è $s''$. Tuttavia tale configurazione non può essere
+\item $\boxed{\gamma \equiv s''}$. Tuttavia tale configurazione non può essere
   ulteriormente derivata, perciò si conclude che in questo caso:
   \begin{itemize}
     \item $k = 0$; e
@@ -42,7 +42,7 @@ assumere:
   Applicando la regola $[comp^2_{SOS}]$ si ha quindi verificata la correttezza
   della conseguenza $\confSs{S_1; S_2}{s} \Rar{k} \confSs{S_2}{s'}$.
 
-\item $\gamma$ è \confSs{S_1'}{s''}, avendo
+\item $\boxed{\gamma \equiv \confSs{S_1'}{s''}}$, avendo
   quindi $\confSs{S_1}{s} \Rar{1} \confSs{S_1'}{s''} \Rar{k} s'$. Per ipotesi
   induttiva, se $\confSs{S_1'}{s''} \Rar{k} s'$ allora \\
   $\confSs{S_1'; S_2}{s''} \Rar{k} \confSs{S_2}{s'}$. Per la regola
