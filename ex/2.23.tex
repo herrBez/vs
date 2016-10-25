@@ -18,14 +18,15 @@
          \confSs{S}{s} \Rar{*} s'}
 % \boxer{``S; skip$''$ and ``S$''$} \\
     \begin{itemize}
-      \item $(\Rightarrow)$ Ipotizziamo che
-      $\confSs{S;\mbox{ skip}}{s} \Rar{*} \gamma$. Per il lemma di
-      decomposizione, esiste uno stato intermedio $s'$ t.c.
-      $\confSs{S}{s} \Rar{*} s'$ e $\confSs{\mbox{skip}}{s'} \Rar{*} \gamma$.
-      Per la regola SOS $[skip_{SOS}]$ si ha che $s' = \gamma$ (e quindi
-      $\confSs{S}{s} \Rar{*} \gamma$).
+      \item $(\rightarrow)$ Ipotizziamo che
+      $\confSs{S;\mbox{ skip}}{s} \Rar{*} s'$. \\
+      Per il lemma di decomposizione, esiste uno stato intermedio $s'$ t.c.
+      $\confSs{S}{s} \Rar{*} s''$ e $\confSs{\mbox{skip}}{s''} \Rar{*} s'$. \\
+      Per la regola $[skip_{SOS}]$ si ha $s'' = s'$. \\
+      Quindi $\confSs{S;\mbox{ skip}}{s} \Rar{*} s' \rightarrow \confSs{S}{s} 
+      \Rar{*} s'$.
 
-      \item $(\Leftarrow)$ Ipotizziamo che $\confSs{S}{s} \Rar{*} \gamma$. Ciò
+      \item $(\leftarrow)$ Ipotizziamo che $\confSs{S}{s} \Rar{*} \gamma$. Ciò
       significa che
       $\confSs{S; \mbox{skip}}{s} \Rar{*} \confSs{\mbox{skip}}{\gamma}$. \\
       Ma, per la regola $[skip_{SOS}]$,
