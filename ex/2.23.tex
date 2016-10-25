@@ -14,8 +14,9 @@
   elencati:
 
   \begin{enumerate}[label=\alph*)]
-    \item \boxer{``S; skip$''$ and ``S$''$}.
-
+    \item \boxer{\confSs{S;\mbox{ skip}}{s} \Rar{*} s' \leftrightarrow 
+         \confSs{S}{s} \Rar{*} s'}
+% \boxer{``S; skip$''$ and ``S$''$} \\
     \begin{itemize}
       \item $(\Rightarrow)$ Ipotizziamo che
       $\confSs{S;\mbox{ skip}}{s} \Rar{*} \gamma$. Per il lemma di
@@ -33,11 +34,16 @@
     \end{itemize}
 
 
-    \item \boxer{``while \ b \ do \ S$''$ \ and
-      \ ``if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip$''$}. 
+    \item \boxer{\confSs{while \ b \ do \ S}{s} \Rar{*} s' \leftrightarrow 
+         \confSs{if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip}{s} 
+         \Rar{*} s'} \\
+% \boxer{``while \ b \ do \ S$''$ \ and
+%      \ ``if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip$''$}. 
       Il secondo statement è
       l'equivalente del primo in semantica operazionale, perciò entrambi
 
-    \item \boxer{``S_1; \ (S_2; \ S_3)$''$ \ and \ ``(S_1; \ S_2); \ S_3$''$}.
+    \item \boxer{\confSs{S_1; \ (S_2; \ S_3)}{s} \Rar{*} s' \leftrightarrow  
+            \confSs{(S_1; \ S_2); \ S_3}{s} \Rar{*} s'} 
+% \boxer{``S_1; \ (S_2; \ S_3)$''$ \ and \ ``(S_1; \ S_2); \ S_3$''$}.
   \end{enumerate}
 }
