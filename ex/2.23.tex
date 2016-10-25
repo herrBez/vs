@@ -2,7 +2,7 @@
 {
   Mostrare che i seguenti \textit{statement} del linguaggio \textbf{While} sono
   semanticamente equivalenti:
-  \begin{enumerate}
+  \begin{enumerate}[label=\alph*)]
     \item ``$S$; skip'' and ``$S$''
     \item ``while $b$ do $S$'' and
       ``if $b$ then ($S$; while $b$ do $S$) else skip''
@@ -13,8 +13,8 @@
   Di seguito vengono esposte le varie equivalenze tra gli statement sopra
   elencati:
 
-  \begin{enumerate}
-    \item ``$S$; skip'' and ``$S$''.
+  \begin{enumerate}[label=\alph*)]
+    \item \boxer{``S; skip$''$ and ``S$''$}.
 
     \begin{itemize}
       \item $(\Rightarrow)$ Ipotizziamo che
@@ -33,10 +33,11 @@
     \end{itemize}
 
 
-    \item ``while $b$ do $S$'' and
-      ``if $b$ then ($S$; while $b$ do $S$) else skip''. Il secondo statement è
+    \item \boxer{``while \ b \ do \ S$''$ \ and
+      \ ``if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip$''$}. 
+      Il secondo statement è
       l'equivalente del primo in semantica operazionale, perciò entrambi
 
-    \item ``$S_1$; ($S_2$; $S_3$)'' and ``($S_1$; $S_2$); $S_3$''.
+    \item \boxer{``S_1; \ (S_2; \ S_3)$''$ \ and \ ``(S_1; \ S_2); \ S_3$''$}.
   \end{enumerate}
 }
