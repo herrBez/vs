@@ -15,8 +15,8 @@ $\forall{a,a_0} \in \aexp.\mbox{ }
 \semanticFunction{A}{a}{(s [y \mapsto{} \A{a_0}])}$.
 
 Ciò viene dimostrato per induzione strutturale sull'espressione $a$.
-
-\subsection{a = $n$} Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si ha:
+\begin{itemize}
+	\item $\boxed{a \equiv n}$ Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si ha:
 \\
 
 $\A{n [y \mapsto{} a_0]} = \semanticFunction{A}{n}{(s [y \mapsto{} \A{a_0}])} $
@@ -33,7 +33,7 @@ Applicando la definizione \A{n} a destra e sinistra dell'uguaglianza si ottiene:
 
 $n = n$, che è banalmente vero.
 
-\subsection{a = $x$} Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si ha:
+\item $\boxed{a \equiv x}$ Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si ha:
 \\
 
 $\A{x [y \mapsto{} a_0]} = \semanticFunction{A}{x}{(s [y \mapsto{} \A{a_0}])} $
@@ -47,13 +47,13 @@ $\A{x [y \mapsto{} a_0]} = (s [y \mapsto{} \A{a_0}]) \mbox{ } x $
 
 Distinguiamo i casi in cui $x$ è uguale o meno a $y$.
 
-\paragraph{x = y} Facendo un semplice passo di riduzione si ottiene:
+\paragraph{$x = y$} Facendo un semplice passo di riduzione si ottiene:
 \\
 
 $\A{a_0} = \A{a_0}$,
 banalmente vero.
 
-\paragraph{x $\neq$ y} Riducendo a destra e sinistra per come è definita la
+\paragraph{$x \neq y$} Riducendo a destra e sinistra per come è definita la
 sostituzione si ottiene:
 \\
 
@@ -66,7 +66,7 @@ Applicando la definizione di \A{x} a sinistra dell'uguaglianza si ha infine:
 $s x = s x$,
 banalmente vero.
 
-\subsection{a = $a_1 + a_2$} Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si
+\item $\boxed{a \equiv a_1 + a_2}$ Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si
 ha:
 \\
 
@@ -115,8 +115,8 @@ $\A{(a_1 [y \mapsto{} a_0])} + \A{(a_2[y \mapsto{} a_0]) } =
 
 }
 
-\subsection{a = $a_1 - a_2$} Analogo al caso $a_1 + a_2$.
+\subsection{$a \equiv a_1 - a_2$} Analogo al caso $a_1 + a_2$.
 
-\subsection{a = $a_1 * a_2$} Analogo al caso $a_1 + a_2$.
+\subsection{$a \equiv a_1 * a_2$} Analogo al caso $a_1 + a_2$.
 
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
