@@ -18,21 +18,22 @@
          \confSs{S}{s} \Rar{*} s'}
 % \boxer{``S; skip$''$ and ``S$''$} \\
     \begin{itemize}
-      \item $(\rightarrow)$ Ipotizziamo vera
+      \item $(\rightarrow)$ Assumiamo vera
       $\confSs{S;\mbox{ skip}}{s} \Rar{*} s'$. \\
       Per il lemma di decomposizione, esiste uno stato intermedio $s''$ t.c.
       $\confSs{S}{s} \Rar{*} s''$ e $\confSs{\mbox{skip}}{s''} \Rar{*} s'$. \\
       Per la regola $[skip_{SOS}]$ si ha $s'' = s'$. \\
-      Quindi $\confSs{S;\mbox{ skip}}{s} \Rar{*} s' \rightarrow \confSs{S}{s} 
+      Quindi vale $\confSs{S;\mbox{ skip}}{s} \Rar{*} s' \rightarrow \confSs{S}{s} 
       \Rar{*} s'$.
 
-      \item $(\leftarrow)$ Ipotizziamo vera $\confSs{S}{s} \Rar{*} s'$. \\
+      \item $(\leftarrow)$ Assumiamo vera $\confSs{S}{s} \Rar{*} s'$. \\
       Per il lemma di composizione $\confSs{S; \mbox{skip}}{s} \Rar{*} 
       \confSs{\mbox{skip}}{s'}$. \\
       Per la regola $[skip_{SOS}]$ si ha $\confSs{\mbox{skip}}{s'} \Rar{} s'$,
       quindi vale $\confSs{S; \mbox{skip}}{s} \Rar{*} s'$. \\ 
-      Ne consegue $ \confSs{S}{s} \Rar{*} s' \rightarrow 
-         \confSs{S;\mbox{ skip}}{s} \Rar{*} s'$.     
+      Ne consegue che 
+      $ \confSs{S}{s} \Rar{*} s' \rightarrow 
+         \confSs{S;\mbox{ skip}}{s} \Rar{*} s'$ risulta valida.     
     \end{itemize}
       Dall'unione dei due punti precedenti si ottiene 
       $\confSs{S;\mbox{ skip}}{s} \Rar{*} s' \leftrightarrow 
@@ -40,16 +41,52 @@
       \begin{flushright}
       $\Box$
       \end{flushright}
+
     \item \boxer{\confSs{while \ b \ do \ S}{s} \Rar{*} s' \leftrightarrow 
          \confSs{if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip}{s} 
          \Rar{*} s'} \\
 % \boxer{``while \ b \ do \ S$''$ \ and
 %      \ ``if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip$''$}. 
-      Il secondo statement è
-      l'equivalente del primo in semantica operazionale, perciò entrambi
+    \begin{itemize}
+      \item $(\rightarrow)$ Assumiamo vera $\confSs{while \ b \ do \ S}{s} \Rar{*} s'$. \\
+         Per ipotesi $while \ b \ do \ S$ termina \textit{sempre} in un
+         numero finito di passi, \\ quindi per il lemma di decomposizione esiste 
+         uno stato intermedio $s''$ t.c. \\
+         $\confSs{if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip}{s} 
+         \Rar{*} \confSs{skip}{s''}$ perchè esiste $b = \semfalse$. \\
+         Sempre per il lemma di decomposizione vale anche 
+         $\confSs{skip}{s''} \Rar{*} s'$.\\
+         L'unica regola applicabile è $[skip_{SOS}]$, da 
+         $\confSs{skip}{s''} \Rar{} s'$ si ha $s''=s'$. \\
+         Ne consegue che 
+         $\confSs{while \ b \ do \ S}{s} \Rar{*} s' \rightarrow 
+         \confSs{if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip}{s} 
+         \Rar{*} s'$ risulta valida.
+      \item $(\leftarrow)$ Assumiamo vera $\confSs{if  \ b \ then \ (S; \ while \ b \ do \              S) \ else \ skip}{s} \Rar{*} s'$. \\
+            Notiamo che per ipotesi $if  \ b \ then \ (S; \ while \ b \ do \ S) \ else 
+            \ skip$ termina \textit{sempre}. \\
+            Per il lemma di composizione $\confSs{while \ b \ do \ S}{s} \Rar{*} 
+            \confSs{skip}{s'}$. \\
+            L'unica regola applicabile è $[skip_{SOS}]$, quindi 
+            $\confSs{skip}{s'} \Rar{} s'$. \\
+            Quindi vale 
+            $\confSs{if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip}{s} 
+            \Rar{*} s' \rightarrow \confSs{while \ b \ do \ S}{s} \Rar{*} s'$.
+      \end{itemize}
+         Dall'unione dei due punti precedenti si ottiene \\ 
+         $\confSs{while \ b \ do \ S}{s} \Rar{*} s' \leftrightarrow 
+         \confSs{if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip}{s} 
+         \Rar{*} s'$
+         \begin{flushright}
+         $\Box$
+         \end{flushright}
 
     \item \boxer{\confSs{S_1; \ (S_2; \ S_3)}{s} \Rar{*} s' \leftrightarrow  
             \confSs{(S_1; \ S_2); \ S_3}{s} \Rar{*} s'} 
 % \boxer{``S_1; \ (S_2; \ S_3)$''$ \ and \ ``(S_1; \ S_2); \ S_3$''$}.
+    \begin{itemize}
+      \item $(\rightarrow)$ Assumiamo vera $\confSs{S_1; \ (S_2; \ S_3)}{s} \Rar{*} s'$.
+      \item $(\leftarrow)$ Assumiamo vera $\confSs{(S_1; \ S_2); \ S_3}{s} \Rar{*} s'$.
+    \end{itemize}
   \end{enumerate}
 }
