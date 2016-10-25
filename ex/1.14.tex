@@ -45,15 +45,16 @@ Applicando la definizione \A{x} a destra dell'uguaglianza si ottiene:
 $\A{x [y \mapsto{} a_0]} = (s [y \mapsto{} \A{a_0}]) \mbox{ } x $
 \\
 
-Distinguiamo i casi in cui $x$ è uguale o meno a $y$.
+Distinguiamo i casi in cui $x$ è uguale o meno a $y$:
 
-\paragraph{$x = y$} Facendo un semplice passo di riduzione si ottiene:
+\begin{itemize}
+	\item $\boxed{x = y}$ Facendo un semplice passo di riduzione si ottiene:
 \\
 
 $\A{a_0} = \A{a_0}$,
 banalmente vero.
 
-\paragraph{$x \neq y$} Riducendo a destra e sinistra per come è definita la
+\item $\boxed{x \neq y}$ Riducendo a destra e sinistra per come è definita la
 sostituzione si ottiene:
 \\
 
@@ -65,7 +66,7 @@ Applicando la definizione di \A{x} a sinistra dell'uguaglianza si ha infine:
 
 $s x = s x$,
 banalmente vero.
-
+\end{itemize}
 \item $\boxed{a \equiv a_1 + a_2}$ Per qualsiasi $a_0 \in \aexp$ e $s \in \states$ si
 ha:
 \\
@@ -115,8 +116,8 @@ $\A{(a_1 [y \mapsto{} a_0])} + \A{(a_2[y \mapsto{} a_0]) } =
 
 }
 
-\subsection{$a \equiv a_1 - a_2$} Analogo al caso $a_1 + a_2$.
+\item $\boxed{a \equiv a_1 - a_2}$ Analogo al caso $a_1 + a_2$.
 
-\subsection{$a \equiv a_1 * a_2$} Analogo al caso $a_1 + a_2$.
-
+\item $\boxed{a \equiv a_1 * a_2}$ Analogo al caso $a_1 + a_2$.
+\end{itemize}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
