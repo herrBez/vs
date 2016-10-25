@@ -18,23 +18,28 @@
          \confSs{S}{s} \Rar{*} s'}
 % \boxer{``S; skip$''$ and ``S$''$} \\
     \begin{itemize}
-      \item $(\rightarrow)$ Ipotizziamo che
+      \item $(\rightarrow)$ Ipotizziamo vera
       $\confSs{S;\mbox{ skip}}{s} \Rar{*} s'$. \\
-      Per il lemma di decomposizione, esiste uno stato intermedio $s'$ t.c.
+      Per il lemma di decomposizione, esiste uno stato intermedio $s''$ t.c.
       $\confSs{S}{s} \Rar{*} s''$ e $\confSs{\mbox{skip}}{s''} \Rar{*} s'$. \\
       Per la regola $[skip_{SOS}]$ si ha $s'' = s'$. \\
       Quindi $\confSs{S;\mbox{ skip}}{s} \Rar{*} s' \rightarrow \confSs{S}{s} 
       \Rar{*} s'$.
 
-      \item $(\leftarrow)$ Ipotizziamo che $\confSs{S}{s} \Rar{*} \gamma$. Ciò
-      significa che
-      $\confSs{S; \mbox{skip}}{s} \Rar{*} \confSs{\mbox{skip}}{\gamma}$. \\
-      Ma, per la regola $[skip_{SOS}]$,
-      $\confSs{\mbox{skip}}{\gamma} \Rar{} \gamma$. Perciò
-      $\confSs{S; skip}{s} \Rar{*} \gamma$.
+      \item $(\leftarrow)$ Ipotizziamo vera $\confSs{S}{s} \Rar{*} s'$. \\
+      Per il lemma di composizione $\confSs{S; \mbox{skip}}{s} \Rar{*} 
+      \confSs{\mbox{skip}}{s'}$. \\
+      Per la regola $[skip_{SOS}]$ si ha $\confSs{\mbox{skip}}{s'} \Rar{} s'$,
+      quindi vale $\confSs{S; \mbox{skip}}{s} \Rar{*} s'$. \\ 
+      Ne consegue $ \confSs{S}{s} \Rar{*} s' \rightarrow 
+         \confSs{S;\mbox{ skip}}{s} \Rar{*} s'$.     
     \end{itemize}
-
-
+      Dall'unione dei due punti precedenti si ottiene 
+      $\confSs{S;\mbox{ skip}}{s} \Rar{*} s' \leftrightarrow 
+      \confSs{S}{s} \Rar{*} s'$
+      \begin{flushright}
+      $\Box$
+      \end{flushright}
     \item \boxer{\confSs{while \ b \ do \ S}{s} \Rar{*} s' \leftrightarrow 
          \confSs{if  \ b \ then \ (S; \ while \ b \ do \ S) \ else \ skip}{s} 
          \Rar{*} s'} \\
