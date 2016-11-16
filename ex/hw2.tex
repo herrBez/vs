@@ -1,0 +1,52 @@
+\exercise{Esercizio 2}
+         {
+           Prove that if \confSs{\wbS{b}{S}}{s} \Rar{*} $s'$ then $\B{b}' = \semfalse$
+         }
+         {
+           Assumo che \confSs{\wbS{b}{S}}{s} $\Rar{*}$ $s'$.
+
+           Siccome la semantica SOS è deterministica allo Statement di
+           partenza posso applicare solo la regola \whileSOS, da cui ottengo
+           il seguente statement:
+           \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} 
+           che dipendentemente dalla valutazione di $b$ può andare nel ramo
+           \texttt{else}, in cui dopo una \skipForFriends{} terminerà o andrà nel ramo
+           \texttt{if}, in cui eseguirà (almeno) un'altra iterazione.
+
+           \begin{proof}
+                        Procedo per induzione sulla lunghezza della derivazione.
+
+           \begin{itemize}
+             \item $\boxed{\text{Caso Base}: n = 3}$ ovvero 
+           $\boxed{\B{b} = \semfalse}$ 
+           
+           \confSs{\wbS{b}{S}}{s} \Rar{\whileSOS}
+           \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} 
+           \Rar{\ifffSOS} \confSs{\skipForFriends}{s} 
+           \Rar{\skipSOS} $s \equiv s'$
+
+           Siccome $s = s'$ e $\B{b} = \semfalse$ l'asserto è dimostrato.
+
+           \item $\boxed{\text{Ipotesi Induttiva}} $ \confSs{\wbS{b}{S}}{s} \Rar{*} $s'$ then $\B{b}' = \semfalse$
+
+           \item $\boxed{\text{Passo Induttivo}: n \rightarrow n + l,
+             \text{ dove } \confSs{S}{s} \Rar{l} s' \text{, ovvero } \B{b} = \semtrue}$
+
+             \confSs{\wbS{b}{S}}{s} \Rar{\whileSOS} \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} 
+             \Rar{\ifttSOS} \confSs{S; \wbS{b}{S}}{s} \Rar{*} $s'$
+
+             Per il lemma di decomposizione so che $\exists s''$:
+             \begin{itemize}
+             \item \confSs{S}{s} \Rar{*} $s''$ (ovvero $\exists l:$
+               \confSs{S}{s} \Rar{l} $s''$)
+             \item \confSs{\wbS{b}{S}}{s''} \Rar{*} $s'$
+             \end{itemize}
+             siccome la derivazione di \confSs{\wbS{b}{S}}{s''} \Rar{*} $s'$ è più
+             corta di quella di partenza (\confSs{\wbS{b}{S}}{s} \Rar{*} $s'$)
+             di $l$ passi, posso applicare l'ipotesi
+             induttiva e concludere che $\B{b}'$ deve neccessariamente essere
+             uguale \semfalse.
+             
+            \end{itemize} 
+           \end{proof}
+         }
