@@ -112,6 +112,21 @@
 \newcommand{\confSs}[2]{\ensuremath{\langle{}#1, #2\rangle{}}}
 \newcommand{\Rar}[1]{\Rightarrow^{#1}}
 
+%%%%%%%% RULES
+\newcommand{\SOSRule}[3]{[
+  \textrm{\normalfont{#1}}
+  ^ \textrm{\normalfont{#2}}
+  _\textrm{\normalfont{#3}}
+  ]
+}
+\newcommand{\assSOS}{\SOSRule{ass}{}{SOS}}
+\newcommand{\skipSOS}{\SOSRule{skip}{}{SOS}}
+\newcommand{\compoSOS}{\SOSRule{comp}{1}{SOS}}
+\newcommand{\compsSOS}{\SOSRule{comp}{2}{SOS}}
+\newcommand{\ifttSOS}{\SOSRule{if}{\semtrue}{SOS}}
+\newcommand{\ifffSOS}{\SOSRule{if}{\semfalse}{SOS}}
+\newcommand{\whileSOS}{\SOSRule{while}{}{SOS}}
+
 \newcommand{\wbS}[2]{\mbox{\normalfont{\texttt{while }}}
                      #1
                      \textrm{\normalfont{\texttt{ do }}}
