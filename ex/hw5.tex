@@ -14,7 +14,55 @@ Provare che $\forall{S} \in$ \stmm{} e $\forall{s} \in$ \states, o
 $\confSs{S}{s} \Rar{*} s$ oppure $\confSs{S}{s}$ non termina.
 }
 {}
+Dopo aver fissato uno stato $s \in$ \states, è possibile procedere per
+induzione strutturale sullo statement $S$.
 
+\subsection{Caso base}
+
+\begin{itemize}
+  \item $S \equiv{} \skipForFriends$. In questo caso è facile mostrare che
+    $\confSs{S}{s} \Rar{*} s$:
+\begin{align*}
+\confSs{\skipForFriends}{s} \Rar{} \skipSOS\ \ \ s
+\end{align*}
+\end{itemize}
+
+\subsection{Passi induttivi}
+
+\begin{itemize}
+  \item $S \equiv{} S_1; S_2$. Per ipotesi induttiva, sappiamo che $S_1$ o
+  termina in $s$ oppure non termina affatto:
+  \begin{itemize}
+    \item Se $\confSs{S_1}{s} \Rar{*} s$, allora per il lemma di composizione
+      possiamo dire che $\confSs{S_1;S_2}{s} \Rar{*} \confSs{S_2}{s}$. Siccome
+      l'ipotesi induttiva vale anche su $S_2$ in quanto sottotermine, si ha che
+      $\confSs{S_2}{s} \Rar{*} s$ oppure $S_2$ ha lunghezza di derivazione
+      infinita.
+    \item Se $S_1$ non termina, allora l'intero termine $S$ avrà una
+      derivazione di lunghezza infinita.
+  \end{itemize}
+
+  \item $S \equiv{} \ifABC{b}{S_1}{S_2}$. Per le regole $\ifffSOS{}$ e
+    $\ifttSOS{}$, lo stato della memoria $s$ non viene modificato dopo la
+    valutazione della guardia $b$. L'analisi si divide quindi in due sottocasi,
+    a seconda che \B{b} sia valutato a \semtrue{} o \semfalse{}:
+    \begin{itemize}
+      \item $\B{b} = \semtrue{}$. La configurazione iniziale
+        $\confSs{\ifABC{b}{S_1}{S_2}}{s}$ evolve in
+        $\confSs{S_1}{s}$. Tuttavia, per ipotesi induttiva,
+        $\confSs{S_1}{s} \Rar{*} s$ oppure $\confSs{S_1}{s}$ non termina.
+      \item $\B{b} = \semfalse{}$. La configurazione iniziale
+        $\confSs{\ifABC{b}{S_1}{S_2}}{s}$ evolve in
+        $\confSs{S_2}{s}$. Tuttavia, per ipotesi induttiva,
+        $\confSs{S_2}{s} \Rar{*} s$ oppure $\confSs{S_2}{s}$ non termina.
+    \end{itemize}
+
+  \item $S \equiv{} \wbS{b}{S_1}$ è banalmente verificato poichè, dopo un passo
+    di valutazione della guardia $b$ (operazione che non modifica lo stato $s$),
+    tale termine si riduce ad un termine condizionale
+    $\ifABC{b}{(S_1;\wbS{b}{S_1})}{\skipForFriends}$. Avendo già dimostrato tale
+    proprietà per tutti gli altri statement, anche questo caso è verificato.
+\end{itemize}
 
 \undef{\stmm}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
