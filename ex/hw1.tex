@@ -1,6 +1,116 @@
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
 \exercise{Exercise 1}
 {Provare o fornire un controesempio per la seguente equivalenza semantica:
 \begin{align*}
-\wbS{b}{S} \eqSOS \wbS{b}{(\ifABC{b}{S_1}{S_2})}
+\wbS{b}{S_1} \eqSOS \wbS{b}{(\ifABC{b}{S_1}{S_2})}
 \end{align*}}
 {}
+
+L'esercizio va risolto dimostrando la seguente asserzione:
+
+$\forall{s,s'} \in \states.
+  (\confSs{\wbS{b}{S_1}}{s} \Rar{*} s')
+  \iff
+  (\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{*} s')
+$
+
+Dunque, fissando due stati $s$ ed $s'$ in \states, è possibile discriminare due
+casi in funzione della valutazione di $b$ nello stato $s$.
+
+\subsection{\B{b} = \semfalse}
+I due statement vengono derivati nel seguente modo:
+
+\begin{itemize}
+  %%%%%%%%%%%%%% first derivation
+  \item $\wbS{b}{S_1}$
+\begin{align*}
+\confSs{\wbS{b}{S_1}}{s} \Rar{}
+\whileSOS
+\end{align*}
+\begin{align*}
+\confSs{\ifABC{b}{(S_1;\wbS{b}{S_1})}{\skipForFriends}}{s} \Rar{}
+\ifffSOS
+\end{align*}
+\begin{align*}
+\confSs{\skipForFriends}{s} \Rar{}
+\skipSOS
+\end{align*}
+\begin{align*}
+s \equiv s'
+\end{align*}
+  %%%%%%%%%%%%%% second derivation
+  \item $\wbS{b}{(\ifABC{b}{S_1}{S_2})}$
+\begin{align*}
+\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{}
+\whileSOS
+\end{align*}
+\begin{align*}
+\confSs{\ifABC{b}
+              {(\ifABC{b}{S_1}{S_2}; \wbS{b}{(\ifABC{b}{S_1}{S_2})})}
+              {\skipForFriends}}
+       {s} \Rar{}
+\ifffSOS
+\end{align*}
+\begin{align*}
+\confSs{\skipForFriends}{s} \Rar{}
+\skipSOS
+\end{align*}
+\begin{align*}
+s \equiv s'
+\end{align*}
+\end{itemize}
+
+\subsection{\B{b} = \semtrue}
+
+Nel caso in cui $b$ venga valutato a $\semtrue$ nello stato di memoria $s$, è
+banale dimostrare che i due statement sono semanticamente equivalenti. Infatti,
+dal momento che la regola $\ifttSOS{}$ non modifica lo stato della memoria,
+possiamo tranquillamente asserire che nel caso in cui \B{b} = \semtrue, anche il
+costrutto condizionale all'interno del while sceglierà il primo ramo.
+
+Ciò vuol dire che dopo una (o due) valutazioni della guardia $b$ in entrambi i
+casi si arriverà rispettivamente ai seguenti statement:
+\begin{itemize}
+  \item partendo da $\wbS{b}{S_1}$
+\begin{align*}
+\confSs{(S_1;\wbS{b}{S_1})}{s}
+\end{align*}
+  \item partendo da $\wbS{b}{(\ifABC{b}{S_1}{S_2})}$
+\begin{align*}
+\confSs{(S_1; \wbS{b}{(\ifABC{b}{S_1}{S_2})})}{s}
+\end{align*}
+\end{itemize}
+
+A questo punto viene dimostrato che entrambi i termini convergono allo stesso
+stato:
+
+\paragraph{$(\Rightarrow)$}
+
+Si assume che $\confSs{\wbS{b}{S_1}}{s} \Rar{*} s'$.
+Perciò, per il lemma di decomposizione, si ha che:
+
+\begin{itemize}
+  \item \confSs{S_1}{s} $\Rar{*} s_2$
+  \item \confSs{\wbS{b}{S_1}}{s_2} $\Rar{*} s'$
+\end{itemize}
+
+Ma allora, per il lemma di composizione, si ha:
+\begin{align*}
+\confSs{S_1; \wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s}
+\Rar{*}
+\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s_2}
+\end{align*}
+
+Ora abbiamo ottenuto nuovamente i due statement iniziali che partono da uno
+stato $s_2$ possibilmente diversi. Tuttavia, le derivazioni che partono da
+queste configurazioni sono strettamente più brevi rispetto a quelle iniziali.
+
+Dunque, questo caso è dimostrato per induzione sulla lunghezza della
+derivazione.
+
+\paragraph{$(\Leftarrow)$}
+
+La dimostrazione è del tutto analoga al caso $(\Rightarrow)$ appena esposto.
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
