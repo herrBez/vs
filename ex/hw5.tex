@@ -1,0 +1,20 @@
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+\newcommand{\stmm}{\stm$^{-}$}
+
+\exercise{Exercise 5}
+{Sia \stmm{} un sottolinguaggio di \stm{} in cui le assegnazioni sono state
+rimosse:
+\begin{align*}
+\mbox{\stmm} \ni{} S \Coloneqq{}  \skipForFriends\ | \ 
+                                  S_1; S_2\ | \ 
+                                  \ifABC{b}{S_1}{S_2}\ | \ 
+                                  \wbS{b}{S}
+\end{align*}
+Provare che $\forall{S} \in$ \stmm{} e $\forall{s} \in$ \states, o
+$\confSs{S}{s} \Rar{*} s$ oppure $\confSs{S}{s}$ non termina.
+}
+{}
+
+
+\undef{\stmm}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
