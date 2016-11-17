@@ -1,0 +1,90 @@
+\exercise{Esercizio 4}
+{Prove or disprove the following semantic equivalence
+$\wbS{b}{S} \eqSOS (\wbS{b}{S}); (\wbS{b}{S})$	
+}
+{
+
+Intuitivamente i due programmi sono equivalenti in quanto una volta usciti dal 
+primo ciclo \texttt{while} la condizione $b$ è sicuramente falsa e quindi
+il corpo del secondo \texttt{while} non verrà eseguito e lo stato rimarrà invariato.	
+\vspace{10pt}	
+	
+	
+
+Devo dimostrare che $\forall s \in \states$:
+$$
+\confSs{\wbS{b}{S}}{s} \Rar{*} s' \iff \confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} s'
+$$	
+\begin{proof} Dimostro le due implicazioni separatamente:
+	
+\vspace{10pt}	
+$\boxed{\implies}$
+Assumo che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$.
+
+Da questa assunzione segue che:
+\begin{enumerate}
+ \item Per l'esercizio 2: $\B{b}' = \semfalse$. 
+ \item Per il lemma di composizione: $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ implica  che 
+ $$\confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} \confSs{\wbS{b}{S}}{s'}$$	
+\end{enumerate}
+Quindi procedendo alla valutazione di $\confSs{\wbS{b}{S}}{s'}$ ottengo:
+$$
+\begin{array}{lrr}
+\confSs{\wbS{b}{S}}{s'} \Rar{} & \whileSOS & \\
+& &\\
+\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s'} \Rar{} & \ifffSOS & (\text{poichè }\B{b}' = \semfalse)\\
+& &\\
+\confSs{\skipForFriends}{s'} \Rar{} & \skipSOS\\
+& &\\
+s' &\\
+\end{array}
+$$
+Quindi unendo quanto ho trovato ottengo:
+$$
+\confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} \confSs{\wbS{b}{S}}{s'} \Rar{*} s'
+$$
+che può essere riscritto: 
+$$\confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} s'$$
+ che era proprio l'asserto da dimostrare.
+\vspace{10pt}
+
+
+$\boxed{\impliedby}$
+
+Assumo che $\confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} s'$.
+
+
+Per il lemma di decomposizione ottengo che $\exists s''$ tale che:
+\begin{enumerate}[label=(\Roman*)]
+	\item $\confSs{\wbS{b}{S}}{s} \Rar{*} s''$
+	\label{hw4:item:s:s'}
+	\item $\confSs{\wbS{b}{S}}{s''} \Rar{*} s'$
+	\label{hw4:item:s'':s'}
+\end{enumerate}
+Inoltre per l'esercizio 2 ottengo che:
+\begin{enumerate}[label=(\alph*)]
+	\item $\B{b}'' = \semfalse$
+	\label{hw4:item:Bbs''=ff}
+	\item $\B{b}' = \semfalse$
+	
+\end{enumerate}
+Grazie a \ref{hw4:item:s:s'} e \ref{hw4:item:Bbs''=ff} ottengo che:
+$$
+\begin{array}{lr}
+\confSs{\wbS{b}{S}}{s''} \Rar{}& \whileSOS\\
+& \\
+\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s''} \Rar{}& \ifffSOS \\
+ & \\
+\confSs{\skipForFriends}{s''} \Rar{}& \\
+& \\
+s''
+\end{array}
+$$
+
+
+Grazie al fatto \ref{hw4:item:s'':s'} e al determinismo della semantica SOS presa in considerazione
+ ottengo che: $s' \equiv{ } s''$. 
+Ora basta sostituire in \ref{hw4:item:s:s'} questa equivalenza per ottenere 
+che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ che è proprio quanto volevo dimostrare.
+\end{proof}
+}
