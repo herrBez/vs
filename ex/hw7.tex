@@ -1,0 +1,106 @@
+\exercise{Esercizio 7}
+{Prove or disprove the following semantic equivalence:
+$$
+\wbS{b}{S} \eqSOS \wbS{b}{(S;\wbS{b}{S})}
+$$
+}
+{
+Devo dimostrare che 
+$$
+\forall s: \Big(\confSs{\wbS{b}{S}}{s} \Rar{*} s' \iff \confSs{\wbS{b}{(S;\wbS{b}{S})}}{s} \Rar{*} s' \Big)
+$$
+\begin{proof}
+$$
+\boxed{\implies}
+$$
+Assumo che $\confSs{\wbS{b}{S}}{s} \Rar{ } s'$.
+Per la regola $\whileSOS$ so che:
+$$
+\confSs{\wbS{b}{S}}{s} \Rar{ } \confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{*} s'
+$$
+Quindi discrimino due casi in basi alla valutazione della guardia $b$ nello stato $s$:
+\begin{itemize}
+	\item $\boxed{\B{b} = \semfalse}$
+	$$
+	\begin{array}{lr}
+	\confSs{\wbS{b}{S}}{s} \Rar{ } & \whileSOS \\
+	\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{ }& \ifffSOS \\
+	\confSs{\skipForFriends}{s} \Rar{} & \skipSOS\\
+	s
+	\end{array}
+	$$
+	Quindi ho ottenuto che $s \equiv{} s'$.
+	
+	$$
+	\begin{array}{ll}
+	\confSs{\wbS{b}{(S;\wbS{b}{S})}}{s} \Rar{ } & \whileSOS\\	
+	\confSs{\ifABC{b}{(S; \wbS{b}{S}); (\wbS{b}{(S;\wbS{b}{S})})}{\skipForFriends}}{s} \Rar{ } & \ifffSOS \\
+	\confSs{\skipForFriends}{s} \Rar{ } & \skipSOS\\
+	s
+	\end{array}
+	$$
+	Quindi ho ottenuto che quando $\B{b} = \semfalse$ i due statement sono equivalenti. 
+	
+	\item $\boxed{\B{b} = \semtrue}$
+	$$
+	\begin{array}{lr}
+	\confSs{\wbS{b}{S}}{s} \Rar{ }  & \whileSOS \\
+	\confSs{\ifABC{b}{(S;\wbS{b}{S})}{\skipForFriends}}{s} \Rar{ } & \ifttSOS\\
+	\confSs{S; \wbS{b}{S}}{s} \Rar{*} & (\text{Assunzione + Determinatezza})\\
+	s'
+	\end{array}
+	$$
+	Per il lemma di decomposizione applicato a
+	
+	\begin{equation}
+	\confSs{S; \wbS{b}{S}}{s} \Rar{*} s'
+		\label{eq:hw7:imp}
+	\end{equation}
+
+	
+	ottengo che $\exists s''$:
+	\begin{enumerate}[label=(\alph*)]
+		\item $\confSs{S}{s} \Rar{*} s''$
+		\item $\confSs{\wbS{b}{S}}{s''} \Rar{*} s'$
+		\label{hw7:item:wbSbSs'':s'}
+	\end{enumerate}
+	Da \ref{hw7:item:wbSbSs'':s'} ottengo per l'esercizio 2 che:
+	\begin{enumerate}[label=(\Roman*)]
+		\item $\B{b}' = \semfalse$
+		\label{hw7:Bbs':ff}
+	\end{enumerate}  
+	Per il lemma di composizione applicato a \ref{eq:hw7:imp} ricavo che:
+	$$
+	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} \confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} 
+	$$
+	da cui ricavo grazie a \ref{hw7:Bbs':ff} che:
+	$$
+	\begin{array}{lr}
+	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{*} & \whileSOS\\
+	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s'} & \ifffSOS\\
+	\confSs{\skipForFriends}{s'} \Rar{*} & \\
+	s' & \\
+	\label{hw:arary}
+	\end{array}
+	$$  
+	Inoltre siccome sto assumendo che $\B{b} = \semtrue$ ho che:
+	$$
+	\begin{array}{lr}
+	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{ } & \whileSOS\\
+	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s} & \ifttSOS \\
+	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} & 
+	\end{array}
+	$$
+	Unendo questa derivazione al fatto che $\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{*} s'$ ottengo
+	proprio quanto mi ero prefissato di dimostrare ovvero:
+	$$
+	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} s'
+	$$
+\end{itemize}
+
+
+
+\end{proof}
+	
+	
+}
