@@ -60,22 +60,22 @@ stato $s$:
 	\end{equation}
 
 	
-	ottengo che $\exists s''$:
+	si ottiene che $\exists s''$:
 	\begin{enumerate}[label=(\alph*)]
 		\item $\confSs{S}{s} \Rar{*} s''$
 		\item $\confSs{\wbS{b}{S}}{s''} \Rar{*} s'$
 		\label{hw7:item:wbSbSs'':s'}
 	\end{enumerate}
-	Da \ref{hw7:item:wbSbSs'':s'} ottengo per l'esercizio 2 che:
+	Da \ref{hw7:item:wbSbSs'':s'} si ha, per l'esercizio 2, che:
 	\begin{enumerate}[label=(\Roman*)]
 		\item $\B{b}' = \semfalse$
 		\label{hw7:Bbs':ff}
 	\end{enumerate}  
-	Per il lemma di composizione applicato a \ref{eq:hw7:imp} ricavo che:
+	Per il lemma di composizione applicato a \ref{eq:hw7:imp} si ricava che:
 	$$
 	\confSs{(S; \wbS{b}{S}); (\wbS{b}{(S; \wbS{b}{S})})}{s} \Rar{*} \confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} 
 	$$
-	da cui ricavo grazie a \ref{hw7:Bbs':ff} che:
+	da cui si ottiene, grazie a \ref{hw7:Bbs':ff}, che:
 	$$
 	\begin{array}{lr}
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{*} & \whileSOS\\
@@ -85,7 +85,7 @@ stato $s$:
 	\label{hw:arary}
 	\end{array}
 	$$  
-	Inoltre siccome sto assumendo che $\B{b} = \semtrue$ ho che:
+	Inoltre siccome vi è l'ipotesi che $\B{b} = \semtrue$ si ha che:
 	$$
 	\begin{array}{lr}
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{ } & \whileSOS\\
@@ -93,8 +93,9 @@ stato $s$:
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} & 
 	\end{array}
 	$$
-	Unendo questa derivazione al fatto che $\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{*} s'$ ottengo
-	proprio quanto mi ero prefissato di dimostrare ovvero:
+	Unendo questa derivazione al fatto che
+	$\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{*} s'$, si ottiene
+	proprio quanto ciò che ci si era prefissati di dimostrare, ovvero:
 	$$
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} s'
 	$$
