@@ -100,32 +100,40 @@ stato $s$:
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} s'
 	$$
 \end{itemize}
+
+%%%%%%%%
+%% SECOND PART
+%%%%%%%%
+
 $$
 \boxed{\impliedby}
 $$
-Assumo che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$.
-Applicando la regola $\whileSOS$ ottengo:
-$$\confSs{\wbS{b}{S}}{s} \Rar{ } \confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s}$$
-Dipendentemente da $\B{b}$ distinguo due casi:
+Assumo che $\confSs{\wbS{b}{(S;\wbS{b}{S})}}{s} \Rar{*} s'$.
+Applicando la regola $\whileSOS$ si ottiene:
+$$\confSs{\wbS{b}{(S;\wbS{b}{S})}}{s}
+	\Rar{ }
+	\confSs{\ifABC{b}{((S; \wbS{b}{S});\wbS{b}{(S;\wbS{b}{S})})}{\skipForFriends}}{s}$$
+Dipendentemente da $\B{b}$ vengono distinti due casi:
 \begin{itemize}
 	\item $\boxed{\B{b} = \semfalse}$: analogo a quanto fatto per il caso $\B{b} = \semfalse $ nella dimostrazione per $\boxed{\implies}$. 
 	\item $\boxed{\B{b} = \semtrue}$:
 	$$
 	\begin{array}{lr}
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} & \whileSOS \\
-	\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} & \ifttSOS \\
+	\confSs{\ifABC{b}{((S; \wbS{b}{S});\wbS{b}{(S;\wbS{b}{S})})}{\skipForFriends}}{s} & \ifttSOS \\
 	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} & \text{(Assunzione + Determinismo)}\\
 	\Rar{*} s'
 	\end{array}
 	$$
-	Applicando il lemma di decomposizione ottengo che $\exists s''$:
+	Applicando il lemma di decomposizione, si ottiene che $\exists s''$ tale che:
 	\begin{enumerate}[label=(\arabic*)]
-		\item $\confSs{(S; \wbS{b}{S})}{s} \Rar{*} s''$
+		\item $\confSs{S; \wbS{b}{S}}{s} \Rar{*} s''$
 		\label{hw7:a}
-		\item $\confSs{\wbS{b}{(S; \wbS{b}{S}}}{s''} \Rar{*} s'$
+		\item $\confSs{\wbS{b}{(S; \wbS{b}{S}})}{s''} \Rar{*} s'$
 		\label{hw7:b}
 	\end{enumerate}
-	Inoltre posso applicare lo stesso lemma a \ref{hw7:a} per ottenere che $\exists s'''$:
+	Inoltre è possibile applicare lo stesso lemma a \ref{hw7:a} per ottenere che
+	$\exists s'''$ tale che:
 	\begin{enumerate}[label=(\Alph*)]
 		\item $\confSs{S}{s} \Rar{*} s'''$
 		\item $\confSs{\wbS{b}{S}}{s'''} \Rar{*}s''$
@@ -136,7 +144,7 @@ Dipendentemente da $\B{b}$ distinguo due casi:
 		\item $\B{b}'' = \semfalse$
 		\label{hw7:Bbs'':ff}
 	\end{enumerate}
-	Grazie a \ref{hw7:Bbs'':ff} posso concludere a partire da \ref{hw7:b} che:
+	Grazie a \ref{hw7:Bbs'':ff} si può concludere a partire da \ref{hw7:b} che:
 	$$
 	\begin{array}{ll}
 		\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s''} \Rar{ }& \whileSOS \\
@@ -145,8 +153,9 @@ Dipendentemente da $\B{b}$ distinguo due casi:
 		s''
 	\end{array}
 	$$
-	Da cui segue per via del determinismo delle regole SOS che $s'' \equiv s'$.
-	Ora prendendo in considerazione $\wbS{b}{S}$ grazie al fatto che $\B{b} = \semtrue$ posso derivare applicando le regole:
+	Da cui segue, per via del determinismo delle regole SOS, che $s'' \equiv s'$.
+	Ora, prendendo in considerazione $\wbS{b}{S}$, grazie al fatto che
+	$\B{b} = \semtrue$ è possibile derivare:
 	$$
 	\begin{array}{lr}
 	\confSs{\wbS{b}{S}}{s} \Rar{ } & \whileSOS \\
@@ -154,13 +163,15 @@ Dipendentemente da $\B{b}$ distinguo due casi:
 	\confSs{(S; \wbS{b}{S})}{s} & \\
 	\end{array}
 	$$
-	Da cui grazie a \ref{hw7:a} e al fatto che $s'' \equiv s'$ ho che
-	$\confSs{(S; \wbS{b}{S})}{s} \Rar{*} s'$. Unendo la precedente derivazione all'ultima conclusione ottengo che:
-	$\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ che era proprio ciò che volevo dimostrare.
-	
+	Da cui grazie a \ref{hw7:a} e al fatto che $s'' \equiv s'$ si ha che
+	$\confSs{(S; \wbS{b}{S})}{s} \Rar{*} s'$. Unendo la precedente derivazione
+	all'ultima conclusione, ottengo che:
+	$\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ che era proprio ciò che si voleva
+	dimostrare.
+
 \end{itemize}
 
 \end{proof}
-	
-	
+
+
 }
