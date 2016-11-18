@@ -4,4 +4,146 @@
   $\wbS{b}{S} \eqSOS{} \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}$
 }
 {
+È necessario dimostrare che
+$$
+\forall s,s'.
+  \Big(\confSs{\wbS{b}{S}}{s} \Rar{*} s'
+  \iff
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{*} s' \Big)
+$$
 }
+\begin{proof}
+Vengano fissati due stati $s, s' \in \states$. La prova procede dunque andando
+a verificare entrambi i versi della doppia implicazione.
+$$
+\boxed{\implies}
+$$
+Si assuma che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$. Vengono studiati i due casi
+che si possono verificare a seconda della valutazione della guardia booleana $b$
+nello stato di memoria $s$:
+\begin{itemize}
+  \item $\boxed{\B{b} = \semfalse}$
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{S}}{s} \Rar{ } & \whileSOS \\
+  \confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{ }& \ifffSOS \\
+  \confSs{\skipForFriends}{s} \Rar{} & \skipSOS\\
+  s
+  \end{array}
+  $$
+  Quindi si ottiene che $s \equiv{} s'$.
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} & \whileSOS \\
+  \confSs{\ifABC{b}
+            {((S;\ \ifABC{b}{S}{\skipForFriends});
+              \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})})}
+            {\skipForFriends}
+         }{s} \Rar{ }& \ifffSOS \\
+  \confSs{\skipForFriends}{s} \Rar{} & \skipSOS\\
+  s
+  \end{array}
+  $$
+  Di conseguenza si ottiene anche che quando $\B{b} = \semfalse$ i due
+  statement sono equivalenti.
+
+% => case: true
+  \item $\boxed{\B{b} = \semtrue}$
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{S}}{s} \Rar{ }  & \whileSOS \\
+  \confSs{\ifABC{b}{(S;\wbS{b}{S})}{\skipForFriends}}{s} \Rar{ } & \ifttSOS\\
+  \confSs{S; \wbS{b}{S}}{s} \Rar{*} & (\text{Assunzione + Determinismo})\\
+  s'
+  \end{array}
+  $$
+  Mentre per lo statement a destra dell'equivalenza da provare si ha:
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} & \whileSOS \\
+  \confSs{\ifABC{b}
+            {((S;\ \ifABC{b}{S}{\skipForFriends});
+              \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})})}
+            {\skipForFriends}
+         }{s} \Rar{ }& \ifttSOS \\
+  \confSs{  (S;\ \ifABC{b}{S}{\skipForFriends});
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s}
+  \end{array}
+  $$
+  Per il lemma di decomposizione applicato a
+  \begin{equation}
+  \confSs{S; \wbS{b}{S}}{s} \Rar{*} s'
+    \label{eq:hw8:imp}
+  \end{equation}
+  si ottiene che $\exists s'' \in \states$ tale che:
+  \begin{enumerate}[label=(\alph*)]
+    \item $\confSs{S}{s} \Rar{*} s''$
+    \label{hw8:item1}
+    \item $\confSs{\wbS{b}{S}}{s''} \Rar{*} s'$
+    \label{hw8:item2}
+  \end{enumerate}
+  Da \ref{hw8:item2} si ha, per l'esercizio 2, che:
+  \begin{enumerate}[label=(\Roman*)]
+    \item $\B{b}' = \semfalse$
+    \label{hw8:Bbs':ff}
+  \end{enumerate}
+  Per il lemma di composizione applicato a \ref{hw8:item1} si ricava che:
+  $$
+  \confSs{(S;\ \ifABC{b}{S}{\skipForFriends})}{s}
+    \Rar{*}
+  \confSs{\ifABC{b}{S}{\skipForFriends}}{s''}
+  $$
+  Andando ulteriormente a derivare entrambi il primo termine
+  $\confSs{\wbS{b}{S}}{s''}$ a partire dallo stato $s''$ raggiunto dopo una
+  esecuzione dello statement $S$, si ottiene:
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{S}}{s''} \Rar{ }  & \whileSOS \\
+  \confSs{\ifABC{b}{(S;\wbS{b}{S})}{\skipForFriends}}{s''} \Rar{*} & (\text{Assunzione + Determinismo})\\
+  s'
+  \end{array}
+  $$
+  Se la guardia $b$ verrà valutata a \semfalse, è banalmente dimostrabile che
+  entrambi i termini terminano in uno stato $s' \equiv{} s''$.
+  Altrimenti, se $\B{b}' = \semtrue$, i termini verranno derivati
+  rispettivamente nel seguente modo applicando in ambi i casi la regola
+  $\ifttSOS$\footnote{per il secondo termine, in realtà viene applicata anche
+  $\compoSOS$}:
+  \begin{enumerate}
+    \item \confSs{S;\wbS{b}{S}}{s''} (per la parte sinistra dell'equivalenza)
+    \label{hw8:item3}
+    \item \confSs{S;\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s''}
+      (per la parte destra dell'equivalenza)
+  \end{enumerate}
+  Si può applicare il lemma di decomposizione al termine \ref{hw8:item3},
+  ottenendo che $\exists{s'''} \in \states$ tale che:
+  \begin{enumerate}[label=(\alph*)]
+    \item $\confSs{S}{s''} \Rar{*} s'''$
+    \label{hw8:item4}
+    \item $\confSs{\wbS{b}{S}}{s'''} \Rar{*} s'$ (per l'ipotesi iniziale)
+    \label{hw8:item5}
+  \end{enumerate}
+  Applicando il lemma di composizione a \ref{hw8:item4} si ottiene
+  $$
+  \confSs{(S;\ \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s''}
+    \Rar{*}
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s'''}
+  $$
+  È possibile notare che si è arrivati ad un punto nel quale si vuole provare
+  l'asserzione iniziale su una derivazione di lunghezza strettamente inferiore,
+  nello specifico partendo da uno stato $s'''$.
+
+  Dunque tale verso della doppia implicazione è dimostrato per induzione sulla
+  lunghezza della derivazione.
+\end{itemize}
+
+%%%%%%%%
+%% SECOND PART
+%%%%%%%%
+
+$$
+\boxed{\impliedby}
+$$
+
+\end{proof}
