@@ -9,3 +9,30 @@
   \end{enumerate}
 }
 {}
+L'esercizio procede provando le due proprietà separatamente.
+
+\begin{proof}
+$$
+\boxed{\fixp{f} \leq{} \fixp{g}}
+$$
+
+Dal momento che $f$ e $g$ sono continue su un CPO $D$, allora esistono i
+rispettivi punti fissi \fixp{f} e \fixp{g}.
+
+Applicando la definizione di punto fisso, si ha:
+\begin{equation}
+  f(\fixp{f}) \leq{} g(\fixp{g})
+\end{equation}
+
+Che è vero poichè:
+\begin{itemize}
+  \item $\fixp{f} \in D$;
+  \item $\fixp{g} \in D$;
+  \item $\forall{x}\in D. f(x) \leq{} g(x)$.
+\end{itemize}
+
+$$
+\boxed{\fixp{f} \leq \fixp{g^2}}
+$$
+
+\end{proof}
