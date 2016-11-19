@@ -43,7 +43,21 @@ di composizione: infatti la composizione $\undefDS \circ \undefDS$ è anch'essa
 In questo modo si ha $\undefDS = \undefDS$, che è banalmente vero.
 
 $$
-\boxed{(\fixp{F}) $s = s'$}
+\boxed{(\fixp{F}) s = s'}\footnote{Per qualche $s' \in\states$}
 $$
+
+Grazie all'esercizio 9, si ha che se \fixp{F}) $s = s'$ allora
+\B{b}$' = \semfalse$. Quindi:
+$$
+(\fixp{F} \circ \fixp{F}) s = \\
+\fixp{F} s' = \\
+s'
+$$
+
+Poichè l'applicazione di \fixp{F} a $s'$ risulta essere banalmente
+\boxer{\idDS\ s'}.
+
+Dal momento che entrambi i lati dell'equivalenza denotazionale sono uguali ad
+$s'$, la tesi è provata.
 
 \end{proof}
