@@ -144,7 +144,6 @@
                      \textrm{\normalfont{\texttt{ do }}}
                      #2}
 \newcommand{\eqSOS}{\cong_{\textrm{\normalfont{SOS}}}}
-\newcommand{\eqDS}{\cong_{\textrm{\normalfont{ds}}}}
 \newcommand{\ifABC}[3]{\mbox{\normalfont{\texttt{if }}}
                        #1
                        \textrm{\normalfont{\texttt{ then }}}
@@ -153,8 +152,19 @@
                        #3}
 \newcommand{\skipForFriends}{\textrm{\normalfont{\texttt{skip}}}}
 
+%%%%%%%% DENOTATIONAL COMMANDS
+\newcommand{\eqDS}{\cong_{\textrm{\normalfont{ds}}}}
+\newcommand{\dsCtxt}[1]{\ensuremath{\mathcal{S}_{ds}[#1]}}
 \newcommand{\fixp}[1]{\textrm{\normalfont{FIX}}(\ensuremath{#1})}
 \newcommand{\FPIL}{\textit{Fixpoint Induction Lemma}}
+\newcommand{\idDS}{\textrm{\normalfont{id}}}
+\newcommand{\undefDS}{\textrm{\normalfont{undef}}}
+\newcommand{\cond}[3]{\mbox{\normalfont{\texttt{cond }}}
+                       (\Bcal{}[#1]
+                       \textrm{\normalfont{\texttt{, }}}
+                       #2
+                       \textrm{\normalfont{\texttt{, }}}
+                       #3)}
 
 \RequirePackage{tabularx}
 \newcommand{\boxer}[1]{\ensuremath{\boxed{#1}}}
