@@ -51,6 +51,8 @@
 	backgroundcolor=\color{background}
 }
 \RequirePackage{bussproofs}
+\RequirePackage{enumitem}
+\RequirePackage{xparse}
 
 \lstset{emph={%  
 		true, false%
@@ -64,6 +66,15 @@
 	}{% chiusura
 \end{proof}
 }
+
+\ExplSyntaxOn
+\DeclareExpandableDocumentCommand \AlphToNum { m }
+{
+   \int_from_alph:n { #1 }
+}
+\ExplSyntaxOff
+
+\newcommand{\nextitem}[1]{\setcounter{enum\romannumeral\enit@depth}{\numexpr\AlphToNum{#1}-1}}
 
 \newcommand{\myspace}{\ensuremath{\mbox{ }}}
 
