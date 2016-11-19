@@ -21,7 +21,7 @@ l'equivalenza corrispondono alle seguenti funzioni:
 , dove $F \equiv{} \lambda{g}.\cond{b}{g \circ \dsCtxt{S}}{\idDS}$
 
 Quindi, al fine di provare tale equivalenza in semantica denotazionale, è
-necessario porre:
+necessario dimostrare:
 \begin{equation}
 \fixp{F} = \fixp{F} \circ \fixp{F}
 \label{hw10-thesis}
@@ -37,8 +37,11 @@ $$
 $$
 
 L'uguaglianza è facilmente verificabile grazie alla definizione della funzione
-di composizione: infatti la composizione $\undefDS \circ \undefDS$ è anch'essa
-\undefDS.
+di composizione: infatti la composizione 
+$$
+((\fixp{F}) \circ (\fixp{F})) s = (\fixp{F})(\fixp{F}\text{ }s) = (\fixp{F})(\undefDS) = \undefDS
+$$
+
 
 In questo modo si ha $\undefDS = \undefDS$, che è banalmente vero.
 
@@ -46,7 +49,7 @@ $$
 \boxed{(\fixp{F}) s = s'}\footnote{Per qualche $s' \in\states$}
 $$
 
-Grazie all'esercizio 9, si ha che se \fixp{F}) $s = s'$ allora
+Grazie all'esercizio 9, si ha che se \fixp{F} $s = s'$ allora
 \B{b}$' = \semfalse$. Quindi:
 $$
 (\fixp{F} \circ \fixp{F}) s = \\
