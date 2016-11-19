@@ -6,3 +6,44 @@
   $$
 }
 {}
+In semantica denotazionale gli statement per i quali si vuole provare
+l'equivalenza corrispondono alle seguenti funzioni:
+\begin{itemize}
+  \item \dsCtxt{\wbS{b}{S}}
+        $\equiv$
+        \fixp{F}
+  \item \dsCtxt{(\wbS{b}{S});(\wbS{b}{S})}
+        $\equiv$
+        \dsCtxt{(\wbS{b}{S})} $\circ$ \dsCtxt{(\wbS{b}{S})}
+        $\equiv$
+        \fixp{F} $\circ$ \fixp{F}
+\end{itemize}
+, dove $F \equiv{} \lambda{g}.\cond{b}{g \circ \dsCtxt{S}}{\idDS}$
+
+Quindi, al fine di provare tale equivalenza in semantica denotazionale, è
+necessario porre:
+\begin{equation}
+\fixp{F} = \fixp{F} \circ \fixp{F}
+\label{hw10-thesis}
+\end{equation}
+
+\begin{proof}
+
+Si applichi il funzionale \fixp{F} ad uno stato $s\in\states$ e si prosegua in
+con due dimostrazioni separate a seconda che $(\fixp{F}) s$ si riduca ad uno
+stato finale o meno.
+$$
+\boxed{(\fixp{F}) $s = \undefDS$}
+$$
+
+L'uguaglianza è facilmente verificabile grazie alla definizione della funzione
+di composizione: infatti la composizione $\undefDS \circ \undefDS$ è anch'essa
+\undefDS.
+
+In questo modo si ha $\undefDS = \undefDS$, che è banalmente vero.
+
+$$
+\boxed{(\fixp{F}) $s = s'$}
+$$
+
+\end{proof}
