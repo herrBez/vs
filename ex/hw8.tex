@@ -135,7 +135,22 @@ nello stato di memoria $s$:
   nello specifico partendo da uno stato $s'''$.
 
   Dunque tale verso della doppia implicazione è dimostrato per induzione sulla
-  lunghezza della derivazione.
+  lunghezza della derivazione:
+  \begin{itemize}
+    \item il caso base ($\B{b} = \semfalse$ e derivazioni lunghe 3 passi di
+      riduzione) è stato verificato;
+    \item il passo induttivo (ottenibile ponendo $\B{b} = \semtrue$) porta a
+      dover dimostrare la stessa proprietà eseguendo lo statement iniziale a
+      partire da $s'''$, stato più avanzato nella derivazione rispetto a $s$.
+
+      Poichè la derivazione che da $s'''$ porta a $s'$ è strettamente più
+      corta di quella che porta da $s$ a $s'$\footnote{si è volutamente deciso
+      di adottare un livello di informalità per esprimere in modo più
+      conciso che si parte da una configurazione in un certo stato per
+      arrivare ad un'altra configurazione in un secondo stato}, il passo
+      induttivo è valido proprio per induzione sulla lunghezza della
+      derivazione.
+  \end{itemize}
 \end{itemize}
 
 %%%%%%%%
@@ -281,17 +296,13 @@ della guardia booleana $b$ nello stato di memoria $s$:
   $$
   Ma questo vale per induzione sulla lunghezza della derivazione poichè:
   \begin{itemize}
-    \item il caso base ($\B{b} = \semfalse$ e derivazioni lunghe 3 passi di
-      riduzione) è stato verificato;
+    \item il caso base ($\B{b} = \semfalse$) è stato verificato;
     \item il passo induttivo (ottenibile ponendo $\B{b} = \semtrue$) porta a
       dover dimostrare la stessa proprietà eseguendo lo statement iniziale a
       partire da $t$, stato più avanzato nella derivazione rispetto a $s$.
 
       Poichè la derivazione che da $t$ porta a $s'$ è strettamente più corta di
-      quella che porta da $s$ a $s'$\footnote{si è volutamente deciso di
-      adottare un livello di informalità per esprimere in modo più
-      conciso che si parte da una configurazione in un certo stato per
-      arrivare ad un'altra configurazione in un secondo stato}, il passo induttivo è valido proprio per
+      quella che porta da $s$ a $s'$, il passo induttivo è valido proprio per
       induzione sulla lunghezza della derivazione.
   \end{itemize}
 \end{itemize}
