@@ -35,4 +35,42 @@ $$
 \boxed{\fixp{f} \leq \fixp{g^2}}
 $$
 
+In questa parte dell'esercizio è possibile assumere che
+$\forall{x}\in D.x \leq{} f(x)$.
+
+Si procede dunque provando ad applicare il \FPIL{}; per provare
+$\fixp{f} \leq \fixp{g^2}$ è dunque sufficiente provare che:
+\begin{equation}
+  f(\fixp{g^2}) \leq{} \fixp{g^2}
+  \label{hw16-pt2-1}
+\end{equation}
+
+Innanzitutto è possibile notare che tale tesi è sensata da dimostrare:
+$g \circ g$ è continua (lemma 4.35) sul CPO $D$ e di conseguenza ha minimo
+punto fisso $\fixp{g^2}\in D$.
+
+Sviluppando il lato destro di \ref{hw16-pt2-1}, si ottiene:
+\begin{equation}
+  f(\fixp{g^2}) \leq{} g(g(\fixp{g^2}))
+  \label{hw16-pt2-1}
+\end{equation}
+
+È noto che $\fixp{g^2}\in D$. È quidi possibile sviluppare la seguente catena
+di relazioni:
+$$
+\begin{array}{lr}
+x \leq f(x) & \text{(per ipotesi in $\forall{x}\in D.x \leq{} f(x)$)} \\
+f(x) \leq g(x) & \text{(per $\forall{x}\in D. f(x) \leq{} g(x)$)} \\
+g(x) \leq f(g(x)) & \text{(perchè $g(x)\in D$)} \\
+f(g(x)) \leq g(g(x)) & \text{(per $\forall{x}\in D. f(x) \leq{} g(x)$)} \\
+f(x) \leq g(g(x)) &  \text{(per proprietà transitiva di $\leq$)}
+\end{array}
+$$
+
+Quindi, fissando $x = \fixp{g^2}$\footnote{ciò è possibile proprio perchè
+$\fixp{g^2}\in D$}, è provato che
+$$
+f(\fixp{g^2}) \leq g(g(\fixp{g^2}))
+$$
+
 \end{proof}
