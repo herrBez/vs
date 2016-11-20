@@ -64,10 +64,10 @@ s \equiv s'
 \subsection{\B{b} = \semtrue}
 
 Nel caso in cui $b$ venga valutato a $\semtrue$ nello stato di memoria $s$, è
-banale dimostrare che i due statement sono semanticamente equivalenti. Infatti,
-dal momento che la regola $\ifttSOS{}$ non modifica lo stato della memoria,
-possiamo tranquillamente asserire che nel caso in cui \B{b} = \semtrue, anche il
-costrutto condizionale all'interno del while sceglierà il primo ramo.
+banale dimostrare che i due statement sono semanticamente equivalenti. Dal 
+momento che la regola $\ifttSOS{}$ non modifica lo stato della memoria
+possiamo asserire che, nel caso \B{b} = \semtrue, lo 
+statement condizionale interno al while eseguirà sempre il primo ramo.
 
 Ciò vuol dire che dopo una (o due) valutazioni della guardia $b$ in entrambi i
 casi si arriverà rispettivamente ai seguenti statement:
