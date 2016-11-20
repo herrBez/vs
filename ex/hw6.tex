@@ -9,7 +9,7 @@ this behaves like a standard while-loop $\wbS{b}{S}$ where at the end of any ite
 of the body $S$ of the Boolean expression $b'$ is evaluated and if $b'$ is evaluated
 to true then the loop is terminated (with no change to the current state).
 \begin{enumerate}[label=$\arabic*$.]
-	\item Define the small-step operational semantics of this new iterative command.
+	\item Define the small-step operational semantics of this new iterative command.point #19
 	\item Prove the following semantic equivalence:
 	$$
 	\wbSE{b}{S}{\neg b} \eqSOS \wbS{b}{S}
@@ -20,7 +20,7 @@ to true then the loop is terminated (with no change to the current state).
 	\begin{enumerate}
 \item In analogia con quanto fatto per $\wbS{b}{S}$ definisco $\wbSE{b}{S}{b'}$ come unfolding:
 $$
-\wbSE{b}{S}{b'} \Rar{ } \ifABC{b}{(S; (\ifABC{b'}{\skipForFriends}{(\wbSE{b}{S}{b'})}))}{\skipForFriends}
+\wbSE{b}{S}{b'} \Rar{ } \ifABC{b}{(S; (\ifABC{b'}{\skipForFriends}{(\wbSE{b}{S}{b'})}))}{\skipForFriends} 
 $$
 e chiamo questo assioma $\exitifSOS$.
 
