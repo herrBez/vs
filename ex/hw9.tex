@@ -7,22 +7,55 @@
 
 Sia $F$ il funzionale associato a $\wbS{b}{S}$. Si può dunque dire che
 $$
-\dsCtxt{\wbS{b}{S}} = FIX F
+\dsCtxt{\wbS{b}{S}} = \fixp{F}
 $$
-, dove $F = \lambda{g}.\cond{\Bcal{b}}{g \circ \dsCtxt{S}}{\idDS}$.
+, dove $F = \lambda{g}.\cond{b}{g \circ \dsCtxt{S}}{\idDS}$.
 
 Siccome $\dsCtxt{\wbS{b}{S}} s = s'$, allora
 $$
 \exists{n}\in\Ncal. F^n \bot = s'
 $$
 
-La tesi $\B{b}' = \semfalse$ viene dunque provata per induzione su $n$.
+La tesi $\B{b}' = \semfalse$\footnote{N.B. l'esercizio può essere anche
+formalizzato nel seguente modo:
+$\forall{s\in\states}.\dsCtxt{\wbS{b}{S}} s = s' \implies \B{b}' = \semfalse$} viene dunque provata per induzione su $n$.
 
 $$
-\boxer{Caso base}
+\boxer{Caso\ base}
 $$
 
-Per $n = 0$, si ha che $F^0 = \idDS$. Ciò vuol dire che $F^n \bot = \bot$.
+Per $n = 0$, si ha che $F^0 = \idDS$. Ciò vuol dire che
+$(F^0 \bot) s = \undefDS$.
 
-Ma se $F^n = \bot$, allora l'ipotesi $\dsCtxt{\wbS{b}{S}} s = s'$ è falsa,
+Ma allora l'ipotesi $\dsCtxt{\wbS{b}{S}} s = s'$ è falsa,
 poichè non esiste alcun $s'$ che la soddisfi.
+
+$$
+\boxer{Passo\ induttivo}
+$$
+
+Si consideri il caso $F^{n+1}$:
+\vspace{.5em}
+
+\noindent $F^{n+1} =$ \\
+\noindent $F \circ F^n =$ \\
+\noindent $F(F^n) =$ \\
+\noindent $\cond{b}{F^n \circ \dsCtxt{S}}{\idDS}$
+\vspace{.5em}
+
+In definitiva, bisogna considerare la valutazione di
+$(F^{n+1} \bot) s = (\cond{b}{(F^n \circ \dsCtxt{S}) \bot}{\idDS}) s$.
+
+A questo punto si può dividere la prova del passo induttivo in due casi a
+seconda della valutazione di \B{b}:
+\begin{itemize}
+  \item $\B{b} = \semfalse$ -- in questo caso lo stato $s$ raggiunto è uguale
+    allo stato finale $s'$ poichè viene applicata la funzione identità \idDS{}.
+    Perciò (banalmente) $\B{b} = \B{b}' = \semfalse$.
+  \item $\B{b} = \semtrue$ -- in questo caso viene scelto il primo ramo
+    condizionale e perciò viene valutato $((F^n \circ \dsCtxt{S}) \bot) s = s'$.
+    Ma allora è anche vero che $(F^n\ \bot) s'' = s'$, dove in particolare
+    $(\dsCtxt{S}\ \bot) s = s''$. Siccome, per ipotesi induttiva,
+    per ogni stato di partenza applicando $n$ volte $F$ si ottiene uno stato s'
+    per cui $\B{b}' = \semfalse$, allora la tesi è provata.
+\end{itemize}
