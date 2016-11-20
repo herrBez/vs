@@ -4,3 +4,25 @@
 }
 {
 }
+
+Sia $F$ il funzionale associato a $\wbS{b}{S}$. Si può dunque dire che
+$$
+\dsCtxt{\wbS{b}{S}} = FIX F
+$$
+, dove $F = \lambda{g}.\cond{\Bcal{b}}{g \circ \dsCtxt{S}}{\idDS}$.
+
+Siccome $\dsCtxt{\wbS{b}{S}} s = s'$, allora
+$$
+\exists{n}\in\Ncal. F^n \bot = s'
+$$
+
+La tesi $\B{b}' = \semfalse$ viene dunque provata per induzione su $n$.
+
+$$
+\boxer{Caso base}
+$$
+
+Per $n = 0$, si ha che $F^0 = \idDS$. Ciò vuol dire che $F^n \bot = \bot$.
+
+Ma se $F^n = \bot$, allora l'ipotesi $\dsCtxt{\wbS{b}{S}} s = s'$ è falsa,
+poichè non esiste alcun $s'$ che la soddisfi.
