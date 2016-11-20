@@ -1,0 +1,48 @@
+\exercise{Esercizio 12}
+{Prove that
+$$
+	 \wbS{b}{(S; \wbS{b}{S})} \eqDS \wbS{b}{S}
+$$
+}
+{
+Per dimostrare che 
+$$
+	 \wbS{b}{(S; \wbS{b}{S})} \eqDS \wbS{b}{S}
+$$	
+devo dimostrare che
+$$
+\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} = \dsCtxt{\wbS{b}{S}} 
+$$
+Il termine sulla destra è per quanto visto nei precedenti esercizi:
+$$
+\dsCtxt{\wbS{b}{S}} = \fixp{F} \text{ dove } F = \lambda g. \cond{b}{g \circ \dsCtxt{S}}{id}
+$$
+mentre quello sulla sinistra è:
+$$
+\dsCtxt{\wbS{b}{(S; \wbS{b}{S}})} = \fixp{G} \text{ dove } 
+$$
+dove 
+$$
+G = \lambda g. \cond{b}{g \circ \fixp{F} \circ \dsCtxt{S}}{id} 
+$$
+
+Noto che in questo caso non posso dimostrare che $\fixp{F} = \fixp{G}$ a partire da $F = G$ perchè
+$F$ e $G$ non sono equivalenti
+
+\paragraph{Derivazione di G}
+$$
+\begin{array}{ll}
+\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} & \\
+\dsCtxt{\ifABC{b}{((S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})})}{\skipForFriends}} & \\
+\cond{b}{\dsCtxt{((S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})})}}{\dsCtxt{\skipForFriends}}\\
+\cond{b}{\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} \circ \dsCtxt{S; \wbS{b}{S}}}{id} & \\
+\cond{b}{\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} \circ \dsCtxt{\wbS{b}{S}} \circ \dsCtxt{S}}{id} & \\
+\cond{b}{\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} \circ \fixp{F} \circ \dsCtxt{S}}{id} & \\
+\cond{b}{g \circ \fixp{F} \circ \dsCtxt{S}}{id} & \\
+\end{array}
+$$
+quindi:
+$$
+G = \cond{b}{g \circ \fixp{F} \circ \dsCtxt{S}}{id}
+$$
+}
