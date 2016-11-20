@@ -69,20 +69,45 @@ momento che la regola $\ifttSOS{}$ non modifica lo stato della memoria
 possiamo asserire che, nel caso \B{b} = \semtrue, lo 
 statement condizionale interno al while eseguirà sempre il primo ramo.
 
-Ciò vuol dire che dopo una (o due) valutazioni della guardia $b$ in entrambi i
-casi si arriverà rispettivamente ai seguenti statement:
+%Ciò vuol dire che dopo aver valutato la guardia $b$\footnote{lo statement 
+%a destra dell'equivalenza valuta la guardia due volte} in entrambi i
+%casi si arriverà rispettivamente ai seguenti statement:
 \begin{itemize}
   \item partendo da $\wbS{b}{S_1}$
 \begin{align*}
-\confSs{(S_1;\wbS{b}{S_1})}{s}
+\confSs{\wbS{b}{S_1}}{s} \Rar{}
+\whileSOS
+\end{align*}
+\begin{align*}
+\confSs{\ifABC{b}{(S_1;\wbS{b}{S_1})}{\skipForFriends}}{s} \Rar{}
+\ifttSOS
+\end{align*}
+\begin{align*}
+\confSs{S_1;\wbS{b}{S_1}}{s}
 \end{align*}
   \item partendo da $\wbS{b}{(\ifABC{b}{S_1}{S_2})}$
 \begin{align*}
-\confSs{(S_1; \wbS{b}{(\ifABC{b}{S_1}{S_2})})}{s}
+\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{}
+\whileSOS
+\end{align*}
+\begin{align*}
+\confSs{\ifABC{b}
+              {(\ifABC{b}{S_1}{S_2}; \wbS{b}{(\ifABC{b}{S_1}{S_2})})}
+              {\skipForFriends}}
+       {s} \Rar{}
+\ifttSOS
+\end{align*}
+\begin{align*}
+\confSs{\ifABC{b}{S_1}{S_2}; \wbS{b}{(\ifABC{b}{S_1}{S_2})}}
+       {s} \Rar{}
+\ifttSOS
+\end{align*}
+\begin{align*}
+\confSs{S_1; \wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s}
 \end{align*}
 \end{itemize}
 
-A questo punto viene dimostrato che entrambi i termini convergono allo stesso
+Dimostriamo che entrambi i termini convergono allo stesso
 stato:
 
 \paragraph{$(\Rightarrow)$}
