@@ -31,7 +31,104 @@ cambiare lo stato ($\skipForFriends$)
 altrimenti viene eseguito un nuovo ciclo.
 \item Devo dimostrare che:
 $$
-\forall s, s' : (\wbSE{b}{S}{\neg b} \Rar{*} s' \iff  \wbS{b}{S} \Rar{*} s')
+\forall s, s' : \confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{*} s' \iff  \confSs{\wbS{b}{S}}{s} \Rar{*} s')
 $$
+\begin{proof}
+Dimostro le due implicazioni separatamente.
+
+$$
+\boxed{\implies}
+$$
+
+$$
+\boxed{\impliedby}
+$$
+Assumo che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$. Applicando un unfolding ($\whileSOS$) ottengo:
+$$
+\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s}
+$$
+In cui posso discriminare due casi in base a $\B{b}$:
+\begin{itemize}
+\item $\boxed{\B{b} = \semfalse}$
+$$
+\begin{array}{ll}
+\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} & \ifffSOS\\
+\confSs{\skipForFriends}{s} & \skipSOS\\
+s & \\
+\end{array}
+$$
+Da cui segue che $\boxed{s' \equiv{ } s}$
+$$
+\begin{array}{ll}
+\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{ } & \exitifSOS\\
+\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s} \Rar{} & \ifffSOS \\
+\confSs{\skipForFriends}{s} \Rar{}& \skipSOS\\
+s & \\
+\end{array}
+$$
+\item $\boxed{\B{b} = \semtrue}$
+$$
+\begin{array}{ll}
+\confSs{\wbS{b}{S}}{s} \Rar{*} & \\ 
+\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{} & \ifttSOS\\
+\confSs{S; \wbS{b}{S}}{s} & \\
+\end{array}
+$$	
+Siccome le regole SOS sono deterministiche ottengo che
+$$
+\confSs{S; \wbS{b}{S}}{s} \Rar{*} s'
+$$
+e quindi per il lemma di decomposizione $\exists s''$:
+\begin{enumerate}
+\item 
+$\confSs{S}{s} \Rar{*} s''$
+\label{hw6:FattoA}
+\item $\confSs{\wbS{b}{S}}{s''} \Rar{*} s' $
+\label{hw6:FattoB}
+\end{enumerate}
+Inizio anche a sviluppare 
+$$
+\begin{array}{ll}
+	\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{ } & \exitifSOS\\
+	\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s} \Rar{} & \ifttSOS \\
+	\confSs{S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})})}{s} & \\
+\end{array}
+$$
+Usando il fatto \ref{hw6:FattoA}  e il lemma di composizione ottengo che:
+$$
+\begin{array}{ll}
+\confSs{S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{b'})})}{s} \Rar{*} & \\
+\confSs{\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{b'})}}{s''} \Rar{}
+\end{array}
+$$
+Ora invece di procedere come di consueto distinguo ulteriori due casi:
+\begin{itemize}
+\item $\boxed{\B{b}'' = \semfalse}$
+Applicando questa ipotesi al fatto $\ref{hw6:FattoB}$ ottengo che $\boxed{s'' \equiv s'}$.
+al contempo applicando questa ipotesi ottengo anche:
+$$
+\begin{array}{ll}
+	\confSs{S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{b'})})}{s} \Rar{*} & \\
+	\confSs{\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{b'})}}{s''} \Rar{} & \ifttSOS \\
+	\confSs{\skipForFriends}{s''} \Rar{ } s'' & \\
+\end{array}
+$$
+quindi ho dimostrato che $\wbSE{b}{S}{\neg b} \Rar{*} s'$ perchè $s' \equiv s''$.
+\item $\boxed{\B{b}'' = \semtrue}$	
+In questo caso ottengo che
+$$
+\confSs{\wbS{b}{S}}{s''} \Rar{*} s'
+$$
+e a destra ottengo
+$$
+\confSs{\wbSE{b}{S}{\neg b}}{s''}
+$$
+ma quindi grazie all'ipotesi induttiva(???) ottengo che
+$$
+\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{*} s'
+$$
+\end{itemize}
+\end{itemize}
+\end{proof}
 \end{enumerate}
 }
