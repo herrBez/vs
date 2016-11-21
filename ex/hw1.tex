@@ -112,10 +112,11 @@ stato:
 
 \paragraph{$(\Rightarrow)$}
 
-Si assume che $\confSs{\wbS{b}{S_1}}{s} \Rar{*} s'$.
+Se $\confSs{\wbS{b}{S_1}}{s} \Rar{*} s'$, allora
+$\confSs{S_1;\wbS{b}{S_1}}{s} \Rar{*} s'$.
+
+Per il lemma di decomposizione si ha:
 \begin{itemize}
-  \item \confSs{S_1;\wbS{b}{S_1}}{s} $\Rar{*} s'$ 
-  \item Per il lemma di decomposizione si ha:
   \item \confSs{S_1}{s} $\Rar{*} s_2$
   \item \confSs{\wbS{b}{S_1}}{s_2} $\Rar{*} s'$
 \end{itemize}
@@ -127,28 +128,22 @@ Ma allora, per il lemma di composizione, si ha:
 \confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s_2}
 \end{align*}
 
-Ora abbiamo ottenuto nuovamente i due statement iniziali che partono da uno
-stato $s_2$ possibilmente diversi. Tuttavia, le derivazioni che partono da
-queste configurazioni sono strettamente più brevi rispetto a quelle iniziali.
+Ora abbiamo ottenuto nuovamente i due statement iniziali che, anzichè
+cominciare l'esecuzione su $s$, partono da uno stato $s_2$:
+$$
+\confSs{\wbS{b}{S_1}}{s_2} \Rar{*} s'
+  \implies
+\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s_2} \Rar{*} s'
+$$
 
-Dunque, questo caso è dimostrato per induzione sulla lunghezza della
-derivazione.
+Dal momento che le derivazioni che partono da queste configurazioni sono
+strettamente più brevi rispetto a quelle iniziali\footnote{questo poichè lo
+stato $s_2$ è stato raggiunto tramite alcuni passi di derivazione}, questo
+caso è dimostrato per induzione sulla lunghezza della derivazione.
 
 \paragraph{$(\Leftarrow)$}
 
 La dimostrazione è del tutto analoga al caso $(\Rightarrow)$ appena esposto.
-\\
-\begin{itemize}
-  \item Avendo dimostrato l'implicazione in entrambi i versi, vale 
-l'equivalenza: 
-\end{itemize}
-\begin{align*}
-\forall{s,s'} \in \states.
-  (\confSs{\wbS{b}{S_1}}{s} \Rar{*} s')
-  \iff
-  (\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{*} s')
-\end{align*}
-
 \cvd
 
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
