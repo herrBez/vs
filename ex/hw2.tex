@@ -19,11 +19,15 @@
            \begin{itemize}
              \item $\boxed{\text{Caso Base}: n = 3}$ ovvero 
            $\boxed{\B{b} = \semfalse}$ 
-           
-           \confSs{\wbS{b}{S}}{s} \Rar{\whileSOS}
-           \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} 
-           \Rar{\ifffSOS} \confSs{\skipForFriends}{s} 
-           \Rar{\skipSOS} $s \equiv s'$
+
+          $$
+          \begin{array}{lrr}
+    \confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS & \\
+    \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} \Rar{} & \ifffSOS & \\
+    \confSs{\skipForFriends}{s} \Rar{} & \skipSOS & \\
+    s & & \\
+          \end{array}
+          $$
 
            Siccome $s = s'$ e $\B{b} = \semfalse$ l'asserto è dimostrato.
 
@@ -31,11 +35,16 @@
 
            \item $\boxed{\text{Passo Induttivo}: n \rightarrow n + l,
              \text{ dove } \confSs{S}{s} \Rar{l} s' \text{, ovvero } \B{b} = \semtrue}$
+          $$
+          \begin{array}{lrr}
+    \confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS & \\
+    \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} \Rar{} & \ifttSOS & \\
+    \confSs{S; \wbS{b}{S}}{s} \Rar{*} & (Determinismo + Assunzione) & \\
+    s' & & \\
+          \end{array}
+          $$
 
-             \confSs{\wbS{b}{S}}{s} \Rar{\whileSOS} \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} 
-             \Rar{\ifttSOS} \confSs{S; \wbS{b}{S}}{s} \Rar{*} $s'$
-
-             Per il lemma di decomposizione so che $\exists s''$:
+             Per il lemma di decomposizione so che $\exists s''\in\states$:
              \begin{itemize}
              \item \confSs{S}{s} \Rar{*} $s''$ (ovvero $\exists l:$
                \confSs{S}{s} \Rar{l} $s''$)
@@ -44,7 +53,7 @@
              siccome la derivazione di \confSs{\wbS{b}{S}}{s''} \Rar{*} $s'$ è più
              corta di quella di partenza (\confSs{\wbS{b}{S}}{s} \Rar{*} $s'$)
              di $l$ passi, posso applicare l'ipotesi
-             induttiva e concludere che $\B{b}'$ deve neccessariamente essere
+             induttiva e concludere che $\B{b}'$ deve necessariamente essere
              uguale \semfalse.
              
             \end{itemize} 
