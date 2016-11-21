@@ -1,0 +1,30 @@
+\newcommand{\powerset}[1]{\raisebox{.15\baselineskip}{\Large\ensuremath{\wp}}(#1)}
+
+\exercise{Esercizio 13}
+{
+  Sia \setRel{P}{\leq} un poset con bottom $\bot$. Un sottoinsieme
+  $S \subseteq P$ è \textit{down-closed} se
+  $$
+  \forall{x\in S}.\forall{y}\in P.(y \leq x \implies y \in S).
+  $$
+  Si osservi, in particolare, che $\emptyset$ è down-closed. Sia (per
+  definizione) $dc(P) = \{S \subseteq P | S \text{è down-closed}\}$.
+  \begin{enumerate}
+    \item Provare che \setRel{dc(P)}{\subseteq} è un CPO. \\
+  \noindent Si consideri ora il powerset CPO \setRel{\powerset{P}}{\subseteq} e
+    la funzione $f : \powerset{P} \to dc(P)$ definita come segue:
+    $$
+    f(X) = \{p \in P | \exists{x}\in X.p \leq x\}.
+    $$
+    \item Provare che $f$ è ben definita, cioè che per ogni
+      $X \in \powerset{P}$, $f(X) \in dc(P)$.
+    \item Provare che $f$ è continua.
+  \end{enumerate}
+}
+{}
+
+\begin{proof}
+
+\end{proof}
+
+\undef{\powerset}
