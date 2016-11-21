@@ -1,0 +1,64 @@
+\exercise{Esercizio 3}
+{
+  Prove or disprove the following semantic equivalence:
+  $$
+  \wbS{b}{S}; \ifABC{b}{S}{\skipForFriends} \eqSOS \wbS{b}{S}
+  $$
+}
+{
+  Devo dimostrare che:
+  $$
+  \forall s, s' \big( \confSs{\wbS{b}{S}; \ifABC{b}{S}{\skipForFriends}}{s}
+  \Rar{} s' \iff \confSs{\wbS{b}{S}}{s} \Rar{} s'\big)
+  $$
+  Come di consueto si procede dimostrando le due implicazioni separatamente.
+  \begin{proof}
+    $\boxed{\implies}$
+    Assumo $\confSs{\wbS{b}{S}; \ifABC{b}{S}{\skipForFriends}}{s} \Rar{*}
+    s'$.
+    Per il lemma di decomposizione esiste $s''$:
+    \begin{enumerate}
+    \item $\confSs{\wbS{b}{S}}{s} \Rar{ } s''$
+      \label{hw3:confss}
+    \item $\confSs{\ifABC{b}{S}{\skipForFriends}}{s''} \Rar{ } s'$
+      \label{hw3:confss:ifabc}
+    \end{enumerate}
+    A partire da $\ref{hw3:confss}$ e l'esercizio $2$ ottengo che $\B{b}'' =
+    \semfalse$. E quindi a partre da $\ref{hw3:confss:ifabc}$:
+    $$
+    \begin{array}{ll}
+      \confSs{\ifABC{b}{S}{\skipForFriends}}{s''} & \ifffSOS \\
+      \confSs{\skipForFriends}{s''} & \skipSOS \\
+      s''
+    \end{array}
+    $$
+    Da cui ottengo che $\boxed{s'' \equiv s'}$ per il determinismo delle regole SOS.
+    Quindi applicando questa equivalenza a $\ref{hw3:confss}$ ottengo proprio
+    l'asserto da dimostrare ovvero:
+    $$
+    \confSs{\wbS{b}{S}}{s} \Rar{} s'
+    $$
+    
+    $\boxed{\impliedby}$
+    Assumo che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$. Da cui segue per
+    l'esercizio $2$ che $\B{b}' = \semfalse$.
+    Per il lemma di composizione ottengo che:
+    $$
+    \confSs{\wbS{b}{S}; \ifABC{b}{S}{\skipForFriends}}{s} \Rar{*} \confSs{\ifABC{b}{S}{\skipForFriends}}{s'}
+    $$
+    da cui per il fatto che $\B{b}' = \semfalse$ ottengo:
+    $$
+    \begin{array}{ll}
+      \confSs{\ifABC{b}{S}{\skipForFriends}}{s'} & \ifffSOS \\
+      \confSs{\skipForFriends}{s'} & \skipSOS \\
+      s' & \\
+    \end{array}
+    $$
+    che è proprio il risultato cercato.
+  
+    
+  
+
+  \end{proof}
+  
+}
