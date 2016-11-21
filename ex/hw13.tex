@@ -65,6 +65,20 @@ $$
 \boxer{\forall{X} \in \powerset{P}. f(X) \in dc(P)}
 $$
 
+Per dimostrare questa seconda proprietà, è sufficiente mostrare che
+$f(X) \subseteq P$ è down-closed:
+
+\begin{itemize}
+  \item Se $\not \exists{x}\in X. p\in P \land p \leq x$; ciò vuol dire che in
+    questo caso $f(X) = \emptyset$ (che per osservazione nella consegna è
+    down-closed);
+  \item Se $\exists{x}\in X.\ p \leq x$ per qualche $p \in P$, allora $f(X)$ è
+    ancora down-closed. Ipotizziamo per assurdo che
+    $\exists{s\in f(X)}.\exists{p}\in P.(p \leq s \land p \not \in f(X))$: ciò
+    non è possibile, poichè $p \leq s \implies p \leq x$ dichiarato ad inizio
+    riga. Ma se $p \leq x$, allora $p \in f(X)$ per definizione di $f(X)$.
+\end{itemize}
+
 $$
 \boxer{\text{Continuità di } f}
 $$
