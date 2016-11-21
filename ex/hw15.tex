@@ -1,3 +1,5 @@
+\newcommand{\lt}{\ensuremath{\sqsubseteq}}
+
 \exercise{Esercizio 15}
 {
   Sia $D$ un CPO e $f: D \to D$ una funzione continua. Il teorema di
@@ -7,3 +9,76 @@
 }
 {
 }
+
+Sia $\mathbb{Z}$ l'insieme dei numeri interi e $J$ l'insieme delle funzioni
+parziali da $\mathbb{N}$ a $\mathbb{Z}$.
+
+Sia \lt{} una relazione definita su $J$ nel seguente modo:
+$$
+a \lt b \iff |Dom(a)| \leq |Dom(b)|
+$$
+
+, dove $Dom(f)$ è il dominio di definizione di una funzione $f$.
+
+Sia $g: \mathbb{N} \hookrightarrow{} \mathbb{Z}$ la seguente funzione:
+$$
+g_n\ x =
+\begin{cases}
+      x & se\ x,n\ \text{dispari} \land 0 \leq x \leq n \\
+     -x & se\ x,n\ \text{pari}    \land 0 \leq x \leq n \\
+   \end{cases}
+$$
+
+Si vuole dunque dimostrare che $\exists{f}$ nel ccpo \setRel{J}{\lt} per cui
+non esiste massimo punto fisso. Una possibile $f$ può essere la seguente:
+$$
+f\ g_n =
+\begin{cases}
+      \bot    & se\ n < 0 \\
+      g_{n+1} & se\ n \geq 0
+   \end{cases}
+$$
+
+La discussione segue mostrando che $f$, pur essendo effettivamente monotona,
+non ha massimo punto fisso.
+
+\paragraph{Monotonia} $f$ è monotona:
+\begin{itemize}
+  \item se $g_n$ è t.c. $n < 0$, allora per riflessività $g_n \lt \bot$ poichè
+    guardando la definizione di $g$ ci si accorge facilmente che quando $n < 0$
+    non vi è alcun elemento in $\mathbb{N}$ per cui $g_n$ è definita;
+  \item in caso contrario, $f$ restituisce $g$ con indice aumentato di $1$. Ma,
+    come è facilmente visibile dalla definizione di $g$,
+    $|Dom(g_{n+1})| \leq |Dom(g_n)| + 1$. Prendendo quindi $g_i \lt g_j$ in
+    $J$, si ha
+    $f(g_i) \lt f(g_j)$ poichè
+    $$
+    |Dom(g_i)| \leq |Dom(g_j)|
+    \implies
+    |Dom(g_i) + 1| \leq |Dom(g_j) + 1|
+    \implies
+    |Dom(g_{i+1})| \leq |Dom(g_{j+1})|
+    $$
+\end{itemize}
+
+\paragraph{Minimo punto fisso}
+La funzione $f$ ha un minimo punto fisso: infatti, prendendo l'elemento
+``\textit{bottom}'' di $f$ (ovvero qualsiasi $g_n$ avente $n$ negativo) e
+iterando l'applicazione di $f$ si ha
+$$
+f\ g_n = \bot
+$$
+
+Chiaramente, essendo $\bot$ la funzione indefinita su ogni input, $\bot$ è pure
+l'elemento minimo di $J$\footnote{questo poichè $|Dom(\bot)| = 0$}.
+
+Ma allora, essendo $\bot$ un punto fisso ed il minimo elemento di $J$, $\bot$ è
+il \textbf{minimo} punto fisso di $J$.
+
+\paragraph{Massimo punto fisso} Dalla definizione di $f$ è possibile intuire
+che non esiste massimo punto per $g_n$ con $n \geq 0$: ripetendo infinite volte
+l'iterazione, la funzione ottenuta continuerà ad ``oscillare'' tra l'identità
+definita solo sui numeri dispari positivi e la funzione negazione definita solo
+sui numeri pari negativi.
+
+\undef{\lt}
