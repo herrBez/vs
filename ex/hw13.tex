@@ -83,6 +83,25 @@ $$
 \boxer{\text{Continuità di } f}
 $$
 
+Affinchè $f$ sia continua è necessario che (1) sia monotona e che (2) il lub
+della sua immagine coincida con l'immagine del suo lub per ogni catena del
+powerset di $P$.
+
+\begin{enumerate}
+  \item $f$ è monotona: si considerino due insiemi
+    $X,Y\in dc(P). X \subseteq Y$. Per la definizione di $f$, $f(X)$ conterrà
+    tutti gli elementi di $X$ che minori o uguali di un certo maggiorante.
+    Ma $Y$ contiene anch'esso tutti gli elementi di $X$ che soddisfano tale
+    proprietà, per cui $f(X) \subseteq f(Y)$;
+  \item Una catena derivante da un powerset è semplicemente l'insieme
+    contenente tutti gli altri insiemi, che è equivalente all'unione di tutti
+    gli insiemi. Ciò vuol dire che
+    $$
+    \sqcup\{f\ d | d \in Y\} = f(\sqcup Y)
+    $$
+    per ogni catena in $\powerset{P}$.
+\end{enumerate}
+
 \end{proof}
 
 \undef{\powerset}
