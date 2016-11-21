@@ -31,7 +31,7 @@ cambiare lo stato ($\skipForFriends$)
 altrimenti viene eseguito un nuovo ciclo.
 \item Devo dimostrare che:
 $$
-\forall s, s' : \confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{*} s' \iff  \confSs{\wbS{b}{S}}{s} \Rar{*} s')
+\forall s, s' : (\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{*} s' \iff  \confSs{\wbS{b}{S}}{s} \Rar{*} s')
 $$
 \begin{proof}
 Dimostro le due implicazioni separatamente.
@@ -39,7 +39,89 @@ Dimostro le due implicazioni separatamente.
 $$
 \boxed{\implies}
 $$
-
+Assumo che $\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{*} s'$.
+Quindi applicando l'assioma $\exitifSOS$ si ottiene:
+$$
+\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s}
+$$
+ora in base alla valutazione di $b$ nello stato $s$ distinguo due casi:
+\begin{itemize}
+	\item $\boxed{\B{b} = \semfalse}$:
+	$$
+	\begin{array}{lll}
+	\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s} & \Rar{} & \ifffSOS \\
+	\confSs{\skipForFriends}{s} & \Rar{}& \skipSOS \\
+	s
+	\end{array}
+	$$
+	Da cui segue per il determinismo delle regole SOS (\textcolor{red}{N.B. TODO si dovrebbe mostrare che anche aggiungendo
+	$\exitifSOS$ il determinismo si preserva}) che $s' = s$.
+	Applicando la stessa assunzione a $\confSs{\wbS{b}{S}}{s}$ otteniamo:
+	$$
+	\begin{array}{ll}
+	\confSs{\wbS{b}{S}}{s} \Rar{}& \whileSOS \\
+	\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{} & \ifffSOS \\ 
+	\confSs{\skipForFriends}{s} \Rar{}& \skipSOS \\
+	s
+	\end{array}
+	$$
+	che è proprio ciò che si voleva dimostrare.
+	\item $\boxed{\B{b} = \semtrue}$
+	Procedendo con lo sviluppo della derivazione si ottiene:
+	$$
+	\begin{array}{lll}
+	\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s} & \Rar{} & \ifffSOS \\
+	\confSs{S; \ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}}{s} & \Rar{*} & s'\\
+	\end{array}
+	$$
+	per via del determinismo.
+	Ora applicando il lemma di decomposizione si ottiene che $\exists s''$:
+	\begin{enumerate}
+	\item $\confSs{S}{s} \Rar{*} s''$
+	\label{hw6:Ssgoestos''}
+	\item $\confSs{\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}}{s''} \Rar{*} s''$
+	\label{hw6:ifnegb}
+	\end{enumerate}
+	visto che è un $\texttt{if}$ devo distinguere due casi:
+	\begin{itemize}
+		\item $\boxed{\B{\neg b}'' = \semtrue, \text{ ovvero } \B{b}'' = \semfalse}$
+		In questo caso ottengo che:
+		$$
+		\begin{array}{ll}
+		\confSs{\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}}{s''} & \ifttSOS \\
+		\confSs{\skipForFriends}{s''} & \skipForFriends \\
+		s''
+		\end{array}
+		$$
+		da cui per il determinismo delle regole SOS segue che $\boxed{s'' \equiv s'}$. Ma procedendo
+		a valutare $\confSs{\wbS{b}{S}}{s}$ ottengo:
+		$$
+		\begin{array}{ll}
+		\confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS \\
+		\confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} & \ifttSOS \\
+		\confSs{S; \wbS{b}{S}}{s} \Rar{*} & \text{Lemma di composizione applicato a \ref{hw6:Ssgoestos''}} \\
+		\confSs{\wbS{b}{S}}{s''} & \whileSOS \\
+		\confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s''} & \ifffSOS \\
+		\confSs{\skipForFriends}{s''} \Rar{} & \skipSOS \\
+		s''
+		\end{array}
+		$$
+		che era proprio ciò che bisognava dimostrare.
+		\item $\boxed{\B{\neg b}'' = \semfalse, \text{ ovvero } \B{b}'' = \semtrue}$
+		Procedo a valutare \ref{hw6:ifnegb}:
+		$$
+		\begin{array}{ll}
+		\confSs{(\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})})}{s''} & \ifffSOS\\
+		\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{*} s'
+		\end{array}
+		$$
+		che per ipotesi induttiva implica che
+		$$
+		\confSs{\wbS{b}{S}}{s} \Rar{*} s'
+		$$
+	\end{itemize}
+	
+\end{itemize}
 $$
 \boxed{\impliedby}
 $$
@@ -123,10 +205,48 @@ e a destra ottengo
 $$
 \confSs{\wbSE{b}{S}{\neg b}}{s''}
 $$
-ma quindi grazie all'ipotesi induttiva(???) ottengo che
+ma quindi grazie all'ipotesi induttiva\footnote{Si guardi la parentesi matematica per una spiegazione.} ottengo che
 $$
 \confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{*} s'
 $$
+\paragraph{Parentesi matematica (Perchè l'induzione funziona)}
+
+Il tutto può essere visto come induzione sul numero di passi di derivazione
+della configurazione: $$\confSs{\wbS{b}{S}}{s} \Rar{n} s'$$
+Sia $n$ il numero di passi necessari per arrivare ad $s'$, allora:
+\begin{itemize}
+\item Se $\boxed{\B{b} = \semfalse}$ $n = 3$.
+\item Se $\boxed{\B{b} = \semtrue \land \B{b}'' = \semfalse}$, $n = 2 + l + 2 + 1$ dove $l$ è il numero
+di passi per $\confSs{S}{s} \Rar{l} s$
+\end{itemize}
+che sono i casi base della dimostrazione.
+
+Il passo induttivo, ovvero il caso in cui $\B{b} = \B{b}'' = \semtrue$
+richiede almeno (Nel caso induttivo più piccolo):
+$$
+n = 2 + l + 2 + k + 2 + 1
+$$
+passi, 
+con $k$ tale che $\wbS{b}{S} \Rar{k} s'''$.
+Quindi in generale se $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ richiede $w$ iterazioni per essere calcolata:
+$$
+n = 2 + \left(\sum_{i=1}^{w} (l_i + 2)\right) + 1
+$$
+dove 
+$$
+\confSs{S}{s_{i-1}} \Rar{l_i} \confSs{S}{s_i}
+$$
+con $\boxed{s_0 = s}$ e $\boxed{s_w = s'}$. Naturalmente se $w = 0$
+allora $s_0 = s_w = s = s'$.
+Siccome $S$ deve contenere almeno un'istruzione, questa ha bisogno almeno di $1$ ($\forall i \leq w\ \text{ vale } l_i \geq 1$) passo per
+essere derivato completamente (nel caso di $\skipForFriends$ e $x := a$), quindi 
+ad ogni iterazione completata vengono rimossi almeno $(l_i + 2) \geq 3$ passi da eseguire, 
+per cui dopo aver <<eseguito>> un'iterazione può essere applicata l'ipotesi induttiva.
+Nel caso specifico della dimostrazione
+$$
+\confSs{\wbS{b}{S}}{s} \Rar{2} \confSs{S; \wbS{b}{S}}{s} \Rar{l+2} \confSs{\wbS{b}{S}}{s''}
+$$
+cui posso applicare l'ipotesi induttiva.
 \end{itemize}
 \end{itemize}
 \end{proof}
