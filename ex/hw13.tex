@@ -8,9 +8,9 @@
   \forall{x\in S}.\forall{y}\in P.(y \leq x \implies y \in S).
   $$
   Si osservi, in particolare, che $\emptyset$ è down-closed. Sia (per
-  definizione) $dc(P) = \{S \subseteq P | S \text{è down-closed}\}$.
+  definizione) $dc(P) = \{S \subseteq P | S \text{ è down-closed}\}$.
   \begin{enumerate}
-    \item Provare che \setRel{dc(P)}{\subseteq} è un CPO. \\
+    \item Provare che \setRel{dc(P)}{\subseteq} è un CPO. \vspace{.3em} \\
   \noindent Si consideri ora il powerset CPO \setRel{\powerset{P}}{\subseteq} e
     la funzione $f : \powerset{P} \to dc(P)$ definita come segue:
     $$
@@ -23,7 +23,51 @@
 }
 {}
 
+Di seguito verrà fornita una prova per ciascuno dei tre quesiti sopra elencati.
+
 \begin{proof}
+
+$$
+\boxed{\text{\setRel{dc(P)}{\subseteq} è un CPO}}
+$$
+
+Innanzitutto occorre notare che \setRel{dc(P)}{\subseteq} è un poset poichè è:
+
+\begin{itemize}
+  \item riflessivo ($\subseteq$ è una relazione riflessiva);
+  \item transitivo ($\subseteq$ è una relazione transitiva);
+  \item anti-simmetrico (due sottoinsiemi mutuamente contenuti l'uno nell'altro
+    sono lo stesso insieme).
+\end{itemize}
+
+Resta ora da provare che esiste il lub di ogni catena $Y$ di tale poset, ovvero:
+$$
+\forall{Y}\subseteq dc(P).
+          (\forall{d_1,d_2}\in Y.d_1 \subseteq d_2 \lor d_2 \subseteq d_1)
+              \implies
+          (\exists{d}\in dc(P). d = \sqcup Y)
+$$
+
+Sia per ipotesi $\sqcup Y = \bigcup Y$\footnote{dove $\bigcup Y$ è l'unione di
+tutti gli insiemi in $Y$}: dimostriamo effettivamente che tale insieme è il lub
+di Y:
+\begin{itemize}
+  \item $\bigcup Y \in dc(P)$ è un upper bound per $Y$, poichè
+    $\forall{S}\in Y.\ S \subseteq \bigcup Y$ (tutti gli elementi di $S$ sono
+    contenuti in $\bigcup Y$);
+  \item Sia $d'\in dc(P)$ un altro upper bound per $Y$. Siccome la relazione di
+    ordinamento è $\subseteq$, ciò vuol dire che tutti gli elementi di $Y$ sono
+    in $d'$. Ma tutti gli elementi di $Y$ equivalgono a $\bigcup Y$:
+    $\bigcup Y \subseteq d'$.
+\end{itemize}
+
+$$
+\boxer{\forall{X} \in \powerset{P}. f(X) \in dc(P)}
+$$
+
+$$
+\boxer{\text{Continuità di } f}
+$$
 
 \end{proof}
 
