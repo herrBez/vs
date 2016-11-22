@@ -9,7 +9,7 @@ this behaves like a standard while-loop $\wbS{b}{S}$ where at the end of any ite
 of the body $S$ of the Boolean expression $b'$ is evaluated and if $b'$ is evaluated
 to true then the loop is terminated (with no change to the current state).
 \begin{enumerate}[label=$\arabic*$.]
-	\item Define the small step operational semantics of this new iterative command.
+	\item Define the small-step operational semantics of this new iterative command.
 	\item Prove the following semantic equivalence:
 	$$
 	\wbSE{b}{S}{\neg b} \eqSOS \wbS{b}{S}
@@ -26,8 +26,8 @@ e chiamo questo assioma $\exitifSOS$.
 
 Argomento brevemente perché la regola definita è quella cercata:
 se la guardia $b$ viene valutata $\semtrue$ allora viene eseguito il corpo
-$S$. Una volta terminata la valutazione di $S$ viene valutata la guardia $b'$ se è vera si esce dal corpo senza
-cambiare lo stato ($\skipForFriends$) 
+$S$. Una volta terminata la valutazione di $S$ viene valutata la guardia $b'$:
+se è vera si esce dal corpo senza cambiare lo stato ($\skipForFriends$),
 altrimenti viene eseguito un nuovo ciclo.
 \item Devo dimostrare che:
 $$
