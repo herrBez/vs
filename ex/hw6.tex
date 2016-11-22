@@ -227,7 +227,7 @@ $$
 n = 2 + l + 2 + k + 2 + 1
 $$
 passi, 
-con $k$ tale che $\wbS{b}{S} \Rar{k} s'''$.
+con $k$ tale che $\confSs{\wbS{b}{S}}{s''} \Rar{k} s'''$.
 Quindi in generale se $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ richiede $w$ iterazioni per essere calcolata:
 $$
 n = 2 + \left(\sum_{i=1}^{w} (l_i + 2)\right) + 1
@@ -241,7 +241,7 @@ allora $s_0 = s_w = s = s'$.
 Siccome $S$ deve contenere almeno un'istruzione, questa ha bisogno almeno di $1$ ($\forall i \leq w\ \text{ vale } l_i \geq 1$) passo per
 essere derivato completamente (nel caso di $\skipForFriends$ e $x := a$), quindi 
 ad ogni iterazione completata vengono rimossi almeno $(l_i + 2) \geq 3$ passi da eseguire, 
-per cui dopo aver <<eseguito>> un'iterazione può essere applicata l'ipotesi induttiva.
+per cui dopo aver 'eseguito' un'iterazione può essere applicata l'ipotesi induttiva.
 Nel caso specifico della dimostrazione
 $$
 \confSs{\wbS{b}{S}}{s} \Rar{2} \confSs{S; \wbS{b}{S}}{s} \Rar{l+2} \confSs{\wbS{b}{S}}{s''}
