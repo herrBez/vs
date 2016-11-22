@@ -32,7 +32,7 @@ altrimenti viene eseguito un nuovo ciclo.
 
 \item Devo dimostrare che:
 $$
-\forall s, s' : (\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{*} s' \iff  \confSs{\wbS{b}{S}}{s} \Rar{*} s')
+\forall s, s'. (\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{*} s' \iff  \confSs{\wbS{b}{S}}{s} \Rar{*} s')
 $$
 \begin{proof}
 Dimostro le due implicazioni separatamente.
@@ -75,7 +75,7 @@ ora in base alla valutazione di $b$ nello stato $s$ distinguo due casi:
 	\confSs{S; \ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}}{s} & \Rar{*} & s'\\
 	\end{array}
 	$$
-	per via del determinismo.
+	per via del determinismo e dell'ipotesi $\implies$.
 	Ora applicando il lemma di decomposizione si ottiene che $\exists s''$:
 	\begin{enumerate}
 	\item $\confSs{S}{s} \Rar{*} s''$
