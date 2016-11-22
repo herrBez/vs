@@ -26,10 +26,11 @@ g_n\ x =
 \begin{cases}
       x & se\ x,n\ \text{dispari} \land 0 \leq x \leq n \\
      -x & se\ x,n\ \text{pari}    \land 0 \leq x \leq n \\
+     \undefDS & altrimenti
    \end{cases}
 $$
 
-Si vuole dunque dimostrare che $\exists{f}$ nel ccpo \setRel{J}{\lt} per cui
+Si vuole dunque dimostrare che $\exists{f} : J \to J$ per cui
 non esiste massimo punto fisso. Una possibile $f$ può essere la seguente:
 $$
 f\ g_n =
@@ -41,6 +42,8 @@ $$
 
 La discussione segue mostrando che $f$, pur essendo effettivamente monotona,
 non ha massimo punto fisso.
+
+% greatest upper bound: any funzione totale
 
 \paragraph{Monotonia} $f$ è monotona:
 \begin{itemize}
