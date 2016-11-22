@@ -27,8 +27,26 @@ G = \lambda g. \cond{b}{g \circ \fixp{F} \circ \dsCtxt{S}}{id}
 $$
 
 Noto che in questo caso non posso dimostrare che $\fixp{F} = \fixp{G}$ a partire da $F = G$ perchè
-$F$ e $G$ non sono equivalenti
+$F$ e $G$ non sono equivalenti.
 
+\begin{proof}
+Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzioni separatamente:
+\begin{itemize}
+	\item $\boxed{\fixp{F} \sqsubseteq \fixp{G}}$
+	Cerco di sfruttare il \FPIL. Dimostrando che
+	$$
+	F(\fixp{G}) \sqsubseteq \fixp{G} 
+	$$
+	otterrei proprio il risultato cercato.
+	\item $\boxed{\fixp{F} \sqsupseteq \fixp{G}}$
+	Cerco di sfruttare il \FPIL. Dimostrando che
+	$$
+	G(\fixp{F}) \sqsubseteq \fixp{F} 
+	$$
+	otterrei proprio il risultato cercato.
+\end{itemize}
+
+\end{proof}
 \paragraph{Derivazione di G}
 $$
 \begin{array}{ll}
