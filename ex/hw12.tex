@@ -44,6 +44,60 @@ Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzi
 	G(\fixp{F}) \sqsubseteq \fixp{F} 
 	$$
 	otterrei proprio il risultato cercato.
+        Inizio sviluppando $(G(\fixp{F}))$ su un stato $s$ qualsiasi:
+        $$
+        \begin{array}{ll}
+          (G \ \fixp{F})\ s & = (\cond{b}{\fixp{F} \circ\  \fixp{F} \circ \
+          \dsCtxt{S}}{id})\ s \\
+          & \\
+          & = \caseFun{(\fixp{F} \circ{} \fixp{F} \circ{} \dsCtxt{S})\ s}{\B{b} =
+          \semtrue}{s}{\B{b} = \semfalse}
+        \end{array}
+        $$
+        Nel caso $\B{b} = \semtrue$ posso distinguere due casi in base
+        alla valutazione di $\dsCtxt{S}$ applicata allo stato $s$:
+        $$
+        \begin{array}{ll}
+        \dots = 
+        & \caseFun{(\fixp{F} \circ \fixp{F} \circ \dsCtxt{S})\ s}{\B{b} =
+          \semtrue}{s}{\B{b} = \semfalse}  \\
+        \\
+        & = \left\lbrace 
+          \begin{array}{ll}
+            undef & \mbox{if } \B{b} = \semtrue \land (\dsCtxt{S}\  s) = undef  \\
+            &  \\                  
+            (\fixp{F} \circ \fixp{F})\ s & \mbox{if } \B{b} = \semtrue \land (\dsCtxt{S}\ s) = s'  \\
+                  & \\
+            id & \B{b} = \semfalse\\
+          \end{array}	
+          \right. \\
+        \end{array}
+        $$
+        Questa funzione assomiglia molto a $F(\fixp{F})$ ($\equiv \fixp{F}$) se non fosse per il
+        caso:
+        $$
+        \begin{array}{l}
+        (\fixp{F} \circ \ \fixp{F})\ s
+        \end{array}
+        $$
+        Ora mostro che $(\fixp{F} \circ \ \fixp{F})\ s = (\fixp{F} s)$.
+        Siccome:
+        $$
+        (\fixp{F}\ s) = \caseFun{s'}{\fixp{F}\ s = s'}{undef}{\fixp{F}\ s = undef}
+        $$
+        se $\fixp{F}\ s$ è definito ritorna uno stato $s'$, per cui per l'esercizio
+        $9$ vale $\B{b}' = \semfalse$.
+        
+        Inoltre siccome $\fixp{F}$ è un punto fisso è equivalente a $F(\fixp{F})$ per
+        definizione, quindi
+        $$
+        F(\fixp{F}) s' = (\cond{b}{\fixp{F} \circ \dsCtxt{S}}{id})\ s' = s'
+        $$
+        Quindi ho ottenuto che se, $(\fixp{F}\ s)$ è definito $(\fixp{F} \circ\ \fixp{F})\ s = (\fixp{F}\ s') =
+        s' = \fixp{F}\ s$.
+
+        Che era proprio ciò che si doveva dimostrare.
+        
 \end{itemize}
 
 \end{proof}
