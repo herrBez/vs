@@ -122,14 +122,17 @@
 \newcommand{\Z}{\ensuremath{\mbox{\textbf{Z}}}}
 
 \newcommand{\confSs}[2]{\ensuremath{\langle{}#1, #2\rangle{}}}
-\newcommand{\Rar}[1]{\Rightarrow^{#1}}
+\newcommand{\Rar}[1]{\ensuremath{\Rightarrow^{#1}}}
 
 %%%%%%%% RULES
-\newcommand{\SOSRule}[3]{[
+\newcommand{\SOSRule}[3]{
+  \ensuremath{
+  [
   \textrm{\normalfont{#1}}
   ^ \textrm{\normalfont{#2}}
   _\textrm{\normalfont{#3}}
   ]
+  }
 }
 \newcommand{\assSOS}{\SOSRule{ass}{}{SOS}}
 \newcommand{\skipSOS}{\SOSRule{skip}{}{SOS}}
