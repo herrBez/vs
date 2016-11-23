@@ -41,11 +41,61 @@ Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzi
   È possibile notare che:
   $$
   F(\fixp{G})\ s =
-    \caseFun{a}
-            {b}
-            {c}
-            {d}
+    \caseFun{(\fixp{G} \circ \dsCtxt{S})\ s}
+            {\B{b} = \semtrue}
+            {s}
+            {\B{b} = \semfalse}
   $$
+  Mentre il termine sulla destra evolve nel seguente modo:
+  $$
+  \fixp{G}\ s= G(\fixp{G})\ s =
+    \caseFun{(\fixp{G} \circ \cond{b}{\dsCtxt{S}}{id} \circ \dsCtxt{S})\ s}
+            {\B{b} = \semtrue}
+            {s}
+            {\B{b} = \semfalse}
+  $$
+  Il caso $\B{b} = \semfalse$ è banalmente verificato. Si dimostra quindi la
+  tesi per il caso $\B{b} = \semtrue$, riducendo il termine sulla sinistra:
+  $$
+  (\fixp{G} \circ \dsCtxt{S})\ s =
+    \caseFun{\fixp{G}\ s'}
+            {\dsCtxt{S} = s'}
+            {\undefDS}
+            {\dsCtxt{S} = \undefDS}
+  $$
+  Mentre per il termine sulla destra vale:
+  $$
+  \fixp{G}\ s= G(\fixp{G})\ s =
+    \caseFun{(\fixp{G} \circ \cond{b}{\dsCtxt{S}}{id})\ s'}
+            {\dsCtxt{S} = s'}
+            {\undefDS}
+            {\dsCtxt{S} = \undefDS}
+  $$
+  Il caso $\dsCtxt{S} = \undefDS$ è banalmente verificato, perciò occorre
+  solamente verificare il caso $\dsCtxt{S} = s'$:
+  $$
+  G(\fixp{G})\ s' = \fixp{G}\ s' =
+    \caseFun{(\fixp{G} \circ \cond{b}{\dsCtxt{S}}{id} \circ \dsCtxt{S})\ s'}
+            {\B{b} = \semtrue}
+            {s'}
+            {\B{b} = \semfalse}
+  $$
+  Mentre per il termine sulla destra:
+  $$
+  (\fixp{G} \circ \cond{b}{\dsCtxt{S}}{id})\ s' =
+    \caseFun{(\fixp{G} \circ \dsCtxt{S}) s'}
+            {\B{b} = \semtrue}
+            {(\fixp{G} \circ \idDS) s'}
+            {\B{b} = \semfalse}
+  $$
+  Ma nel caso $\B{b} = \semfalse$, $(\fixp{G} \circ \idDS) s'$ è proprio
+  $s'$ poichè:
+  $$
+  \begin{array}{lr}
+  \end{array}
+  $$
+
+  %%% SECONDA PARTE
   \item $\boxed{\fixp{F} \sqsupseteq \fixp{G}}$
   Cerco di sfruttare il \FPIL, dimostrando che
   $$
