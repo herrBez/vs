@@ -35,10 +35,11 @@
 
            Siccome $s = s'$ e $\B{b} = \semfalse$ l'asserto è dimostrato.
 
-           \item $\boxed{\text{Ipotesi Induttiva}} $ \confSs{\wbS{b}{S}}{s} \Rar{*} $s'$ then $\B{b}' = \semfalse$
-
            \item $\boxed{\text{Passo Induttivo}: n \rightarrow n + l,
              \text{ dove } \confSs{S}{s} \Rar{l} s' \text{, ovvero } \B{b} = \semtrue}$
+             \begin{itemize}
+               \item Ipotesi Induttiva: \confSs{\wbS{b}{S}}{s} \Rar{n} $s'$ then $\B{b}' = \semfalse$
+             \end{itemize}
           $$
           \begin{array}{lrr}
     \confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS & \\
