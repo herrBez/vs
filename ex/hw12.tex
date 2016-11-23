@@ -27,7 +27,7 @@ G = \lambda g. \cond{b}{g \circ \fixp{F} \circ \dsCtxt{S}}{id}
 $$
 
 Noto che in questo caso non posso dimostrare che $\fixp{F} = \fixp{G}$ a partire da $F = G$ perchè
-$F$ e $G$ non sono equivalenti.
+$F$ e $G$ non sono banalmente equivalenti.
 
 \begin{proof}
 Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzioni separatamente:
@@ -66,38 +66,47 @@ Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzi
           \begin{array}{ll}
             undef & \mbox{if } \B{b} = \semtrue \land (\dsCtxt{S}\  s) = undef  \\
             &  \\                  
-            (\fixp{F} \circ \fixp{F})\ s & \mbox{if } \B{b} = \semtrue \land (\dsCtxt{S}\ s) = s'  \\
+            (\fixp{F} \circ \fixp{F})\ s' & \mbox{if } \B{b} = \semtrue \land (\dsCtxt{S}\ s) = s'  \\
                   & \\
-            id & \B{b} = \semfalse\\
+            \idDS\ s = s & \B{b} = \semfalse\\
           \end{array}	
           \right. \\
         \end{array}
         $$
-        Questa funzione assomiglia molto a $F(\fixp{F})$ ($\equiv \fixp{F}$) se non fosse per il
-        caso:
+
+        % TODO @Stefano: Vuoi scrivere gli altri due casi?
+        Mentre l'equivalenza è banalmente verificata per i due casi $\undefDS$
+        e $\idDS$, occorre studiare con attenzione il caso
+        $(\fixp{F} \circ \fixp{F})\ s'$ (dato
+        $\B{b} = \semtrue \land (\dsCtxt{S}\ s) = s'$):
         $$
-        \begin{array}{l}
-        (\fixp{F} \circ \ \fixp{F})\ s
+        \begin{array}{ll}
+        \fixp{F} (\fixp{F}\ s') =
+        & \caseFun{\undefDS}
+                  {\fixp{F}\ s' = \undefDS}
+                  {\fixp{F}\ s''}
+                  {\fixp{F}\ s' = s''}  \\
+        \\
         \end{array}
         $$
-        Ora mostro che $(\fixp{F} \circ \ \fixp{F})\ s = (\fixp{F} s)$.
-        Siccome:
-        $$
-        (\fixp{F}\ s) = \caseFun{s'}{\fixp{F}\ s = s'}{undef}{\fixp{F}\ s = undef}
-        $$
-        se $\fixp{F}\ s$ è definito ritorna uno stato $s'$, per cui per l'esercizio
-        $9$ vale $\B{b}' = \semfalse$.
-        
-        Inoltre siccome $\fixp{F}$ è un punto fisso è equivalente a $F(\fixp{F})$ per
-        definizione, quindi
-        $$
-        F(\fixp{F}) s' = (\cond{b}{\fixp{F} \circ \dsCtxt{S}}{id})\ s' = s'
-        $$
-        Quindi ho ottenuto che se, $(\fixp{F}\ s)$ è definito $(\fixp{F} \circ\ \fixp{F})\ s = (\fixp{F}\ s') =
-        s' = \fixp{F}\ s$.
 
-        Che era proprio ciò che si doveva dimostrare.
-        
+        Notando che $\fixp{F}\ s'' = F(\fixp{F})\ s''$, per l'esercizio 9 si
+        ha che $\B{b}'' = \semfalse$. Quindi:
+        $$
+        F(\fixp{F})\ s'' = s''
+        $$
+
+        Ma, sotto le stesse ipotesi, è possibile mostrare che
+        $\fixp{F}\ s  =s''$.
+        $$
+        \begin{array}{lr}
+        \fixp{F}\ s = & \text{def. punto fisso} \\
+        F(\fixp{F}\ s) = & (\B{b} = \semtrue) \\
+        (\fixp{F} \circ \dsCtxt{S})\ s = & (\dsCtxt{S} = s') \\
+        \fixp{F} \ s' = & (\fixp{F}\ s' = s'') \\
+        s''
+        \end{array}
+        $$
 \end{itemize}
 
 \end{proof}
