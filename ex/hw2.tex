@@ -36,7 +36,7 @@
            Siccome $s = s'$ e $\B{b} = \semfalse$ l'asserto è dimostrato.
 
            \item $\boxed{\text{Passo Induttivo}: n \rightarrow n + l,
-             \text{ dove } \confSs{S}{s} \Rar{l} s' \text{, ovvero } \B{b} = \semtrue}$
+             \text{ dove } \confSs{S}{s} \Rar{l} s'' \text{, ovvero } \B{b} = \semtrue}$
              \begin{itemize}
                \item Ipotesi Induttiva: \confSs{\wbS{b}{S}}{s} \Rar{n} $s'$ then $\B{b}' = \semfalse$
              \end{itemize}
@@ -51,7 +51,7 @@
 
              Per il lemma di decomposizione so che $\exists s''\in\states$:
              \begin{itemize}
-             \item \confSs{S}{s} \Rar{n} $s''$ (ovvero $\exists l:$
+             \item \confSs{S}{s} \Rar{*} $s''$ (ovvero $\exists l:$
                \confSs{S}{s} \Rar{l} $s''$)
              \item \confSs{\wbS{b}{S}}{s''} \Rar{*} $s'$
              \end{itemize}
@@ -59,7 +59,7 @@
              corta di quella di partenza (\confSs{\wbS{b}{S}}{s} \Rar{n+l} $s'$)
              di $l$ passi, posso applicare l'ipotesi
              induttiva e concludere che $\B{b}'$ deve necessariamente essere
-             uguale \semfalse.
+             uguale a \semfalse.
              
             \end{itemize} 
            \end{proof}
