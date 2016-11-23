@@ -4,11 +4,11 @@ $\wbS{b}{S} \eqSOS (\wbS{b}{S}); (\wbS{b}{S})$
 }
 {
 
-Intuitivamente (ed informalmente) parlando, i due programmi sono equivalenti in
-quanto una volta usciti dal primo ciclo \texttt{while} la condizione $b$ è
-sicuramente falsa e quindi il corpo del secondo \texttt{while} non verrà
-eseguito e lo stato rimarrà invariato.
-\vspace{10pt}
+%Intuitivamente (ed informalmente) parlando, i due programmi sono equivalenti in
+%quanto una volta usciti dal primo ciclo \texttt{while} la condizione $b$ è
+%sicuramente falsa e quindi il corpo del secondo \texttt{while} non verrà
+%eseguito e lo stato rimarrà invariato.
+%\vspace{10pt}
 
 
 
@@ -28,16 +28,18 @@ Si assuma che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$.
 Da questa ipotesi segue che:
 \begin{enumerate}
  \item Applicando l'esercizio 2 come lemma: $\B{b}' = \semfalse$. 
- \item Per il lemma di composizione: $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$
- implica che
- $$\confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} \confSs{\wbS{b}{S}}{s'}$$
+ \item Per il lemma di composizione: 
+   \begin{itemize}
+      \item $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ implica che
+      \item \confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} \confSs{\wbS{b}{S}}{s'}
 \end{enumerate}
 Quindi procedendo alla valutazione di $\confSs{\wbS{b}{S}}{s'}$ si ottiene:
 $$
 \begin{array}{lrr}
 \confSs{\wbS{b}{S}}{s'} \Rar{} & \whileSOS & \\
 & &\\
-\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s'} \Rar{} & \ifffSOS & (\text{poichè }\B{b}' = \semfalse)\\
+\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s'} \Rar{} & \ifffSOS & 
+(\text{poichè }\B{b}' = \semfalse\footnote{vedi esercizio 2})\\
 & &\\
 \confSs{\skipForFriends}{s'} \Rar{} & \skipSOS\\
 & &\\
@@ -50,7 +52,7 @@ $$
 $$
 che può essere riscritto come:
 $$\confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} s'$$
-, che era proprio l'asserto da dimostrare.
+che è proprio l'asserto da dimostrare.
 \vspace{10pt}
 
 
