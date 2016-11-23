@@ -12,7 +12,7 @@ $\wbS{b}{S} \eqSOS (\wbS{b}{S}); (\wbS{b}{S})$
 
 
 
-È quindi necessario dimostrare che:
+È necessario dimostrare che:
 $$
 \forall s,s' \in \states.
 	\confSs{\wbS{b}{S}}{s} \Rar{*} s'
@@ -22,16 +22,19 @@ $$
 \begin{proof} Si considerino le due implicazioni separatamente:
 
 \vspace{10pt}
-$$\boxed{\implies}$$
+$$
+\boxed{\implies}
+$$
 Si assuma che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$.
 
-Da questa ipotesi segue che:
+Segue che:
 \begin{enumerate}
  \item Applicando l'esercizio 2 come lemma: $\B{b}' = \semfalse$. 
  \item Per il lemma di composizione: 
    \begin{itemize}
       \item $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ implica che
-      \item \confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} \confSs{\wbS{b}{S}}{s'}
+      \item $\confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} \confSs{\wbS{b}{S}}{s'}$
+   \end{itemize}
 \end{enumerate}
 Quindi procedendo alla valutazione di $\confSs{\wbS{b}{S}}{s'}$ si ottiene:
 $$
@@ -39,14 +42,14 @@ $$
 \confSs{\wbS{b}{S}}{s'} \Rar{} & \whileSOS & \\
 & &\\
 \confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s'} \Rar{} & \ifffSOS & 
-(\text{poichè }\B{b}' = \semfalse\footnote{vedi esercizio 2})\\
+(\text{poichè }\B{b}' = \semfalse)\\
 & &\\
 \confSs{\skipForFriends}{s'} \Rar{} & \skipSOS\\
 & &\\
 s' &\\
 \end{array}
 $$
-Quindi unendo quanto ho trovato si ottiene:
+Quindi si ottiene:
 $$
 \confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} \confSs{\wbS{b}{S}}{s'} \Rar{*} s'
 $$
@@ -61,7 +64,7 @@ $$\boxed{\impliedby}$$
 Si assuma che $\confSs{(\wbS{b}{S}); (\wbS{b}{S})}{s} \Rar{*} s'$.
 
 
-Per il lemma di decomposizione si ottiene che $\exists s''$ tale che:
+Per il lemma di decomposizione si ottiene che $\exists s'' \in \states$ tale che:
 \begin{enumerate}[label=(\Roman*)]
 	\item $\confSs{\wbS{b}{S}}{s} \Rar{*} s''$
 	\label{hw4:item:s:s'}
@@ -73,7 +76,7 @@ Inoltre applicando il risultato dell'esercizio 2 si ha:
 	\item $\B{b}'' = \semfalse$
 	\label{hw4:item:Bbs''=ff}
 \end{enumerate}
-Grazie a \ref{hw4:item:s:s'} e \ref{hw4:item:Bbs''=ff} si ottiene che:
+Grazie a \ref{hw4:item:s:s'} e \ref{hw4:item:Bbs''=ff} si ottiene:
 $$
 \begin{array}{lr}
 \confSs{\wbS{b}{S}}{s''} \Rar{}& \whileSOS\\
@@ -87,10 +90,15 @@ s''
 $$
 
 
-Grazie al fatto \ref{hw4:item:s'':s'} e al determinismo della semantica SOS
-presa in considerazione si ottiene che: $s' \equiv{ } s''$.
-Ora basta sostituire in \ref{hw4:item:s:s'} questa equivalenza per ottenere
-che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ che è proprio quanto si voleva
-dimostrare.
+Grazie a \ref{hw4:item:s'':s'} e al determinismo della semantica SOS
+si ha: 
+$$
+s' \equiv{ } s''
+$$
+È necessario sostituire in \ref{hw4:item:s:s'} questa equivalenza per ottenere:
+$$
+\confSs{\wbS{b}{S}}{s} \Rar{*} s'
+$$ 
+che è proprio quanto si voleva dimostrare.
 \end{proof}
 }
