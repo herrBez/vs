@@ -5,14 +5,18 @@
          {
            Assumo che \confSs{\wbS{b}{S}}{s} $\Rar{*}$ $s'$.
 
-           Siccome la semantica SOS è deterministica allo Statement di
-           partenza posso applicare solo la regola \whileSOS, da cui ottengo
-           il seguente statement:
-           \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} 
-           che dipendentemente dalla valutazione di $b$ può andare nel ramo
-           \texttt{else}, in cui dopo una \skipForFriends{} terminerà o andrà nel ramo
-           \texttt{if}, in cui eseguirà (almeno) un'altra iterazione.
-
+            Allo statement di partenza posso applicare solo la regola \whileSOS 
+            (essendo la semantica SOS deterministica), da cui ottengo:  
+           $$
+            \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} 
+           $$
+            che dipendentemente dalla valutazione di $b$ può: 
+            \begin{itemize}
+               \item eseguire il ramo \texttt{else}, in cui dopo una 
+               \skipForFriends{} terminerà 
+               \item eseguire il ramo \texttt{if}, in cui eseguirà (almeno) 
+               un'altra iterazione
+            \end{itemize}
            \begin{proof}
                         Procedo per induzione sulla lunghezza della derivazione.
 
