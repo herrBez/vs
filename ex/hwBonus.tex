@@ -27,7 +27,91 @@ G = \lambda g. \cond{b}{g \circ \cond{b}{\dsCtxt{S}}{id} \circ \dsCtxt{S}}{id}
 $$
 
 Noto che in questo caso non posso dimostrare che $\fixp{F} = \fixp{G}$ a partire da $F = G$ perchè
-$F$ e $G$ non sono equivalenti
+$F$ e $G$ non sono banalmente equivalenti.
+
+\begin{proof}
+Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzioni separatamente:
+\begin{itemize}
+  \item $\boxed{\fixp{F} \sqsubseteq \fixp{G}}$
+  Cerco di sfruttare il \FPIL. Dimostrando che
+  $$
+  F(\fixp{G})\ s \sqsubseteq \fixp{G}\ s
+  $$
+
+  È possibile notare che:
+  $$
+  F(\fixp{G})\ s =
+    \caseFun{a}
+            {b}
+            {c}
+            {d}
+  $$
+  \item $\boxed{\fixp{F} \sqsupseteq \fixp{G}}$
+  Cerco di sfruttare il \FPIL, dimostrando che
+  $$
+  G(\fixp{F})\ s \sqsubseteq \fixp{F}\ s
+  $$
+
+  È possibile notare che:
+  $$
+  G(\fixp{F})\ s =
+    \caseFun{(\fixp{F} \circ
+                 \cond{b}{\dsCtxt{S}}{id} \circ \dsCtxt{S})\ s}
+            {\B{b} = \semtrue}
+            {\idDS\ s = s}
+            {\B{b} = \semfalse}
+  $$
+  E che:
+  $$
+  \fixp{F}\ s = F(\fixp{F})\ s =
+    \caseFun{(\fixp{F} \circ \dsCtxt{S})\ s}
+            {\B{b} = \semtrue}
+            {\idDS\ s = s}
+            {\B{b} = \semfalse}
+  $$
+  Siccome se $\B{b} = \semfalse$ si ottengono due stati banalmente equivalenti,
+  la dimostrazione procede dimostrando $\B{b} = \semtrue$.
+
+  Il termine sulla sinistra evolve nel seguente modo:
+  $$
+  (\fixp{F} \circ \cond{b}{\dsCtxt{S}}{id} \circ \dsCtxt{S})\ s =
+    \caseFun{(\fixp{F} \circ
+                 \cond{b}{\dsCtxt{S}}{id})\ s'}
+            {\dsCtxt{S} = s'}
+            {\undefDS}
+            {\dsCtxt{S} = \undefDS}
+  $$
+  Mentre quello sulla destra:
+  $$
+  (\fixp{F} \circ \dsCtxt{S})\ s =
+    \caseFun{\fixp{F}\ s'}
+            {\dsCtxt{S} = s'}
+            {\undefDS}
+            {\dsCtxt{S} = \undefDS}
+  $$
+
+  Quindi, posso considerare solo il caso $\dsCtxt{S} = s'$ (in quanto il caso
+  $\dsCtxt{S} = \undefDS$ è banalmente verificato). A questo, il termine sulla
+  sinistra evolve nel seguente modo:
+  $$
+  (\fixp{F} \circ \cond{b}{\dsCtxt{S}}{id})\ s' =
+    \caseFun{(\fixp{F} \circ \dsCtxt{S})\ s'}
+            {\B{b}' = \semtrue}
+            {s'}
+            {\B{b}' = \semfalse}
+  $$
+  Mentre per il termine sulla destra:
+  $$
+  \fixp{F}\ s' = F(\fixp{F})\ s' =
+    \caseFun{(\fixp{F} \circ \dsCtxt{S})\ s'}
+            {\B{b} = \semtrue}
+            {\idDS\ s' = s'}
+            {\B{b} = \semfalse}
+  $$
+  A questo punto i termini sono equivalenti.
+\end{itemize}
+
+\end{proof}
 
 \paragraph{Derivazione di G}
 $$
