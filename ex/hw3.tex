@@ -8,23 +8,24 @@
 {
   Devo dimostrare che:
   $$
-  \forall s, s' \big( \confSs{\wbS{b}{S}; \ifABC{b}{S}{\skipForFriends}}{s}
-  \Rar{} s' \iff \confSs{\wbS{b}{S}}{s} \Rar{} s'\big)
+  \forall s, s'. \big( \confSs{\wbS{b}{S}; \ifABC{b}{S}{\skipForFriends}}{s}
+  \Rar{*} s' \iff \confSs{\wbS{b}{S}}{s} \Rar{*} s'\big)
   $$
   Come di consueto si procede dimostrando le due implicazioni separatamente.
   \begin{proof}
     $\boxed{\implies}$
     Assumo $\confSs{\wbS{b}{S}; \ifABC{b}{S}{\skipForFriends}}{s} \Rar{*}
-    s'$.
+    s'$ vera. \\
     Per il lemma di decomposizione esiste $s''$:
     \begin{enumerate}
-    \item $\confSs{\wbS{b}{S}}{s} \Rar{ } s''$
+    \item $\confSs{\wbS{b}{S}}{s} \Rar{*} s''$
       \label{hw3:confss}
-    \item $\confSs{\ifABC{b}{S}{\skipForFriends}}{s''} \Rar{ } s'$
+    \item $\confSs{\ifABC{b}{S}{\skipForFriends}}{s''} \Rar{*} s'$
       \label{hw3:confss:ifabc}
     \end{enumerate}
-    A partire da $\ref{hw3:confss}$ e l'esercizio $2$ ottengo che $\B{b}'' =
-    \semfalse$. E quindi a partre da $\ref{hw3:confss:ifabc}$:
+    A partire da $\ref{hw3:confss}$ e l'esercizio $2$ (usato come lemma) 
+   ottengo che $\B{b}'' =
+    \semfalse$. E quindi a partire da $\ref{hw3:confss:ifabc}$:
     $$
     \begin{array}{ll}
       \confSs{\ifABC{b}{S}{\skipForFriends}}{s''} & \ifffSOS \\
@@ -36,7 +37,7 @@
     Quindi applicando questa equivalenza a $\ref{hw3:confss}$ ottengo proprio
     l'asserto da dimostrare ovvero:
     $$
-    \confSs{\wbS{b}{S}}{s} \Rar{} s'
+    \confSs{\wbS{b}{S}}{s} \Rar{*} s'
     $$
     
     $\boxed{\impliedby}$
