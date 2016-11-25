@@ -29,6 +29,7 @@ se la guardia $b$ viene valutata $\semtrue$ allora viene eseguito il corpo
 $S$. Una volta terminata la valutazione di $S$ viene valutata la guardia $b'$:
 se è vera si esce dal corpo senza cambiare lo stato ($\skipForFriends$),
 altrimenti viene eseguito un nuovo ciclo.
+
 \item Devo dimostrare che:
 $$
 \forall s, s' : (\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{*} s' \iff  \confSs{\wbS{b}{S}}{s} \Rar{*} s')
@@ -115,7 +116,7 @@ ora in base alla valutazione di $b$ nello stato $s$ distinguo due casi:
 		\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{*} s'
 		\end{array}
 		$$
-		che per ipotesi induttiva implica che
+		che per ipotesi induttiva\footnote{Si guardi la parentesi matematica per una spiegazione.} implica che
 		$$
 		\confSs{\wbS{b}{S}}{s} \Rar{*} s'
 		$$
