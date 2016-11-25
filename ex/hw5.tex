@@ -23,13 +23,16 @@ induzione strutturale sullo statement $S$.
   \item $S \equiv{} \skipForFriends$. In questo caso è facile mostrare che
     $\confSs{S}{s} \Rar{*} s$:
 \begin{align*}
-\confSs{\skipForFriends}{s} \Rar{} \skipSOS\ \ \ s
+\confSs{\skipForFriends}{s} \Rar{} \skipSOS \ \ \ s
 \end{align*}
 \end{itemize}
 
 \subsection{Passi induttivi}
 
 \begin{itemize}
+  \item Ipotesi Induttiva: $i \in \{1,2\}.S_i \in$ \stmm.
+$\confSs{S_i}{s} 
+\Rar{*} s$ oppure $\confSs{S_i}{s}$ non termina.
   \item $S \equiv{} S_1; S_2$. Per ipotesi induttiva, sappiamo che $S_1$ o
   termina in $s$ oppure non termina affatto:
   \begin{itemize}
@@ -58,10 +61,10 @@ induzione strutturale sullo statement $S$.
     \end{itemize}
 
   \item $S \equiv{} \wbS{b}{S_1}$ è banalmente verificato poichè, dopo un passo
-    di valutazione della guardia $b$ (operazione che non modifica lo stato $s$),
-    tale termine si riduce ad un termine condizionale
-    $\ifABC{b}{(S_1;\wbS{b}{S_1})}{\skipForFriends}$. Avendo già dimostrato tale
-    proprietà per tutti gli altri statement, anche questo caso è verificato.
+    di valutazione $\whileSOS$, tale termine si riduce ad un termine condizionale
+    $\ifABC{b}{(S_1;\wbS{b}{S_1})}{\skipForFriends}$. Questo statement equivale
+    allo statement dimostrato al punto precendente, quindi anche questo caso è 
+    verificato.
 \end{itemize}
 
 \undef{\stmm}
