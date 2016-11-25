@@ -55,7 +55,7 @@ ora in base alla valutazione di $b$ nello stato $s$ distinguo due casi:
 	\end{array}
 	$$
 	Da cui segue per il determinismo delle regole SOS (\textcolor{red}{N.B. TODO si dovrebbe mostrare che anche aggiungendo
-	$\exitifSOS$ il determinismo si preserva}) che $s' = s$.
+	$\exitifSOS$ il determinismo si preserva}) che $s' \equiv s$.
 	Applicando la stessa assunzione a $\confSs{\wbS{b}{S}}{s}$ otteniamo:
 	$$
 	\begin{array}{ll}
@@ -70,7 +70,7 @@ ora in base alla valutazione di $b$ nello stato $s$ distinguo due casi:
 	Procedendo con lo sviluppo della derivazione si ottiene:
 	$$
 	\begin{array}{lll}
-	\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s} & \Rar{} & \ifffSOS \\
+	\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s} & \Rar{} & \ifttSOS \\
 	\confSs{S; \ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}}{s} & \Rar{*} & s'\\
 	\end{array}
 	$$
