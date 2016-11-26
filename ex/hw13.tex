@@ -75,8 +75,9 @@ $f(X) \subseteq P$ è down-closed:
   \item Se $\exists{x}\in X.\ p \leq x$ per qualche $p \in P$, allora $f(X)$ è
     ancora down-closed. Ipotizziamo per assurdo che
     $\exists{s\in f(X)}.\exists{p}\in P.(p \leq s \land p \not \in f(X))$: ciò
-    non è possibile, poichè $p \leq s \implies p \leq x$ dichiarato ad inizio
-    riga. Ma se $p \leq x$, allora $p \in f(X)$ per definizione di $f(X)$.
+    non è possibile, poichè se $s \in  f(X)$ e $p \leq s$ allora $p \leq x$,
+    dove $x$ è l'elemento dichiarato ad inizio riga. Ma se $p \leq x$, allora
+    $p \in f(X)$ per definizione di $f(X)$.
 \end{itemize}
 
 $$
@@ -93,9 +94,13 @@ powerset di $P$.
     tutti gli elementi di $X$ che minori o uguali di un certo maggiorante.
     Ma $Y$ contiene anch'esso tutti gli elementi di $X$ che soddisfano tale
     proprietà, per cui $f(X) \subseteq f(Y)$;
-  \item Una catena derivante da un powerset è semplicemente l'insieme
-    contenente tutti gli altri insiemi, che è equivalente all'unione di tutti
-    gli insiemi. Ciò vuol dire che
+  \item Una catena derivante da un powerset può essere generalizzata ad un
+    gruppo di insiemi in cui  vi è insieme ``massimo'' contenente tutti gli
+    elementi di qualsiasi altro insieme della catena.
+
+    Ma, in particolare, è possibile notare che tale insieme è uguale all'unione
+    di sè stesso e tutti gli insiemi in esso contenuti facenti parte della
+    catena. Ciò vuol dire che
     $$
     \sqcup\{f\ d | d \in Y\} = f(\sqcup Y)
     $$
