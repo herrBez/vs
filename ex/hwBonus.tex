@@ -59,19 +59,19 @@ Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzi
   $$
   (\fixp{G} \circ \dsCtxt{S})\ s =
     \caseFun{\fixp{G}\ s'}
-            {\dsCtxt{S} = s'}
+            {\dsCtxt{S}\ s = s'}
             {\undefDS}
-            {\dsCtxt{S} = \undefDS}
+            {\dsCtxt{S}\ s = \undefDS}
   $$
   Mentre per il termine sulla destra vale:
   $$
   \fixp{G}\ s= G(\fixp{G})\ s =
     \caseFun{(\fixp{G} \circ \cond{b}{\dsCtxt{S}}{id})\ s'}
-            {\dsCtxt{S} = s'}
+            {\dsCtxt{S}\ s = s'}
             {\undefDS}
-            {\dsCtxt{S} = \undefDS}
+            {\dsCtxt{S}\ s = \undefDS}
   $$
-  Il caso $\dsCtxt{S} = \undefDS$ è banalmente verificato, perciò occorre
+  Il caso $\dsCtxt{S}\ s = \undefDS$ è banalmente verificato, perciò occorre
   solamente verificare il caso $\dsCtxt{S} = s'$:
   $$
   G(\fixp{G})\ s' = \fixp{G}\ s' =
@@ -127,22 +127,22 @@ Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzi
   (\fixp{F} \circ \cond{b}{\dsCtxt{S}}{id} \circ \dsCtxt{S})\ s =
     \caseFun{(\fixp{F} \circ
                  \cond{b}{\dsCtxt{S}}{id})\ s'}
-            {\dsCtxt{S} = s'}
+            {\dsCtxt{S}\ s = s'}
             {\undefDS}
-            {\dsCtxt{S} = \undefDS}
+            {\dsCtxt{S}\ s = \undefDS}
   $$
   Mentre quello sulla destra:
   $$
   (\fixp{F} \circ \dsCtxt{S})\ s =
     \caseFun{\fixp{F}\ s'}
-            {\dsCtxt{S} = s'}
+            {\dsCtxt{S}\ s = s'}
             {\undefDS}
-            {\dsCtxt{S} = \undefDS}
+            {\dsCtxt{S}\ s = \undefDS}
   $$
 
-  Quindi, posso considerare solo il caso $\dsCtxt{S} = s'$ (in quanto il caso
-  $\dsCtxt{S} = \undefDS$ è banalmente verificato). A questo, il termine sulla
-  sinistra evolve nel seguente modo:
+  Quindi, posso considerare solo il caso $\dsCtxt{S}\ s = s'$ (in quanto il
+  caso $\dsCtxt{S}\ s = \undefDS$ è banalmente verificato). A questo, il
+  termine sulla sinistra evolve nel seguente modo:
   $$
   (\fixp{F} \circ \cond{b}{\dsCtxt{S}}{id})\ s' =
     \caseFun{(\fixp{F} \circ \dsCtxt{S})\ s'}
