@@ -9,42 +9,44 @@ Per dimostrare che
 $$
 	 \wbS{b}{(S; \wbS{b}{S})} \eqDS \wbS{b}{S}
 $$	
-devo dimostrare che
+è necessario dimostrare che
 $$
-\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} = \dsCtxt{\wbS{b}{S}} 
+\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} = \dsCtxt{\wbS{b}{S}}
 $$
 Il termine sulla destra è per quanto visto nei precedenti esercizi:
 $$
-\dsCtxt{\wbS{b}{S}} = \fixp{F} \text{ dove } F = \lambda g. \cond{b}{g \circ \dsCtxt{S}}{id}
+\dsCtxt{\wbS{b}{S}} =
+\fixp{F} \text{ dove } F = \lambda g. \cond{b}{g \circ \dsCtxt{S}}{id}
 $$
 mentre quello sulla sinistra è:
 $$
-\dsCtxt{\wbS{b}{(S; \wbS{b}{S}})} = \fixp{G} \text{ dove } 
+\dsCtxt{\wbS{b}{(S; \wbS{b}{S}})} = \fixp{G} \text{ dove }
 $$
-dove 
+dove
 $$
-G = \lambda g. \cond{b}{g \circ \fixp{F} \circ \dsCtxt{S}}{id} 
+G = \lambda g. \cond{b}{g \circ \fixp{F} \circ \dsCtxt{S}}{id}
 $$
 
-Noto che in questo caso non posso dimostrare che $\fixp{F} = \fixp{G}$ a partire da $F = G$ perchè
-$F$ e $G$ non sono banalmente equivalenti.
+Si noti che in questo caso non è possibile dimostrare che $\fixp{F} = \fixp{G}$
+a partire da $F = G$ perchè $F$ e $G$ non sono banalmente equivalenti.
 
 \begin{proof}
-Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzioni separatamente:
+Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti, le due direzioni di
+prova vengono considerate separatamente:
 \begin{itemize}
 	\item $\boxed{\fixp{F} \sqsubseteq \fixp{G}}$
-	Cerco di sfruttare il \FPIL. Dimostrando che
+	Si tenta di usare il \FPIL; infatti, dimostrando che
 	$$
 	F(\fixp{G}) \sqsubseteq \fixp{G} 
 	$$
-	otterrei proprio il risultato cercato.
+	si otterrebbe proprio il risultato cercato.
 	\item $\boxed{\fixp{F} \sqsupseteq \fixp{G}}$
-	Cerco di sfruttare il \FPIL. Dimostrando che
+	Si tenta di usare il \FPIL; infatti, dimostrando che
 	$$
-	G(\fixp{F}) \sqsubseteq \fixp{F} 
+	G(\fixp{F}) \sqsubseteq \fixp{F}
 	$$
-	otterrei proprio il risultato cercato.
-        Inizio sviluppando $(G(\fixp{F}))$ su un stato $s$ qualsiasi:
+	si otterrebbe proprio il risultato cercato.
+        Innanzitutto si sviluppi $(G\ \fixp{F})$ su un stato $s$ qualsiasi:
         $$
         \begin{array}{ll}
           (G \ \fixp{F})\ s & = (\cond{b}{\fixp{F} \circ\  \fixp{F} \circ \
@@ -54,7 +56,7 @@ Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzi
           \semtrue}{s}{\B{b} = \semfalse}
         \end{array}
         $$
-        Nel caso $\B{b} = \semtrue$ posso distinguere due casi in base
+        Nel caso $\B{b} = \semtrue$ è possibile distinguere due casi in base
         alla valutazione di $\dsCtxt{S}$ applicata allo stato $s$:
         $$
         \begin{array}{ll}
@@ -69,12 +71,14 @@ Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzi
             (\fixp{F} \circ \fixp{F})\ s' & \mbox{if } \B{b} = \semtrue \land (\dsCtxt{S}\ s) = s'  \\
                   & \\
             \idDS\ s = s & \B{b} = \semfalse\\
-          \end{array}	
+          \end{array}
           \right. \\
         \end{array}
         $$
 
         % TODO @Stefano: Vuoi scrivere gli altri due casi?
+        % In sostanza sarebbe da mostrare l'evoluzione di (FIX F) andando a
+        % distinguere solamente i casi B[[b]]s e \dsCtxt{S}\ s)
         Mentre l'equivalenza è banalmente verificata per i due casi $\undefDS$
         e $\idDS$, occorre studiare con attenzione il caso
         $(\fixp{F} \circ \fixp{F})\ s'$ (dato
@@ -93,7 +97,7 @@ Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti dimostro le due direzi
         Notando che $\fixp{F}\ s'' = F(\fixp{F})\ s''$, per l'esercizio 9 si
         ha che $\B{b}'' = \semfalse$. Quindi:
         $$
-        F(\fixp{F})\ s'' = s''
+        F(\fixp{F})\ s'' = \idDS{}\ s'' = s''
         $$
 
         Ma, sotto le stesse ipotesi, è possibile mostrare che
