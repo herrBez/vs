@@ -8,7 +8,7 @@
 {
 È necessario dimostrare che
 $$
-\forall s,s'.
+\forall s,s' \in \states. 
   \Big(\confSs{\wbS{b}{S}}{s} \Rar{*} s'
   \iff
   \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{*} s' \Big)
@@ -46,7 +46,7 @@ nello stato di memoria $s$:
   s
   \end{array}
   $$
-  Di conseguenza si ottiene anche che quando $\B{b} = \semfalse$ i due
+  Di conseguenza si ottiene che nel caso $\B{b} = \semfalse$ i due
   statement sono equivalenti.
 
 % => case: true
