@@ -32,14 +32,22 @@ che $F = G$ da cui segue immediatamente che $\fixp{F} = \fixp{G}$.
 Preso un $s \in \states$ qualsiasi:
 $$
 \begin{array}{l}
-(G\ g)\ s = (\cond{b}{g \circ \cond{b}{\dsCtxt{S}}{\fixp{F}}}{id}) s =\\
+(G\ g)\ s =
+(\cond{b}{g \circ \cond{b}{\dsCtxt{S}}{\fixp{F}}}{id})\ s =\\
 \\
-= \caseFun{g \circ \cond{b}{\dsCtxt{S}}{\fixp{F}}}{\B{b} = \semtrue}{s}{\B{b} = \semfalse} \\
+= \caseFun{(g \circ \cond{b}{\dsCtxt{S}}{\fixp{F}})\ s}
+          {\B{b} =\semtrue}
+          {\idDS\ s = s}
+          {\B{b} = \semfalse} \\
 \\
-= \caseFun{g \circ \dsCtxt{S}}{\B{b} = \semtrue}{s}{\B{b} = \semfalse} = (F g) s
+= \caseFun{(g \circ \dsCtxt{S})\ s}
+          {\B{b} = \semtrue}
+          {\idDS\ s = s}
+          {\B{b} = \semfalse} =
+(F\ g)\ s
 \end{array}
 $$ 
-Ho dimostrato che $F = G$ da cui segue $\fixp{F} = \fixp{G}$
+Ho dimostrato che $F = G$ da cui segue $\fixp{F} = \fixp{G}$.
 \end{proof}
 	
 \paragraph{Derivazioni di F e G}
