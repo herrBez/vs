@@ -145,14 +145,14 @@ Dipendentemente da $\B{b}$ vengono distinti due casi:
 	$$
 	\begin{array}{ll}
 		\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s''} \Rar{ }& \whileSOS \\
-		\confSs{\ifABC{b}{((S; \wbS{b}); \wbS{b}{(S; \wbS{b}{S})})}{\skipForFriends}}{s''} & \ifffSOS \\
+		\confSs{\ifABC{b}{((S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})})}{\skipForFriends}}{s''} & \ifffSOS \\
 		\confSs{\skipForFriends}{s''} & \skipSOS\\
 		s''
 	\end{array}
 	$$
-	Da cui segue, per via del determinismo delle regole SOS, che $s'' \equiv s'$.
-	Ora, prendendo in considerazione $\wbS{b}{S}$, grazie al fatto che
-	$\B{b} = \semtrue$ è possibile derivare:
+	Da cui segue, per il determinismo delle regole SOS, che $s'' \equiv s'$.
+	Considerando $\wbS{b}{S}$, grazie al fatto che
+	$\B{b} = \semtrue$, è possibile derivare:
 	$$
 	\begin{array}{lr}
 	\confSs{\wbS{b}{S}}{s} \Rar{ } & \whileSOS \\
