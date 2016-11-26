@@ -68,7 +68,7 @@ stato $s$:
 		\item $\B{b}' = \semfalse$
 		\label{hw7:Bbs':ff}
 	\end{enumerate}  
-	Per il lemma di composizione applicato a \ref{eq:hw7:imp} si ricava che:
+	Per il lemma di composizione applicato a (\ref{eq:hw7:imp}) si ricava che:
 	$$
 	\confSs{(S; \wbS{b}{S}); (\wbS{b}{(S; \wbS{b}{S})})}{s} \Rar{*} \confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} 
 	$$
@@ -77,12 +77,12 @@ stato $s$:
 	\begin{array}{lr}
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{*} & \whileSOS\\
 	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s'} & \ifffSOS\\
-	\confSs{\skipForFriends}{s'} \Rar{*} & \\
+	\confSs{\skipForFriends}{s'} \Rar{*} & \skipSOS\\
 	s' & \\
 	\label{hw:arary}
 	\end{array}
 	$$  
-	Inoltre siccome vi è l'ipotesi che $\B{b} = \semtrue$ si ha che:
+	Per ipotesi $\B{b} = \semtrue$, quindi si ha
 	$$
 	\begin{array}{lr}
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{ } & \whileSOS\\
