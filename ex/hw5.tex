@@ -22,9 +22,10 @@ induzione strutturale sullo statement $S$.
 \begin{itemize}
   \item $S \equiv{} \skipForFriends$. In questo caso è facile mostrare che
     $\confSs{S}{s} \Rar{*} s$:
-\begin{align*}
-\confSs{\skipForFriends}{s} \Rar{} \skipSOS \ \ \ s
-\end{align*}
+$$
+\confSs{\skipForFriends}{s} \Rar{} s
+$$
+per via dell'assioma $\skipSOS$.
 \end{itemize}
 
 \subsection{Passi induttivi}
@@ -67,5 +68,5 @@ $\confSs{S_i}{s}
     verificato.
 \end{itemize}
 
-\undef{\stmm}
+\let\stmm\undefined
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
