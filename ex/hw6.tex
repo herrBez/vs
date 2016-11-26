@@ -3,7 +3,7 @@
 {Assume that the language \while{} includes a new iterative command:
 $$
 \wbSE{b}{S}{b'}
-$$		
+$$
 where $b, b' \in \bexp$ and $S \in \stm$, whose informal semantics goes as follows:
 this behaves like a standard while-loop $\wbS{b}{S}$ where at the end of any iteration
 of the body $S$ of the Boolean expression $b'$ is evaluated and if $b'$ is evaluated
@@ -20,8 +20,8 @@ to true then the loop is terminated (with no change to the current state).
 	\begin{enumerate}
 \item In analogia con quanto fatto per $\wbS{b}{S}$ definisco $\wbSE{b}{S}{b'}$ come unfolding:
 $$
-\wbSE{b}{S}{b'} \Rar{ } \ifABC{b}{(S; (\ifABC{b'}{\skipForFriends}{(\wbSE{b}{S}{b'})}))}{\skipForFriends} 
-$$	
+\wbSE{b}{S}{b'} \Rar{ } \ifABC{b}{(S; (\ifABC{b'}{\skipForFriends}{(\wbSE{b}{S}{b'})}))}{\skipForFriends}
+$$
 e chiamo questo assioma $\exitifSOS$.
 
 Argomento brevemente perché la regola definita è quella cercata:
@@ -34,8 +34,26 @@ altrimenti viene eseguito un nuovo ciclo.
 $$
 \forall s, s'. (\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{*} s' \iff  \confSs{\wbS{b}{S}}{s} \Rar{*} s')
 $$
-\begin{proof}
-Dimostro le due implicazioni separatamente.
+\begin{proof} \mbox{ }
+
+\paragraph{Nota} La semantica SOS aumentata con la regola $\exitifSOS$ è ancora
+deterministica per induzione strutturale: $\wbSE{b}{S}{b'}$ viene infatti
+derivato\footnote{N.B. nessuna altra derivazione è possibile} come
+$$
+\ifABC{b}{(S; (\ifABC{b'}{\skipForFriends}{(\wbSE{b}{S}{b'})}))}{\skipForFriends}
+$$
+Ma questo termine evolverà in modo deterministico:
+\begin{itemize}
+  \item è noto che \texttt{if-then-else} e \texttt{skip} vengono derivati in
+    modo deterministico;
+  \item la sottoespressione $\wbSE{b}{S}{b'}$ viene derivata in modo
+    deterministico per ipotesi induttiva.
+\end{itemize}
+
+\noindent(Fine nota) \vspace{1em} \\
+
+Vengono quindi dimostrate le due implicazioni, considerando i versi
+dell'implicazione separatamente.
 
 $$
 \boxed{\implies}
@@ -55,8 +73,7 @@ ora in base alla valutazione di $b$ nello stato $s$ distinguo due casi:
 	s
 	\end{array}
 	$$
-	Da cui segue per il determinismo delle regole SOS (\textcolor{red}{N.B. TODO si dovrebbe mostrare che anche aggiungendo
-	$\exitifSOS$ il determinismo si preserva}) che $s' \equiv s$.
+	Da cui segue per il determinismo delle regole SOS che $s' \equiv s$.
 	Applicando la stessa assunzione a $\confSs{\wbS{b}{S}}{s}$ otteniamo:
 	$$
 	\begin{array}{ll}
