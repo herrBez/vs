@@ -37,9 +37,77 @@ prova vengono considerate separatamente:
 	\item $\boxed{\fixp{F} \sqsubseteq \fixp{G}}$
 	Si tenta di usare il \FPIL; infatti, dimostrando che
 	$$
-	F(\fixp{G}) \sqsubseteq \fixp{G} 
+	F(\fixp{G}) \sqsubseteq \fixp{G}
 	$$
 	si otterrebbe proprio il risultato cercato.
+  Si proceda a sviluppare $F(\fixp{G})$:
+  $$
+  F(\fixp{G}) = \caseFun{\fixp{G} \circ \dsCtxt{S}\ s}
+                        {\B{b} = \semtrue}
+                        {\idDS\ s = s}
+                        {\B{b} = \semfalse}
+  $$
+  Sviluppando anche $\fixp{G}$, si ottiene:
+  $$
+  \fixp{G} =
+  G(\fixp{G}) = \caseFun{(\fixp{G} \circ \fixp{F} \circ \dsCtxt{S})\ s}
+                        {\B{b} = \semtrue}
+                        {\idDS\ s = s}
+                        {\B{b} = \semfalse}
+  $$
+  Si noti che, nel caso in cui $\B{b} = \semfalse$, si ha una perfetta
+  equivalenza tra i due termini.
+  Di conseguenza, è opportuno procedere la dimostrazione andando ad evolvere i
+  casi $\B{b} = \semtrue$. Per il termine sulla sinistra si ha:
+  $$
+  (\fixp{G} \circ \dsCtxt{S})\ s
+      = \caseFun{\fixp{G}\ s'}
+                {\dsCtxt{S}\ s = s'}
+                {\undefDS}
+                {\dsCtxt{S}\ s = \undefDS}
+  $$
+  E per il lato destro:
+  $$
+  (\fixp{G} \circ \fixp{F} \circ \dsCtxt{S})\ s
+      = \caseFun{(\fixp{G} \circ \fixp{F})\ s'}
+                {\dsCtxt{S}\ s = s'}
+                {\undefDS}
+                {\dsCtxt{S}\ s = \undefDS}
+  $$
+  Come in precedenza, uno dei due casi è banalmente verificabile (ovvero quello
+  in cui $\dsCtxt{S}\ s = \undefDS$). Si procede andando quindi ad evolvere il
+  termine quando $\dsCtxt{S}\ s = s'$.
+  $$
+  \fixp{G}\ s' =
+  G(\fixp{G})\ s' = \caseFun{(\fixp{G} \circ \fixp{F} \circ \dsCtxt{S})\ s'}
+                        {\B{b}' = \semtrue}
+                        {\idDS\ s' = s'}
+                        {\B{b}' = \semfalse}
+  $$
+  Invece, per il termine sulla destra:
+  $$
+  (\fixp{G} \circ \fixp{F})\ s' =
+  (\fixp{G}) \circ F (\fixp{F})\ s' =
+                \caseFun{(\fixp{G} \circ \fixp{F} \circ \dsCtxt{S})\ s'}
+                        {\B{b}' = \semtrue}
+                        {(\fixp{G}) \circ \idDS\ s' = (\fixp{G})\ s'}
+                        {\B{b}' = \semfalse}
+  $$
+  In questo caso, è facile notare che per $\B{b}' = \semtrue$ la proprietà su
+  cui si sta facendo induzione è verificata. Per il caso $\B{b}' = \semfalse$ è
+  invece sufficiente analizzare con più attenzione il termine ottenuto a
+  partire da ($\fixp{G} \circ \fixp{F})\ s'$:
+  $$
+  \begin{array}{lr}
+  (\fixp{G})\ s' = & (\text{applicazione punto fisso}) \\
+  (G (\fixp{G}))\ s' = & \B{b}' = \semfalse \\
+  \idDS\ s' = & \text{definizione di \idDS} \\
+  s'
+  \end{array}
+  $$
+  Perciò si ha che anche il caso $\B{b}' = \semfalse$ è verificato.
+
+
 	\item $\boxed{\fixp{F} \sqsupseteq \fixp{G}}$
 	Si tenta di usare il \FPIL; infatti, dimostrando che
 	$$
