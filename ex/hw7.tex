@@ -69,14 +69,15 @@ stato $s$:
 		\label{hw7:Bbs':ff}
 	\end{enumerate}  
 	Per il lemma di composizione applicato a (\ref{eq:hw7:imp}) si ricava che:
-	$$
+	\begin{equation}
 	\confSs{(S; \wbS{b}{S}); (\wbS{b}{(S; \wbS{b}{S})})}{s} \Rar{*} \confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} 
-	$$
+	\label{hw7:c}
+	\end{equation}
 	da cui si ottiene, grazie a \ref{hw7:Bbs':ff}, che:
 	$$
 	\begin{array}{lr}
-	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{*} & \whileSOS\\
-	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s'} & \ifffSOS\\
+	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{} & \whileSOS\\
+	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s'} \Rar{}& \ifffSOS\\
 	\confSs{\skipForFriends}{s'} \Rar{*} & \skipSOS\\
 	s' & \\
 	\label{hw:arary}
@@ -86,7 +87,8 @@ stato $s$:
 	$$
 	\begin{array}{lr}
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{ } & \whileSOS\\
-	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s} & \ifttSOS \\
+	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s} \Rar{ }& \ifttSOS \\
+	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} & \ref{hw7:c} \\
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} & 
 	\end{array}
 	$$
@@ -116,10 +118,10 @@ Dipendentemente da $\B{b}$ vengono distinti due casi:
 	\item $\boxed{\B{b} = \semtrue}$:
 	$$
 	\begin{array}{lr}
-	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} & \whileSOS \\
-	\confSs{\ifABC{b}{((S; \wbS{b}{S});\wbS{b}{(S;\wbS{b}{S})})}{\skipForFriends}}{s} & \ifttSOS \\
-	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} & \text{(Assunzione + Determinismo)}\\
-	\Rar{*} s'
+	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{ }& \whileSOS \\
+	\confSs{\ifABC{b}{((S; \wbS{b}{S});\wbS{b}{(S;\wbS{b}{S})})}{\skipForFriends}}{s} \Rar{ } & \ifttSOS \\
+	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s}  \Rar{*} & \text{(Assunzione + Determinismo)} \\
+	s'
 	\end{array}
 	$$
 	Applicando il lemma di decomposizione, si ottiene che $\exists s'' \in \states$ tale che:
@@ -145,8 +147,8 @@ Dipendentemente da $\B{b}$ vengono distinti due casi:
 	$$
 	\begin{array}{ll}
 		\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s''} \Rar{ }& \whileSOS \\
-		\confSs{\ifABC{b}{((S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})})}{\skipForFriends}}{s''} & \ifffSOS \\
-		\confSs{\skipForFriends}{s''} & \skipSOS\\
+		\confSs{\ifABC{b}{((S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})})}{\skipForFriends}}{s''} \Rar{ } & \ifffSOS \\
+		\confSs{\skipForFriends}{s''} \Rar{ }& \skipSOS\\
 		s''
 	\end{array}
 	$$
