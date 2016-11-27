@@ -108,10 +108,20 @@ nello stato di memoria $s$:
   $$
   Se la guardia $b$ verrà valutata a \semfalse, è banalmente dimostrabile che
   entrambi i termini terminano in uno stato $s' \equiv{} s''$.
-  Altrimenti, se $\B{b}' = \semtrue$, i termini verranno derivati
-  rispettivamente nel seguente modo applicando in ambo i casi la regola
-  $\ifttSOS$\footnote{per il secondo termine, in realtà viene applicata anche
-  $\compoSOS$}:
+  Altrimenti, se $\B{b}' = \semtrue$, per il termine destro dell'equivalenza 
+  si ha:
+  $$
+  \begin{array}{lr}
+  \confSs{ (S;\ \ifABC{b}{S}{\skipForFriends});
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s} \Rar{*}& (\compoSOS\ applicato\ *\ volte) \\
+  \confSs{ (\ifABC{b}{S}{\skipForFriends});
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s''}
+  \end{array}
+  $$
+  a questo punto i termini verranno derivati applicando in ambo i casi la regola
+  $\ifttSOS$:
   \begin{enumerate}
     \item \confSs{S;\wbS{b}{S}}{s''} (per la parte sinistra dell'equivalenza)
     \label{hw8:item3}
@@ -132,11 +142,11 @@ nello stato di memoria $s$:
     \Rar{*}
   \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s'''}
   $$
-  È possibile notare che si è arrivati ad un punto nel quale si vuole provare
+  Si è arrivati ad un punto nel quale si vuole provare
   l'asserzione iniziale su una derivazione di lunghezza strettamente inferiore,
   nello specifico partendo da uno stato $s'''$.
 
-  Dunque tale verso della doppia implicazione è dimostrato per induzione sulla
+  Tale verso della doppia implicazione è dimostrato per induzione sulla
   lunghezza della derivazione:
   \begin{itemize}
     \item il caso base ($\B{b} = \semfalse$ e derivazioni lunghe 3 passi di
