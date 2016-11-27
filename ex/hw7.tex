@@ -78,7 +78,7 @@ stato $s$:
 	\begin{array}{lr}
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{} & \whileSOS\\
 	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s'} \Rar{}& \ifffSOS\\
-	\confSs{\skipForFriends}{s'} \Rar{*} & \skipSOS\\
+	\confSs{\skipForFriends}{s'} \Rar{} & \skipSOS\\
 	s' & \\
 	\label{hw:arary}
 	\end{array}
@@ -88,7 +88,7 @@ stato $s$:
 	\begin{array}{lr}
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{ } & \whileSOS\\
 	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s} \Rar{ }& \ifttSOS \\
-	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} & \ref{hw7:c} \\
+	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} & (\ref{hw7:c}) \\
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} & 
 	\end{array}
 	$$
