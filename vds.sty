@@ -157,13 +157,13 @@
 
 %%%%%%%% DENOTATIONAL COMMANDS
 \newcommand{\eqDS}{\cong_{\textrm{\normalfont{ds}}}}
-\newcommand{\dsCtxt}[1]{\ensuremath{\mathcal{S}_{ds}[#1]}}
+\newcommand{\dsCtxt}[1]{\ensuremath{\mathcal{S}_{ds}\llbracket #1 \rrbracket}}
 \newcommand{\fixp}[1]{\textrm{\normalfont{FIX}}(\ensuremath{#1})}
 \newcommand{\FPIL}{\textit{Fixpoint Induction Lemma}}
 \newcommand{\idDS}{\textrm{\normalfont{id}}}
 \newcommand{\undefDS}{\textrm{\normalfont{undef}}}
 \newcommand{\cond}[3]{\mbox{\normalfont{\texttt{cond }}}
-                       (\Bcal{}[#1]
+                       (\Bcal{}\llbracket #1 \rrbracket
                        \textrm{\normalfont{\texttt{, }}}
                        #2
                        \textrm{\normalfont{\texttt{, }}}
