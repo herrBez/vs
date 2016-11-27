@@ -211,13 +211,20 @@ della guardia booleana $b$ nello stato di memoria $s$:
     \item $\confSs{\ifABC{b}{S}{\skipForFriends}}{s'''} \Rar{*} s''$
     \label{hw8:item9}
   \end{enumerate}
-  Chiaramente, per il lemma di composizione applicato ad \ref{hw8:item8} è
-  valida la seguente implicazione:
+  Chiaramente, per il lemma di composizione applicato ad \ref{hw8:item8} sono
+  valide le seguenti implicazion:
   \begin{equation}
   \confSs{S}{s} \Rar{*} s'''
     \implies
   \confSs{S; \wbS{b}{S}}{s} \Rar{*} \confSs{\wbS{b}{S}}{s'''}
   \label{eq:hw8:item10}
+  \end{equation}
+  \begin{equation}
+  \confSs{S}{s} \Rar{*} s'''
+    \implies
+  \confSs{S; \ifABC{b}{S}{\skipForFriends}}{s} \Rar{*}
+        \confSs{\ifABC{b}{S}{\skipForFriends}}{s'''}
+  \label{eq:hw8:itemX}
   \end{equation}
   Ottenuto questo risultato, si passa a valutare il lato sinistro
   dell'equivalenza:
@@ -246,7 +253,7 @@ della guardia booleana $b$ nello stato di memoria $s$:
   \confSs{  (S;\ \ifABC{b}{S}{\skipForFriends});
             \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
          }{s} \Rar{ } \\
-  \Rar{ } (\text{$\compoSOS$})\\
+  \Rar{ } (\text{$\compoSOS$, \ref{eq:hw8:itemX}})\\
   \confSs{  \ifABC{b}{S}{\skipForFriends};
             \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
          }{s'''} \Rar{ } & \ifttSOS \\
