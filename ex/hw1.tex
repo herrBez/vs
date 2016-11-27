@@ -1,0 +1,170 @@
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
+\exercise{Exercise 1}
+{Provare o fornire un controesempio per la seguente equivalenza semantica:
+\begin{align*}
+\wbS{b}{S_1} \eqSOS \wbS{b}{(\ifABC{b}{S_1}{S_2})}
+\end{align*}}
+{}
+
+L'esercizio va risolto dimostrando la seguente asserzione:
+
+$\forall{s,s'} \in \states.
+  (\confSs{\wbS{b}{S_1}}{s} \Rar{*} s')
+  \iff
+  (\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{*} s')
+$
+
+Dunque, fissando due stati $s$ ed $s'$ in \states, è possibile discriminare due
+casi in funzione della valutazione di $b$ nello stato $s$.
+
+\subsection{\B{b} = \semfalse}
+I due statement vengono derivati nel seguente modo:
+
+\begin{itemize}
+  %%%%%%%%%%%%%% first derivation
+  \item $\confSs{\wbS{b}{S_1}}{s} \Rar{*} s'$
+\begin{align*}
+\confSs{\wbS{b}{S_1}}{s} \Rar{}
+\whileSOS
+\end{align*}
+\begin{align*}
+\confSs{\ifABC{b}{(S_1;\wbS{b}{S_1})}{\skipForFriends}}{s} \Rar{}
+\ifffSOS
+\end{align*}
+\begin{align*}
+\confSs{\skipForFriends}{s} \Rar{}
+\skipSOS
+\end{align*}
+\begin{align*}
+s \equiv s'
+\end{align*}
+  %%%%%%%%%%%%%% second derivation
+  \item $\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{*} s'$
+\begin{align*}
+\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{}
+\whileSOS
+\end{align*}
+\begin{align*}
+\confSs{\ifABC{b}
+              {(\ifABC{b}{S_1}{S_2}; \wbS{b}{(\ifABC{b}{S_1}{S_2})})}
+              {\skipForFriends}}
+       {s} \Rar{}
+\ifffSOS
+\end{align*}
+\begin{align*}
+\confSs{\skipForFriends}{s} \Rar{}
+\skipSOS
+\end{align*}
+\begin{align*}
+s \equiv s'
+\end{align*}
+\end{itemize}
+
+\subsection{\B{b} = \semtrue}
+
+Nel caso in cui $b$ venga valutato a $\semtrue$ nello stato di memoria $s$, è
+banale dimostrare che i due statement sono semanticamente equivalenti. Dal 
+momento che la regola $\ifttSOS{}$ non modifica lo stato della memoria
+possiamo asserire che, nel caso \B{b} = \semtrue, lo 
+statement condizionale interno al while eseguirà sempre il primo ramo.
+
+\begin{itemize}
+  \item partendo da $\wbS{b}{S_1}$
+  $$
+\begin{array}{lr}
+\confSs{\wbS{b}{S_1}}{s} \Rar{} &
+\whileSOS \\
+\confSs{\ifABC{b}{(S_1;\wbS{b}{S_1})}{\skipForFriends}}{s} \Rar{} &
+\ifttSOS \\
+\confSs{S_1;\wbS{b}{S_1}}{s} &
+\end{array}
+  $$
+  \item partendo da $\wbS{b}{(\ifABC{b}{S_1}{S_2})}$
+  $$
+\begin{array}{lr}
+\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{} &
+\whileSOS \\
+\confSs{\ifABC{b}
+              {(\ifABC{b}{S_1}{S_2}; \wbS{b}{(\ifABC{b}{S_1}{S_2})})}
+              {\skipForFriends}}
+       {s} \Rar{} &
+\ifttSOS \\
+\confSs{\ifABC{b}{S_1}{S_2}; \wbS{b}{(\ifABC{b}{S_1}{S_2})}}
+       {s} \Rar{} &
+\ifttSOS \\
+\confSs{S_1; \wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s}
+\end{array}
+  $$
+\end{itemize}
+
+Dimostriamo che entrambi i termini convergono allo stesso
+stato:
+
+\paragraph{$(\Rightarrow)$}
+
+Se $\confSs{\wbS{b}{S_1}}{s} \Rar{*} s'$, allora
+$\confSs{S_1;\wbS{b}{S_1}}{s} \Rar{*} s'$.
+
+Per il lemma di decomposizione si ha che $\exists s'' \in \states$ tale che:
+\begin{itemize}
+  \item \confSs{S_1}{s} $\Rar{*} s''$
+  \item \confSs{\wbS{b}{S_1}}{s''} $\Rar{*} s'$
+\end{itemize}
+
+Ma allora, per il lemma di composizione, si ha:
+\begin{align*}
+\confSs{S_1; \wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s}
+\Rar{*}
+\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s''}
+\end{align*}
+
+Ora abbiamo ottenuto nuovamente i due statement iniziali che, anzichè
+cominciare l'esecuzione su $s$, partono da uno stato $s''$:
+$$
+\confSs{\wbS{b}{S_1}}{s''} \Rar{*} s'
+  \implies
+\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s''} \Rar{*} s'
+$$
+
+Dal momento che le derivazioni che partono da queste configurazioni sono
+strettamente più brevi rispetto a quelle iniziali\footnote{questo poichè lo
+stato $s''$ è stato raggiunto tramite alcuni passi di derivazione}, questo
+caso è dimostrato per induzione sulla lunghezza della derivazione.
+
+\paragraph{$(\Leftarrow)$}
+
+Rimane da dimostrare che se
+$\confSs{S_1; \wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{*} s'$, allora \\
+$\confSs{S_1; \wbS{b}{S_1}}{s} \Rar{*} s'$.
+
+Per il lemma di decomposizione si ha che $\exists s'' \in \states$ tale che:
+\begin{itemize}
+  \item \confSs{S_1}{s} $\Rar{*} s''$
+  \item \confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s''} $\Rar{*} s'$
+\end{itemize}
+
+Ma allora, per il lemma di composizione, si ha:
+\begin{align*}
+\confSs{S_1; \wbS{b}{S_1}}{s}
+\Rar{*}
+\confSs{\wbS{b}{S_1}}{s''}
+\end{align*}
+
+Ora abbiamo ottenuto nuovamente i due statement iniziali che, anzichè
+cominciare l'esecuzione su $s$, partono da uno stato $s''$:
+$$
+\confSs{\wbS{b}{S_1}}{s''} \Rar{*} s'
+  \impliedby
+\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s''} \Rar{*} s'
+$$
+
+Dal momento che le derivazioni che partono da queste configurazioni sono
+strettamente più brevi rispetto a quelle iniziali\footnote{questo poichè lo
+stato $s''$ è stato raggiunto tramite alcuni passi di derivazione}, questo
+caso è dimostrato per induzione sulla lunghezza della derivazione.
+
+\cvd
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+
