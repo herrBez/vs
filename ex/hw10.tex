@@ -52,13 +52,18 @@ $$
 Grazie all'esercizio 9, si ha che se \fixp{F} $s = s'$ allora
 \B{b}$' = \semfalse$. Quindi:
 $$
-(\fixp{F} \circ \fixp{F}) s = \\
-\fixp{F} s' = \\
+\begin{array}{lr}
+(\fixp{F} \circ \fixp{F})\ s = & \\
+(\fixp{F} (\fixp{F}\ s)) = & \text{Assunzione} \\
+\fixp{F}\  s' = & \text{In quanto $\fixp{F}$ è un punto fisso}\\
+F(\fixp{F})\ s' = & \\
+\cond{b}{\fixp{F} \circ \dsCtxt{S}}{id}\ s' = & \\
+id\ s' & \\
 s'
+\end{array}
 $$
 
-Poichè l'applicazione di \fixp{F} a $s'$ risulta essere banalmente
-\boxer{\idDS\ s'}.
+
 
 Dal momento che entrambi i lati dell'equivalenza denotazionale sono uguali ad
 $s'$, la tesi è provata.
