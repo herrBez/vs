@@ -53,12 +53,12 @@ Grazie all'esercizio 9, si ha che se \fixp{F} $s = s'$ allora
 \B{b}$' = \semfalse$. Quindi:
 $$
 \begin{array}{lr}
-(\fixp{F} \circ \fixp{F})\ s = & \\
-(\fixp{F} (\fixp{F}\ s)) = & \text{Assunzione} \\
-\fixp{F}\  s' = & \text{In quanto $\fixp{F}$ è un punto fisso}\\
-F(\fixp{F})\ s' = & \\
-\cond{b}{\fixp{F} \circ \dsCtxt{S}}{id}\ s' = & \\
-id\ s' & \\
+(\fixp{F} \circ \fixp{F})\ s = & \text{(Composizione)} \\
+(\fixp{F} (\fixp{F}\ s)) = & \text{(Assunzione)} \\
+\fixp{F}\  s' = & \text{(Applicazione punto fisso)}\\
+F(\fixp{F})\ s' = & \text{(Definizione di $F$)} \\
+\cond{b}{\fixp{F} \circ \dsCtxt{S}}{id}\ s' = & (\B{b}' = \semfalse) \\
+id\ s' & \text{(Definizione di \idDS)} \\
 s'
 \end{array}
 $$
