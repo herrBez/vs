@@ -96,16 +96,36 @@ powerset di $P$.
 
 \begin{enumerate}
   \item $f$ è monotona: si considerino due insiemi
-    $X,Y\in dc(P). X \subseteq Y$. Per la definizione di $f$, $f(X)$ conterrà
+    $X,Y\in \powerset{P}. X \subseteq Y$. Per la definizione di $f$, $f(X)$ conterrà
     tutti gli elementi di $X$ che sono minori o uguali di un certo maggiorante
     $x$.
     Ma $Y$, contenendo in particolare anche $x$, contiene anch'esso tutti gli
     elementi di $X$ che soddisfano tale proprietà, per cui
     $f(X) \subseteq f(Y)$;
+    
+    Si considerino due insiemi $X, Y \in \powerset{P}$ tali che:
+    $X \subseteq Y$. Dimostro che $f(X) \subseteq f(Y)$, ovvero:
+    $$
+    \forall y.(y \in f(X) \implies y \in f(Y))
+    $$
+    
+    Sia $y$ un elemento qualsiasi fissato di $f(X)$:
+    $$
+    \begin{array}{llr}
+     y \in f(X) & \iff & \text{(Definizione di $f(X))$}\\
+     y \in \{p \in P\ |\ \exists x \in X. p \leq x \} & \implies & \text{(Siccome $X \subseteq Y$) } \\
+     y \in \{p \in P\ |\ \exists x \in Y. p \leq x \} & \iff &
+     \text{(Definizione di $f(Y)$)} \\
+     y \in f(Y) & & \\
+    \end{array}
+    $$
+    
+    
   \item Una catena derivante da un powerset può essere generalizzata ad un
     gruppo di insiemi in cui  vi è insieme ``massimo'' contenente tutti gli
     elementi di qualsiasi altro insieme della catena.
-% TODO: @herrBez
+
+	
 
     Ma, in particolare, è possibile notare che tale insieme è uguale all'unione
     di sè stesso e tutti gli insiemi in esso contenuti facenti parte della
@@ -115,6 +135,55 @@ powerset di $P$.
     $$
     per ogni catena in $\powerset{P}$.
 \end{enumerate}
+
+Dimostro che 
+$$
+\sqcup\{f\ d | d \in Y\} = f(\sqcup Y)
+$$
+ovvero sostituendo le definizioni e applicandole al caso specifico:
+$$
+\sqcup\{f\ d | d \in Y\} = \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S, p \leq x\}
+$$
+
+$$
+f(\bigcup Y) = \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x\}
+$$
+Dimostro che i due insiemi coincidono ovvero:
+$$
+\bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S, p \leq x\} =  \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x\}
+$$
+\begin{itemize}
+	\item $\boxed{\subseteq}$ Bisogna dimostrare che:
+	$$
+	\forall x : x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S, p \leq x\} \implies x \in \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x\}
+	$$
+	
+	$$
+	\begin{array}{llr}
+	x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S, p \leq x\} & \iff & (\text{è vero se appartiene ad almeno un sottinsieme di Y})\\
+	\exists S \in Y: x \in \{p \in P\ |\ \exists x \in S, p \leq x\} & \implies & (S \subseteq \bigcup Y)\\
+	x \in \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x \} & \iff & (\text{ Definizione di: } f(\bigcup Y)) \\
+	x \in f(\bigcup Y)
+	\end{array}
+	$$
+	\item $\boxed{\supseteq}$ Bisogna dimostrare che:
+	$$
+	\forall x : x \in \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x\} \implies x \in 
+	\bigcup_{S \subseteq Y} \{p \in P\ |\ \exists x \in S, p \leq x\} 
+	$$ 
+	
+	$$
+	\begin{array}{lll}
+	\forall x : x \in \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x\} & \iff & \\
+	x \in \{p \in P\ |\ \exists S \in Y: \exists x \in S, p \leq x \} & \implies & \\
+	\exists S \in Y : x \in \{p \in P\ |\ p \leq x \} & \implies & \\
+	x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S, p \leq x\} & & \\
+	
+	\end{array}
+	$$
+\end{itemize}
+
+
 
 \end{proof}
 
