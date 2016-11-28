@@ -7,16 +7,16 @@ $$
 {
 È necessario dimostrare che
 $$
-\forall s,s'. \Big(\confSs{\wbS{b}{S}}{s} \Rar{*} s' \iff \confSs{\wbS{b}{(S;\wbS{b}{S})}}{s} \Rar{*} s' \Big)
+\forall s,s' \in \states. \Big(\confSs{\wbS{b}{S}}{s} \Rar{*} s' \iff \confSs{\wbS{b}{(S;\wbS{b}{S})}}{s} \Rar{*} s' \Big)
 $$
 \begin{proof}
 $$
 \boxed{\implies}
 $$
-Si assuma che $\confSs{\wbS{b}{S}}{s} \Rar{ } s'$.
+Si assuma che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$.
 Per la regola $\whileSOS$ so che:
 $$
-\confSs{\wbS{b}{S}}{s} \Rar{ } \confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{*} s'
+\confSs{\wbS{b}{S}}{s} \Rar{} \confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{*} s'
 $$
 Si discriminino due casi in base alla valutazione della guardia $b$ nello
 stato $s$:
@@ -40,7 +40,7 @@ stato $s$:
 	s
 	\end{array}
 	$$
-	Di conseguenza si ottiene anche che quando $\B{b} = \semfalse$ i due
+	Di conseguenza quando $\B{b} = \semfalse$ i due
 	statement sono equivalenti.
 	
 	\item $\boxed{\B{b} = \semtrue}$
@@ -53,14 +53,11 @@ stato $s$:
 	\end{array}
 	$$
 	Per il lemma di decomposizione applicato a
-	
 	\begin{equation}
 	\confSs{S; \wbS{b}{S}}{s} \Rar{*} s'
 		\label{eq:hw7:imp}
 	\end{equation}
-
-	
-	si ottiene che $\exists s''$:
+	si ottiene che $\exists s'' \in \states$ tale che: 
 	\begin{enumerate}[label=(\alph*)]
 		\item $\confSs{S}{s} \Rar{*} s''$
 		\item $\confSs{\wbS{b}{S}}{s''} \Rar{*} s'$
@@ -71,31 +68,33 @@ stato $s$:
 		\item $\B{b}' = \semfalse$
 		\label{hw7:Bbs':ff}
 	\end{enumerate}  
-	Per il lemma di composizione applicato a \ref{eq:hw7:imp} si ricava che:
-	$$
+	Per il lemma di composizione applicato a (\ref{eq:hw7:imp}) si ricava che:
+	\begin{equation}
 	\confSs{(S; \wbS{b}{S}); (\wbS{b}{(S; \wbS{b}{S})})}{s} \Rar{*} \confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} 
-	$$
+	\label{hw7:c}
+	\end{equation}
 	da cui si ottiene, grazie a \ref{hw7:Bbs':ff}, che:
 	$$
 	\begin{array}{lr}
-	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{*} & \whileSOS\\
-	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s'} & \ifffSOS\\
-	\confSs{\skipForFriends}{s'} \Rar{*} & \\
+	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{} & \whileSOS\\
+	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s'} \Rar{}& \ifffSOS\\
+	\confSs{\skipForFriends}{s'} \Rar{} & \skipSOS\\
 	s' & \\
 	\label{hw:arary}
 	\end{array}
 	$$  
-	Inoltre siccome vi è l'ipotesi che $\B{b} = \semtrue$ si ha che:
+	Per ipotesi $\B{b} = \semtrue$, quindi si ha
 	$$
 	\begin{array}{lr}
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{ } & \whileSOS\\
-	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s} & \ifttSOS \\
+	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s} \Rar{ }& \ifttSOS \\
+	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} & (\ref{hw7:c}) \\
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} & 
 	\end{array}
 	$$
 	Unendo questa derivazione al fatto che
 	$\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{*} s'$, si ottiene
-	proprio quanto ciò che ci si era prefissati di dimostrare, ovvero:
+	proprio quanto ci si era prefissati di dimostrare, ovvero:
 	$$
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} s'
 	$$
@@ -115,17 +114,17 @@ $$\confSs{\wbS{b}{(S;\wbS{b}{S})}}{s}
 	\confSs{\ifABC{b}{((S; \wbS{b}{S});\wbS{b}{(S;\wbS{b}{S})})}{\skipForFriends}}{s}$$
 Dipendentemente da $\B{b}$ vengono distinti due casi:
 \begin{itemize}
-	\item $\boxed{\B{b} = \semfalse}$: analogo a quanto fatto per il caso $\B{b} = \semfalse $ nella dimostrazione per $\boxed{\implies}$. 
+	\item $\boxed{\B{b} = \semfalse}$: analogo a quanto dimostrato per il caso $\B{b} = \semfalse $ nella dimostrazione per $\boxed{\implies}$. 
 	\item $\boxed{\B{b} = \semtrue}$:
 	$$
 	\begin{array}{lr}
-	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} & \whileSOS \\
-	\confSs{\ifABC{b}{((S; \wbS{b}{S});\wbS{b}{(S;\wbS{b}{S})})}{\skipForFriends}}{s} & \ifttSOS \\
-	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} & \text{(Assunzione + Determinismo)}\\
-	\Rar{*} s'
+	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{ }& \whileSOS \\
+	\confSs{\ifABC{b}{((S; \wbS{b}{S});\wbS{b}{(S;\wbS{b}{S})})}{\skipForFriends}}{s} \Rar{ } & \ifttSOS \\
+	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s}  \Rar{*} & \text{(Assunzione + Determinismo)} \\
+	s'
 	\end{array}
 	$$
-	Applicando il lemma di decomposizione, si ottiene che $\exists s''$ tale che:
+	Applicando il lemma di decomposizione, si ottiene che $\exists s'' \in \states$ tale che:
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\confSs{S; \wbS{b}{S}}{s} \Rar{*} s''$
 		\label{hw7:a}
@@ -133,7 +132,7 @@ Dipendentemente da $\B{b}$ vengono distinti due casi:
 		\label{hw7:b}
 	\end{enumerate}
 	Inoltre è possibile applicare lo stesso lemma a \ref{hw7:a} per ottenere che
-	$\exists s'''$ tale che:
+	$\exists s''' \in \states$ tale che:
 	\begin{enumerate}[label=(\Alph*)]
 		\item $\confSs{S}{s} \Rar{*} s'''$
 		\item $\confSs{\wbS{b}{S}}{s'''} \Rar{*}s''$
@@ -148,14 +147,14 @@ Dipendentemente da $\B{b}$ vengono distinti due casi:
 	$$
 	\begin{array}{ll}
 		\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s''} \Rar{ }& \whileSOS \\
-		\confSs{\ifABC{b}{((S; \wbS{b}); \wbS{b}{(S; \wbS{b}{S})})}{\skipForFriends}}{s''} & \ifffSOS \\
-		\confSs{\skipForFriends}{s''} & \skipSOS\\
+		\confSs{\ifABC{b}{((S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})})}{\skipForFriends}}{s''} \Rar{ } & \ifffSOS \\
+		\confSs{\skipForFriends}{s''} \Rar{ }& \skipSOS\\
 		s''
 	\end{array}
 	$$
-	Da cui segue, per via del determinismo delle regole SOS, che $s'' \equiv s'$.
-	Ora, prendendo in considerazione $\wbS{b}{S}$, grazie al fatto che
-	$\B{b} = \semtrue$ è possibile derivare:
+	Da cui segue, per il determinismo delle regole SOS, che $s'' \equiv s'$.
+	Considerando $\wbS{b}{S}$, grazie al fatto che
+	$\B{b} = \semtrue$, è possibile derivare:
 	$$
 	\begin{array}{lr}
 	\confSs{\wbS{b}{S}}{s} \Rar{ } & \whileSOS \\
@@ -164,10 +163,8 @@ Dipendentemente da $\B{b}$ vengono distinti due casi:
 	\end{array}
 	$$
 	Da cui grazie a \ref{hw7:a} e al fatto che $s'' \equiv s'$ si ha che
-	$\confSs{(S; \wbS{b}{S})}{s} \Rar{*} s'$. Unendo la precedente derivazione
-	all'ultima conclusione, ottengo che:
-	$\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ che era proprio ciò che si voleva
-	dimostrare.
+	$\confSs{(S; \wbS{b}{S})}{s} \Rar{*} s'$, quindi vale 
+        $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$.
 
 \end{itemize}
 
