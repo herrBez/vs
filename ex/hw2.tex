@@ -35,7 +35,7 @@
 
            Siccome $s = s'$ e $\B{b} = \semfalse$ l'asserto è dimostrato.
 
-           \item $\boxed{\text{Passo Induttivo}: n \rightarrow n + l,
+           \item $\boxed{\text{Passo Induttivo}: n \rightarrow n + l + 2,
              \text{ dove } \confSs{S}{s} \Rar{l} s'' \text{, ovvero } \B{b} = \semtrue}$
              \begin{itemize}
                \item Ipotesi Induttiva: \confSs{\wbS{b}{S}}{s} \Rar{n} $s'$ then $\B{b}' = \semfalse$
@@ -56,8 +56,8 @@
              \item \confSs{\wbS{b}{S}}{s''} \Rar{*} $s'$
              \end{itemize}
              siccome la derivazione di \confSs{\wbS{b}{S}}{s''} \Rar{n} $s'$ è più
-             corta di quella di partenza (\confSs{\wbS{b}{S}}{s} \Rar{n+l} $s'$)
-             di $l$ passi, posso applicare l'ipotesi
+             corta di quella di partenza (\confSs{\wbS{b}{S}}{s} \Rar{n+l+2}
+             $s'$) di $l$ passi, posso applicare l'ipotesi
              induttiva e concludere che $\B{b}'$ deve necessariamente essere
              uguale a \semfalse.
              
