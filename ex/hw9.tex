@@ -46,7 +46,7 @@ Si consideri il caso $F^{n+1}$:
 \vspace{.5em}
 
 In definitiva, bisogna considerare la valutazione di
-$(F^{n+1} \bot) s = (\cond{b}{(F^n \circ \dsCtxt{S}) \bot}{\idDS}) s$.
+$(F^{n+1} \bot) s = (\cond{b}{((F^n \bot) \circ \dsCtxt{S})}{\idDS}) s$.
 
 A questo punto si può dividere la prova del passo induttivo in due casi a
 seconda della valutazione di \B{b}:
@@ -55,9 +55,10 @@ seconda della valutazione di \B{b}:
     allo stato finale $s'$ poichè viene applicata la funzione identità \idDS{}.
     Perciò (banalmente) $\B{b} = \B{b}' = \semfalse$.
   \item $\B{b} = \semtrue$ -- in questo caso viene scelto il primo ramo
-    condizionale e perciò viene valutato $((F^n \circ \dsCtxt{S}) \bot) s = s'$.
+    condizionale e perciò viene valutato $((F^n \bot) \circ \dsCtxt{S}) s = s'$.
     Ma allora è anche vero che $(F^n\ \bot) s'' = s'$, dove in particolare
-    $(\dsCtxt{S}\ \bot) s = s''$. Siccome, per ipotesi induttiva,
-    per ogni stato di partenza applicando $n$ volte $F$ si ottiene uno stato s'
-    per cui $\B{b}' = \semfalse$, la tesi è quindi provata.
+    $\dsCtxt{S} s = s''$\footnote{se $\dsCtxt{S} s = s''$ evolvesse in
+    \undefDS, tale caso sarebbe vacuamente verificato}. Siccome, per ipotesi
+    induttiva, per ogni stato di partenza applicando $n$ volte $F$ si ottiene
+    uno stato s' per cui $\B{b}' = \semfalse$, la tesi è quindi provata.
 \end{itemize}
