@@ -73,11 +73,17 @@ $f(X) \subseteq P$ è down-closed:
     questo caso $f(X) = \emptyset$ (che per osservazione nella consegna è
     down-closed);
   \item Se $\exists{x}\in X.\ p \leq x$ per qualche $p \in P$, allora $f(X)$ è
-    ancora down-closed. Ipotizziamo per assurdo che
-    $\exists{s\in f(X)}.\exists{p}\in P.(p \leq s \land p \not \in f(X))$: ciò
-    non è possibile, poichè se $s \in  f(X)$ e $p \leq s$ allora $p \leq x$,
-    dove $x$ è l'elemento dichiarato ad inizio riga. Ma se $p \leq x$, allora
-    $p \in f(X)$ per definizione di $f(X)$.
+    ancora down-closed. Ipotizziamo per assurdo (rispetto alla ipotesi da
+    dimostrare e alla definizione di down-closed) che
+    $$
+    \exists{s\in f(X)}.\exists{y}\in P.\ y \leq s \land y \not \in f(X)
+    $$
+    Ciò non è possibile, poichè:
+    \begin{itemize}
+      \item se $s \in f(X)$ allora $\exists{x}\in X.\ s \leq x$
+      \item se $y \leq s$ allora $y \leq s \leq x$
+    \end{itemize}
+    Ma se $p \leq x$, allora $p \in f(X)$ per definizione di $f(X)$.
 \end{itemize}
 
 $$
