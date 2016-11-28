@@ -1,0 +1,81 @@
+\exercise{Esercizio 16}
+{
+  Sia \setRel{D}{\leq} un CPO. Siano $f: D \to D$ e $g: D \to D$ due funzioni
+  continue tali che $\forall{x}\in D. f(x) \leq{} g(x)$.
+  \begin{enumerate}
+    \item Provare che $\fixp{f} \leq{} \fixp{g}$.
+    \item Si assuma anche che $\forall{x}\in D.x \leq{} f(x)$. Provare che
+      $\fixp{f} \leq \fixp{g^2}$. (dove $g^2 \equiv{} g \circ g$)
+  \end{enumerate}
+}
+{}
+L'esercizio procede provando le due proprietà separatamente.
+
+\begin{proof}
+$$
+\boxed{\fixp{f} \leq{} \fixp{g}}
+$$
+
+Dal momento che $f$ e $g$ sono continue su un CPO $D$, allora esistono i
+rispettivi punti fissi \fixp{f} e \fixp{g}.
+
+Tale disuguaglianza viene dimostrata applicando il \FPIL:
+\begin{equation}
+f(\fixp{g}) \leq \fixp{g}  \Rar{} \fixp{f} \leq{} \fixp{g}
+\label{hw16-x}
+\end{equation}
+Applicando una volta il punto sulla parte destra di $f(\fixp{g}) \leq \fixp{g}$,
+si ottiene:
+$$
+f(\fixp{g}) \leq g(\fixp{g})
+$$
+
+Che è vero poichè:
+\begin{itemize}
+  \item $\fixp{g} \in D$;
+  \item $\forall{x}\in D. f(x) \leq{} g(x)$.
+\end{itemize}
+
+$$
+\boxed{\fixp{f} \leq \fixp{g^2}}
+$$
+
+In questa parte dell'esercizio è possibile assumere che
+$\forall{x}\in D.x \leq{} f(x)$.
+
+Si procede dunque provando ad applicare il \FPIL{}; per provare
+$\fixp{f} \leq \fixp{g^2}$ è dunque sufficiente provare che:
+\begin{equation}
+  f(\fixp{g^2}) \leq{} \fixp{g^2}
+  \label{hw16-pt2-1}
+\end{equation}
+
+Innanzitutto è possibile notare che tale tesi è sensata da dimostrare:
+$g \circ g$ è continua (lemma 4.35) sul CPO $D$ e di conseguenza ha minimo
+punto fisso $\fixp{g^2}\in D$.
+
+Sviluppando il lato destro di \ref{hw16-pt2-1}, si ottiene:
+\begin{equation}
+  f(\fixp{g^2}) \leq{} g(g(\fixp{g^2}))
+  \label{hw16-pt2-2}
+\end{equation}
+
+È noto che $\fixp{g^2}\in D$. È quidi possibile sviluppare la seguente catena
+di relazioni:
+$$
+\begin{array}{lr}
+x \leq f(x) & \text{(per ipotesi in $\forall{x}\in D.x \leq{} f(x)$)} \\
+f(x) \leq g(x) & \text{(per $\forall{x}\in D. f(x) \leq{} g(x)$)} \\
+g(x) \leq f(g(x)) & \text{(perchè $g(x)\in D$)} \\
+f(g(x)) \leq g(g(x)) & \text{(per $\forall{x}\in D. f(x) \leq{} g(x)$)} \\
+f(x) \leq g(g(x)) &  \text{(per proprietà transitiva di $\leq$)}
+\end{array}
+$$
+
+Quindi, fissando $x = \fixp{g^2}$\footnote{ciò è possibile proprio perchè
+$\fixp{g^2}\in D$}, è provato che
+$$
+f(\fixp{g^2}) \leq g(g(\fixp{g^2}))
+$$
+
+\end{proof}
