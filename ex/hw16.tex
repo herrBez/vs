@@ -19,14 +19,19 @@ $$
 Dal momento che $f$ e $g$ sono continue su un CPO $D$, allora esistono i
 rispettivi punti fissi \fixp{f} e \fixp{g}.
 
-Applicando la definizione di punto fisso, si ha:
+Tale disuguaglianza viene dimostrata applicando il \FPIL:
 \begin{equation}
-  f(\fixp{f}) \leq{} g(\fixp{g})
+f(\fixp{g}) \leq \fixp{g}  \Rar{} \fixp{f} \leq{} \fixp{g}
+\label{hw16-x}
 \end{equation}
+Applicando una volta il punto sulla parte destra di $f(\fixp{g}) \leq \fixp{g}$,
+si ottiene:
+$$
+f(\fixp{g}) \leq g(\fixp{g})
+$$
 
 Che è vero poichè:
 \begin{itemize}
-  \item $\fixp{f} \in D$;
   \item $\fixp{g} \in D$;
   \item $\forall{x}\in D. f(x) \leq{} g(x)$.
 \end{itemize}
