@@ -48,6 +48,19 @@ $$
           (\exists{d}\in dc(P). d = \sqcup Y)
 $$
 
+Dimostro che $\bigcup Y$ è un elemento di $dc(P)$, ovvero:
+\begin{enumerate}
+	\item $\bigcup Y$ è un sottoinsieme di $P$, ma questo è vero in quanto unione di sottoinsiemi contenuti in $P$.
+	\item $\bigcup Y$ è down-closed ovvero che:
+	$$
+	\forall x \in \bigcup Y,\ \forall y \in P, y \leq x \Rightarrow y \in \bigcup Y
+	$$
+	Siccome $x \in \bigcup Y \iff \exists S \in dc(P). S \in \bigcup Y : x \in S$ (siccome $\bigcup Y$ è stato ottenuto come unione di vari insiemi).
+	Ma siccome $S$ è down-closed (per la costruzione di $\bigcup Y$) ottengo che $\forall y \in P, y \leq x \Rightarrow y \in S$, ma siccome
+	$S \in \bigcup Y$ l'asserto è dimostrato.
+	\end{enumerate}
+
+
 Sia per ipotesi $\sqcup Y = \bigcup Y$\footnote{dove $\bigcup Y$ è l'unione di
 tutti gli insiemi in $Y$}: dimostriamo effettivamente che tale insieme è il lub
 di Y:
