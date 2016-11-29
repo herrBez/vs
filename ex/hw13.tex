@@ -155,29 +155,29 @@ $$
 \begin{itemize}
 	\item $\boxed{\subseteq}$ Bisogna dimostrare che:
 	$$
-	\forall x : x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S, p \leq x\} \implies x \in \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x\}
+	\forall x : x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\} \implies x \in \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x\}
 	$$
 	
 	$$
 	\begin{array}{llr}
-	x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S, p \leq x\} & \iff & (\text{è vero se appartiene ad almeno un sottinsieme di Y})\\
-	\exists S \in Y: x \in \{p \in P\ |\ \exists x \in S, p \leq x\} & \implies & (S \subseteq \bigcup Y)\\
-	x \in \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x \} & \iff & (\text{ Definizione di: } f(\bigcup Y)) \\
+	x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\} & \iff & (\text{è vero se appartiene ad almeno un sottinsieme di Y})\\
+	\exists S \in Y: x \in \{p \in P\ |\ \exists x \in S. p \leq x\} & \implies & (S \subseteq \bigcup Y)\\
+	x \in \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x \} & \iff & (\text{ Definizione di: } f(\bigcup Y)) \\
 	x \in f(\bigcup Y)
 	\end{array}
 	$$
 	\item $\boxed{\supseteq}$ Bisogna dimostrare che:
 	$$
-	\forall x : x \in \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x\} \implies x \in 
-	\bigcup_{S \subseteq Y} \{p \in P\ |\ \exists x \in S, p \leq x\} 
+	\forall x : x \in \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x\} \implies x \in 
+	\bigcup_{S \subseteq Y} \{p \in P\ |\ \exists x \in S. p \leq x\} 
 	$$ 
 	
 	$$
 	\begin{array}{lll}
-	\forall x : x \in \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x\} & \iff & \\
-	x \in \{p \in P\ |\ \exists S \in Y: \exists x \in S, p \leq x \} & \implies & \\
+	\forall x : x \in \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x\} & \iff & \\
+	x \in \{p \in P\ |\ \exists S \in Y: \exists x \in S. p \leq x \} & \implies & \\
 	\exists S \in Y : x \in \{p \in P\ |\ p \leq x \} & \implies & \\
-	x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S, p \leq x\} & & \\
+	x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\} & & \\
 	
 	\end{array}
 	$$
