@@ -18,7 +18,8 @@ $$
 
 La tesi $\B{b}' = \semfalse$\footnote{N.B. l'esercizio può essere anche
 formalizzato nel seguente modo:
-$\forall{s\in\states}.\dsCtxt{\wbS{b}{S}} s = s' \implies \B{b}' = \semfalse$} viene dunque provata per induzione su $n$.
+$\forall{s\in\states}.\dsCtxt{\wbS{b}{S}} s = s' \implies \B{b}' = \semfalse$} 
+viene dunque provata per induzione su $n$.
 
 $$
 \boxer{Caso\ base}
@@ -40,7 +41,7 @@ Si consideri il caso $F^{n+1}$:
 \vspace{.5em}
 
 \noindent $F^{n+1} =$ \\
-\noindent $F \circ F^n =$ \\
+\noindent $F^n \circ F =$ \\
 \noindent $F(F^n) =$ \\
 \noindent $\cond{b}{F^n \circ \dsCtxt{S}}{\idDS}$
 \vspace{.5em}
@@ -56,9 +57,13 @@ seconda della valutazione di \B{b}:
     Perciò (banalmente) $\B{b} = \B{b}' = \semfalse$.
   \item $\B{b} = \semtrue$ -- in questo caso viene scelto il primo ramo
     condizionale e perciò viene valutato $((F^n \bot) \circ \dsCtxt{S}) s = s'$.
-    Ma allora è anche vero che $(F^n\ \bot) s'' = s'$, dove in particolare
-    $\dsCtxt{S} s = s''$\footnote{se $\dsCtxt{S} s = s''$ evolvesse in
-    \undefDS, tale caso sarebbe vacuamente verificato}. Siccome, per ipotesi
-    induttiva, per ogni stato di partenza applicando $n$ volte $F$ si ottiene
-    uno stato s' per cui $\B{b}' = \semfalse$, la tesi è quindi provata.
+    Ma allora è anche vero che $\exists s'' \in States$ tale che:
+    \begin{itemize}
+      \item $\dsCtxt{S} s = s''$\footnote{se $\dsCtxt{S} s = s''$ evolvesse in
+    \undefDS, tale caso sarebbe vacuamente verificato}
+      \item $(F^n\ \bot) s'' = s'$
+    \end{itemize}
+     Perchè, per ipotesi induttiva, per ogni stato di partenza applicando $n$
+   volte $F$ si ottiene uno stato s' per cui $\B{b}' = \semfalse$. La tesi 
+   è quindi provata.
 \end{itemize}
