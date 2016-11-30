@@ -37,12 +37,12 @@ $$
 \\
 = \caseFun{(g \circ \cond{b}{\dsCtxt{S}}{\fixp{F}})\ s}
           {\B{b} =\semtrue}
-          {\idDS\ s = s}
+          {\idDS\ s}
           {\B{b} = \semfalse} \\
 \\
 = \caseFun{(g \circ \dsCtxt{S})\ s}
           {\B{b} = \semtrue}
-          {\idDS\ s = s}
+          {s}
           {\B{b} = \semfalse} =
 (F\ g)\ s
 \end{array}
