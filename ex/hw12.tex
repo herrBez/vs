@@ -40,6 +40,19 @@ prova vengono considerate separatamente:
 	F(\fixp{G}) \sqsubseteq \fixp{G}
 	$$
 	si otterrebbe proprio il risultato cercato.
+  Possiamo applicare $\FPIL$ perchè:
+  \begin{itemize}
+   \item $F$ è una funzione totale continua su CPO 
+($\states \hookrightarrow \states, \sqsubseteq$) perchè $cond$ è continua
+   \item $\fixp{G}$ è un funzionale ed ha tipo 
+$$
+((\states \hookrightarrow \states) \rightarrow 
+(\states \hookrightarrow \states)) \rightarrow
+(\states \hookrightarrow \states)
+$$ 
+quindi $\fixp{G} \in 
+(\states \hookrightarrow \states)$
+  \end{itemize}
   Si proceda a sviluppare $F(\fixp{G})$:
   $$
   F(\fixp{G}) = \caseFun{\fixp{G} \circ \dsCtxt{S}\ s}
@@ -114,6 +127,20 @@ prova vengono considerate separatamente:
 	G(\fixp{F}) \sqsubseteq \fixp{F}
 	$$
 	si otterrebbe proprio il risultato cercato.
+        Possiamo applicare $\FPIL$ perchè:
+        \begin{itemize}
+         \item $G$ è una funzione totale continua su CPO 
+          ($\states \hookrightarrow \states, \sqsubseteq$) perchè $cond$ 
+          è continua
+         \item $\fixp{F}$ è un funzionale ed ha tipo 
+          $$
+          ((\states \hookrightarrow \states) \rightarrow 
+          (\states \hookrightarrow \states)) \rightarrow
+          (\states \hookrightarrow \states)
+          $$ 
+          quindi $\fixp{F} \in 
+          (\states \hookrightarrow \states)$
+        \end{itemize}
         Innanzitutto si sviluppi $(G\ \fixp{F})$ su un stato $s$ qualsiasi:
         $$
         \begin{array}{ll}
