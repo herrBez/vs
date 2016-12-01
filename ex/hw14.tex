@@ -26,8 +26,14 @@ sia $\lt$}:
 \end{enumerate}
 
 \subsection{(1)}
-La prima disequazione viene dimostrata tramite il \FPIL. È quindi sufficiente
-provare che:
+La prima disequazione viene dimostrata tramite il \FPIL.
+$$
+f \circ g(f(\fixp{g \circ f})) \lt f(\fixp{g \circ f})
+\implies
+\fixp{f \circ g} \lt f(\fixp{g \circ f})
+$$
+
+È quindi sufficiente provare che:
 \begin{align*}
 f \circ g(f(\fixp{g \circ f})) \lt f(\fixp{g \circ f})
 \end{align*}
@@ -65,6 +71,11 @@ $$
 L'obiettivo è quindi dimostrare che $\fixp{g \circ f} \lt g(\fixp{f \circ g})$,
 così da dimostrare la tesi del punto corrente. Tuttavia, ora la disequazione è
 in una forma per cui è possibile utilizzare il \FPIL.
+$$
+g \circ f(g(\fixp{f \circ g})) \lt g(\fixp{f \circ g})
+\implies
+\fixp{g \circ f} \lt g(\fixp{f \circ g})
+$$
 
 Perciò si dimostra l'ipotesi del \FPIL:
 
