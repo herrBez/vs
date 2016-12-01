@@ -7,7 +7,7 @@ $$
 {
 Devo dimostrare che:
 $$
-\dsCtxt{\wbS{b}{S}} = \dsCtxt{\wbS{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}}
+\forall s \in \states.(\dsCtxt{\wbS{b}{S}} s = \dsCtxt{\wbS{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}} s)
 $$	
 Applicando le definizioni della semantica denotazionale ottengo che:
 $$
@@ -42,9 +42,17 @@ $$
 \\
 = \caseFun{(g \circ \dsCtxt{S})\ s}
           {\B{b} = \semtrue}
-          {s}
-          {\B{b} = \semfalse} =
-(F\ g)\ s
+          {\idDS\ s}
+          {\B{b} = \semfalse} \\
+\\ 
+(F\ g)\ s = \\
+\\
+= \caseFun{(g \circ \dsCtxt{S})\ s}
+          {\B{b} = \semtrue}
+          {\idDS\ s}
+          {\B{b} = \semfalse} \\
+\\
+quindi\ (G\ g)\ s = (F\ g)\ s
 \end{array}
 $$ 
 Ho dimostrato che $F = G$ da cui segue $\fixp{F} = \fixp{G}$.
