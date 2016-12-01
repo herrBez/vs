@@ -56,15 +56,13 @@ seconda della valutazione di \B{b}:
     Perciò (banalmente) $\B{b} = \B{b}' = \semfalse$.
   \item $\B{b} = \semtrue$ -- in questo caso viene scelto il primo ramo
     condizionale e perciò viene valutato
-    $((F^n \bot) \circ \dsCtxt{S})\ s = s'$.
+    $((F^n \bot) \circ \dsCtxt{S})\ s$.
     Ma allora è anche vero che $\exists s'' \in States$ tale che:
     \begin{itemize}
-      \item $\dsCtxt{S} s = s''$\footnote{se $\dsCtxt{S} s = s''$ evolvesse in
-    \undefDS, tale caso andrebbe contro l'ipotesi e comunque 
-    sarebbe vacuamente verificato}
-      \item $(F^n\ \bot) s'' = s'$
+      \item $\dsCtxt{S} s = \undefDS$, l'implicazione è vera poichè l'ipotesi
+        diventa falsa;
+      \item $\dsCtxt{S} s = s''$, ma in questo caso $(F^n \bot)\ s''$ arriva
+        (per ipotesi induttiva) ad uno stato $s'$ per cui vale
+        $\B{b}' = \semfalse$.
     \end{itemize}
-     Perchè, per ipotesi induttiva, per ogni stato di partenza applicando $n$
-   volte $F$ si ottiene uno stato s' per cui $\B{b}' = \semfalse$. La tesi 
-   è quindi provata.
 \end{itemize}
