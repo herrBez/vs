@@ -55,15 +55,15 @@ quindi $\fixp{G} \in
   \end{itemize}
   Si proceda a sviluppare $F(\fixp{G})$:
   $$
-  F(\fixp{G}) = \caseFun{\fixp{G} \circ \dsCtxt{S}\ s}
+  F(\fixp{G})\ s = \caseFun{\fixp{G} \circ \dsCtxt{S}\ s}
                         {\B{b} = \semtrue}
                         {\idDS\ s = s}
                         {\B{b} = \semfalse}
   $$
   Sviluppando anche $\fixp{G}$, si ottiene:
   $$
-  \fixp{G} =
-  G(\fixp{G}) = \caseFun{(\fixp{G} \circ \fixp{F} \circ \dsCtxt{S})\ s}
+  \fixp{G}\ s =
+  G(\fixp{G})\ s = \caseFun{(\fixp{G} \circ \fixp{F} \circ \dsCtxt{S})\ s}
                         {\B{b} = \semtrue}
                         {\idDS\ s = s}
                         {\B{b} = \semfalse}
