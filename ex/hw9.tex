@@ -57,12 +57,11 @@ seconda della valutazione di \B{b}:
   \item $\B{b} = \semtrue$ -- in questo caso viene scelto il primo ramo
     condizionale e perciò viene valutato
     $((F^n \bot) \circ \dsCtxt{S})\ s$.
-    Ma allora è anche vero che $\exists s'' \in States$ tale che:
     \begin{itemize}
       \item $\dsCtxt{S} s = \undefDS$, l'implicazione è vera poichè l'ipotesi
         diventa falsa;
-      \item $\dsCtxt{S} s = s''$, ma in questo caso $(F^n \bot)\ s''$ arriva
-        (per ipotesi induttiva) ad uno stato $s'$ per cui vale
-        $\B{b}' = \semfalse$.
+      \item $\exists{s''}\in\states.\dsCtxt{S} s = s''$, ma in questo caso
+        $(F^n \bot)\ s''$ arriva (per ipotesi induttiva) ad uno stato $s'$ per
+        cui vale $\B{b}' = \semfalse$.
     \end{itemize}
 \end{itemize}
