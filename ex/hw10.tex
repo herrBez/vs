@@ -1,0 +1,71 @@
+\exercise{Esercizio 10}
+{
+  Fornire un controesempio o provare la seguente equivalenza semantica:
+  $$
+  \wbS{b}{S} \eqDS (\wbS{b}{S});(\wbS{b}{S})
+  $$
+}
+{}
+In semantica denotazionale gli statement per i quali si vuole provare
+l'equivalenza corrispondono alle seguenti funzioni:
+\begin{itemize}
+  \item \dsCtxt{\wbS{b}{S}}
+        $\equiv$
+        \fixp{F}
+  \item \dsCtxt{(\wbS{b}{S});(\wbS{b}{S})}
+        $\equiv$
+        \dsCtxt{(\wbS{b}{S})} $\circ$ \dsCtxt{(\wbS{b}{S})}
+        $\equiv$
+        \fixp{F} $\circ$ \fixp{F}
+\end{itemize}
+, dove $F \equiv{} \lambda{g}.\cond{b}{g \circ \dsCtxt{S}}{\idDS}$
+
+Quindi, al fine di provare tale equivalenza in semantica denotazionale, è
+necessario dimostrare:
+\begin{equation}
+\forall s \in \states.(\fixp{F}s = (\fixp{F} \circ \fixp{F})s)
+\label{hw10-thesis}
+\end{equation}
+
+\begin{proof}
+
+Si applichi il funzionale \fixp{F} ad uno stato $s\in\states$ e si prosegua in
+con due dimostrazioni separate a seconda che $(\fixp{F}) s$ si riduca ad uno
+stato finale o meno.
+$$
+\boxed{(\fixp{F}) $s = \undefDS$}
+$$
+
+L'uguaglianza è facilmente verificabile grazie alla definizione della funzione
+di composizione: infatti la composizione 
+$$
+((\fixp{F}) \circ (\fixp{F})) s = \fixp{F}(\fixp{F}\text{ }s) = \fixp{F}(\undefDS) = \undefDS
+$$
+
+
+In questo modo si ha $\undefDS = \undefDS$, che è banalmente vero.
+
+$$
+\boxed{\exists s' \in \states.((\fixp{F}) s = s')}
+$$
+
+Grazie all'esercizio 9, si ha che se \fixp{F} $s = s'$ allora
+\B{b}$' = \semfalse$. Quindi:
+$$
+\begin{array}{lr}
+(\fixp{F} \circ \fixp{F})\ s = & \text{(Composizione)} \\
+(\fixp{F} (\fixp{F}\ s)) = & \text{(Assunzione)} \\
+\fixp{F}\  s' = & \text{(Applicazione punto fisso)}\\
+F(\fixp{F})\ s' = & \text{(Definizione di $F$)} \\
+\cond{b}{\fixp{F} \circ \dsCtxt{S}}{id}\ s' = & (\B{b}' = \semfalse) \\
+id\ s' & \text{(Definizione di \idDS)} \\
+s'
+\end{array}
+$$
+
+
+
+Dal momento che entrambi i lati dell'equivalenza denotazionale sono uguali ad
+$s'$, la tesi è provata.
+
+\end{proof}
