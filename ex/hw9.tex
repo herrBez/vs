@@ -1,0 +1,67 @@
+\exercise{Esercizio 9}
+{
+  Provare che se $\dsCtxt{\wbS{b}{S}} s = s'$, allora $\B{b}' = \semfalse$.
+}
+{
+}
+
+Sia $F$ il funzionale associato a $\wbS{b}{S}$. Si può dunque dire che
+$$
+\dsCtxt{\wbS{b}{S}} = \fixp{F}
+$$
+dove $F = \lambda{g}.\cond{b}{g \circ \dsCtxt{S}}{\idDS}$.
+
+Siccome $\dsCtxt{\wbS{b}{S}} s = s'$, allora
+$$
+\exists{n}\in\mathbb{N}. (F^n \bot)\ s = s'
+$$
+
+La tesi $\B{b}' = \semfalse$\footnote{N.B. l'esercizio può essere anche
+formalizzato nel seguente modo:
+$\forall{s\in\states}.\dsCtxt{\wbS{b}{S}} s = s' \implies \B{b}' = \semfalse$} 
+viene dunque provata per induzione su $n$.
+
+$$
+\boxer{Caso\ base}
+$$
+
+Per $n = 0$, si ha che $F^0 = \idDS$. Ciò vuol dire che
+$(F^0 \bot) s = \undefDS$.
+
+Ma allora l'ipotesi $\dsCtxt{\wbS{b}{S}} s = s'$ è falsa,
+poichè non esiste alcun $s'$ che la soddisfi.
+
+Il caso base è dunque vacuamente vero.
+
+$$
+\boxer{Passo\ induttivo}
+$$
+
+Si consideri il caso $F^{n+1}$:
+\vspace{.5em}
+
+\noindent $F^{n+1} =$ \\
+\noindent $F(F^n) =$ \\
+\noindent $\cond{b}{F^n \circ \dsCtxt{S}}{\idDS}$
+\vspace{.5em}
+
+In definitiva, bisogna considerare la valutazione di
+$(F^{n+1} \bot) s = (\cond{b}{((F^n \bot) \circ \dsCtxt{S})}{\idDS})\ s$.
+
+A questo punto si può dividere la prova del passo induttivo in due casi a
+seconda della valutazione di \B{b}:
+\begin{itemize}
+  \item $\B{b} = \semfalse$ -- in questo caso lo stato $s$ raggiunto è uguale
+    allo stato finale $s'$ poichè viene applicata la funzione identità \idDS{}.
+    Perciò (banalmente) $\B{b} = \B{b}' = \semfalse$.
+  \item $\B{b} = \semtrue$ -- in questo caso viene scelto il primo ramo
+    condizionale e perciò viene valutato
+    $((F^n \bot) \circ \dsCtxt{S})\ s$.
+    \begin{itemize}
+      \item $\dsCtxt{S} s = \undefDS$, l'implicazione è vera poichè l'ipotesi
+        diventa falsa;
+      \item $\exists{s''}\in\states.\dsCtxt{S} s = s''$, ma in questo caso
+        $(F^n \bot)\ s''$ arriva (per ipotesi induttiva) ad uno stato $s'$ per
+        cui vale $\B{b}' = \semfalse$.
+    \end{itemize}
+\end{itemize}
