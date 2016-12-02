@@ -1,0 +1,95 @@
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+\newcommand{\lt}{\sqsubseteq}
+
+\exercise{Exercise 14}
+{Sia D un CPO e siano $f,g: D \to{} D$ delle funzioni continue. Provare che:
+\begin{align*}
+\fixp{f \circ g} = f(\fixp{g \circ f})
+\end{align*}
+}
+{}
+Dal momento che $f$ e $g$ sono funzioni continue su un CPO, allora:
+
+\begin{itemize}
+  \item $g \circ f$ e $f \circ g$ sono continue (per lemma 4.35);
+  \item $\fixp{f \circ g}$ esiste per il teorema di Knaster-Tarski-Kleene;
+  \item $\fixp{g \circ f}$ esiste per il teorema di Knaster-Tarski-Kleene.
+\end{itemize}
+
+Al fine di provare la tesi, sviluppiamo la dimostrazione spezzando l'uguaglianza
+in due versi\footnote{viene supposto che la relazione di ordinamento sul CPO D
+sia $\lt$}:
+
+\begin{enumerate}[label=(\arabic*)]
+  \item $\fixp{f \circ g} \lt f(\fixp{g \circ f})$
+  \item $f(\fixp{g \circ f}) \lt \fixp{f \circ g}$
+\end{enumerate}
+
+\subsection{(1)}
+La prima disequazione viene dimostrata tramite il \FPIL.
+$$
+f \circ g(f(\fixp{g \circ f})) \lt f(\fixp{g \circ f})
+\implies
+\fixp{f \circ g} \lt f(\fixp{g \circ f})
+$$
+
+È quindi sufficiente provare che:
+\begin{align*}
+f \circ g(f(\fixp{g \circ f})) \lt f(\fixp{g \circ f})
+\end{align*}
+\begin{align*}
+f \circ g \circ f(\fixp{g \circ f}) \lt f(\fixp{g \circ f})
+\end{align*}
+\begin{align*}
+f (g \circ f(\fixp{g \circ f})) \lt f(\fixp{g \circ f})
+\end{align*}
+
+Ma è sufficiente applicare il punto fisso a destra dell'equazione:
+\begin{align*}
+f (g \circ f(\fixp{g \circ f})) \lt f (g \circ f(\fixp{g \circ f}))
+\end{align*} \qed
+
+\subsection{(2)}
+
+Applico una volta il punto fisso sulla parte destra dell'equazione; ottengo
+quindi:
+
+\begin{align*}
+f(\fixp{g \circ f}) \lt f \circ g(\fixp{f \circ g})
+\end{align*}
+\begin{align*}
+f(\fixp{g \circ f}) \lt f(g(\fixp{f \circ g}))
+\end{align*}
+
+Sapendo che $f$ è una funzione monotona (poichè continua), possiamo dire che:
+$$
+\fixp{g \circ f} \lt g(\fixp{f \circ g})
+\Rightarrow
+f(\fixp{g \circ f}) \lt f(g(\fixp{f \circ g}))
+$$
+
+L'obiettivo è quindi dimostrare che $\fixp{g \circ f} \lt g(\fixp{f \circ g})$,
+così da dimostrare la tesi del punto corrente. Tuttavia, ora la disequazione è
+in una forma per cui è possibile utilizzare il \FPIL.
+$$
+g \circ f(g(\fixp{f \circ g})) \lt g(\fixp{f \circ g})
+\implies
+\fixp{g \circ f} \lt g(\fixp{f \circ g})
+$$
+
+Perciò si dimostra l'ipotesi del \FPIL:
+
+\begin{align*}
+g \circ f(g(\fixp{f \circ g})) \lt g(\fixp{f \circ g})
+\end{align*}
+\begin{align*}
+g \circ f(g(\fixp{f \circ g})) \lt g(f \circ g(\fixp{f \circ g}))
+\end{align*}
+\begin{align*}
+g(f(g(\fixp{f \circ g}))) \lt g(f(g(\fixp{f \circ g})))
+\end{align*}
+
+Il che è banale. \qed
+
+\let\lt\undefined
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
