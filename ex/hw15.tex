@@ -13,13 +13,13 @@
 Sia $D \equiv \{\emptyset,\ \{0\},\ \{1\}\}$ con relazione di ordinamento
 $\subseteq$.
 
-\setRel{D}{\subseteq} è un CPO poichè:
+\setRel{D}{\sqsubseteq} è un CPO poichè:
 \begin{itemize}
-  \item \setRel{D}{\subseteq} è un POSET:
+  \item \setRel{D}{\sqsubseteq} è un POSET:
   \begin{itemize}
-    \item $\subseteq$ è riflessivo su $D$;
-    \item $\subseteq$ è transitivo su $D$;
-    \item $\subseteq$ è antisimmetrico su $D$;
+    \item $\sqsubseteq$ è riflessivo su $D$;
+    \item $\sqsubseteq$ è transitivo su $D$;
+    \item $\sqsubseteq$ è antisimmetrico su $D$;
   \end{itemize}
   \item ogni catena in $D$ ha least upper bound:
   \begin{itemize}
@@ -31,16 +31,45 @@ $\subseteq$.
   \end{itemize}
 \end{itemize}
 
-$\emptyset$ è l'elemento minimo di \setRel{D}{\subseteq} poichè
+$\emptyset$ è l'elemento minimo di \setRel{D}{\sqsubseteq} poichè
 è contenuto in sè stesso, in $\{0\}$ ed in $\{1\}$.
-
+\\
 Si consideri la seguente funzione (identità) $f: D \to D$:
 $$
 f\ x = x
 $$
 
-\paragraph{Monotonia} $f$ è monotona per riflessività di $\subseteq$.
-
+\paragraph{Continuità} $f$ è continua perchè: 
+\begin{itemize}
+  \item f è monotona, infatti preserva l'ordine parziale su $D$:
+  \begin{itemize}
+    \item riflessività:
+    $$
+      \forall x \in D.x \sqsubseteq x \Rightarrow f\ x \sqsubseteq f\ x
+    $$
+    \item transitività:
+    $$
+      (\forall x,y,z \in D.(x \sqsubseteq y\ \text{and}\ y \sqsubseteq z) \Rightarrow
+      x \sqsubseteq z)
+      \Rightarrow 
+      ((f\ x \sqsubseteq f\ y\ \text{and}\ f\ y \sqsubseteq f\ z) \Rightarrow
+      f\ x \sqsubseteq f\ z)
+    $$
+    \item antisimmetria:
+     $$
+      (\forall x,y \in D.(x \sqsubseteq y\ \text{and}\ y \sqsubseteq x) \Rightarrow
+      x = y)
+      \Rightarrow 
+      ((f\ x \sqsubseteq f\ y\ \text{and}\ f\ y \sqsubseteq f\ x) \Rightarrow
+      f\ x = f\ y)
+    $$
+  \end{itemize}
+  \item Per ogni catena non vuota\footnote{vale anche per la catena vuota} $Y \in D$ vale:
+    $$ 
+      \sqcup\{f\ d\ |\ d \in Y\} = f(\sqcup Y)
+    $$
+    Ciò è banalmente vero perchè $f$ è l'identità.
+\end{itemize}
 \paragraph{Minimo punto fisso}
 La funzione $f$ ha chiaramente minimo punto fisso, poichè
 $$
