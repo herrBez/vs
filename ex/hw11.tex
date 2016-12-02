@@ -1,0 +1,106 @@
+\exercise{Exercise 11}
+{Prove or disprove the following semantic equivalence:
+$$
+\wbS{b}{S} \eqDS \wbS{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}
+$$	
+}
+{
+Devo dimostrare che:
+$$
+\forall s \in \states.(\dsCtxt{\wbS{b}{S}} s = \dsCtxt{\wbS{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}} s)
+$$	
+Applicando le definizioni della semantica denotazionale ottengo che:
+$$
+\dsCtxt{\wbS{b}{S}} = \fixp{F}
+$$
+dove 
+$$
+F = \lambda g. (\cond{b}{g \circ \dsCtxt{S}}{id})
+$$
+mentre
+$$
+\dsCtxt{\wbS{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}} = \fixp{G}
+$$
+dove
+$$
+G = \lambda g .(\cond{b}{g \circ \cond{b}{\dsCtxt{S}}{\fixp{F}}}{id})
+$$
+Invece di dimostrare direttamente che $\fixp{F} = \fixp{G}$ dimostro 
+che $F = G$ da cui segue immediatamente che $\fixp{F} = \fixp{G}$.
+
+\begin{proof}
+Preso un $s \in \states$ qualsiasi:
+$$
+\begin{array}{l}
+(G\ g)\ s =
+(\cond{b}{g \circ \cond{b}{\dsCtxt{S}}{\fixp{F}}}{id})\ s =\\
+\\
+= \caseFun{(g \circ \cond{b}{\dsCtxt{S}}{\fixp{F}})\ s}
+          {\B{b} =\semtrue}
+          {\idDS\ s}
+          {\B{b} = \semfalse} \\
+\\
+= \caseFun{(g \circ \dsCtxt{S})\ s}
+          {\B{b} = \semtrue}
+          {\idDS\ s}
+          {\B{b} = \semfalse} \\
+\\ 
+(F\ g)\ s = \\
+\\
+= \caseFun{(g \circ \dsCtxt{S})\ s}
+          {\B{b} = \semtrue}
+          {\idDS\ s}
+          {\B{b} = \semfalse} \\
+\\
+quindi\ (G\ g)\ s = (F\ g)\ s
+\end{array}
+$$ 
+Ho dimostrato che $F = G$ da cui segue $\fixp{F} = \fixp{G}$.
+\end{proof}
+	
+\paragraph{Derivazioni di F e G}
+In questo paragrafo illustro brevemente come si giunge alle definizioni di $F$ e $G$ applicando 
+le regole di derivazione viste a lezione.
+$$
+\begin{array}{ll}
+\dsCtxt{\wbS{b}{S}} = & \\
+\dsCtxt{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}} = & \\
+\cond{b}{\dsCtxt{S; \wbS{b}{S}}}{\dsCtxt{\skipForFriends}} = & \\
+\cond{b}{\dsCtxt{\wbS{b}{S}} \circ \dsCtxt{S}}{id} = & \\
+\fixp{F}
+\end{array}
+$$
+dove 
+$$
+F = \lambda g. (\cond{b}{g \circ \dsCtxt{S}}{id})
+$$
+$$
+\begin{array}{ll}
+\dsCtxt{\wbS{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}} = & \\
+\dsCtxt{\ifABC{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}{\skipForFriends}} = & \\
+\cond
+{b}
+{\dsCtxt{(\ifABC{b}{S}{(\wbS{b}{S})}); \wbS{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}}}
+{\dsCtxt{\skipForFriends}}
+= & \\
+\cond{b}
+{\dsCtxt{\wbS{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}} \circ
+	\dsCtxt{\ifABC{b}{S}{(\wbS{b}{S})}}}{id} = & \\
+\cond{b}
+{
+	\dsCtxt{\wbS{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}} \circ
+	\cond{b}{\dsCtxt{S}}{\dsCtxt{\wbS{b}{S}}}
+}{id} =  & \\
+\cond{b}
+{
+	\dsCtxt{\wbS{b}{(\ifABC{b}{S}{(\wbS{b}{S})})}} \circ
+	\cond{b}{\dsCtxt{S}}{\fixp{F}}
+}{id} = & \\
+FIX(G)
+\end{array}
+$$
+dove:
+$$
+G = \lambda g .(\cond{b}{g \circ \cond{b}{\dsCtxt{S}}{\fixp{F}}}{id})
+$$
+}
