@@ -11,7 +11,7 @@
 }
 
 Sia $D \equiv \{\emptyset,\ \{0\},\ \{1\}\}$ con relazione di ordinamento
-$\subseteq$.
+$\sqsubseteq$.
 
 \setRel{D}{\sqsubseteq} è un CPO poichè:
 \begin{itemize}
@@ -71,20 +71,14 @@ $$
     Ciò è banalmente vero perchè $f$ è l'identità.
 \end{itemize}
 \paragraph{Minimo punto fisso}
-La funzione $f$ ha chiaramente minimo punto fisso, poichè
+Essendo $f$ continua su CPO \setRel{D}{\sqsubseteq}, il teorema di Knaster-Tarski ci 
+assicura l'esistenza del minimo punto fisso (è unico):  
 $$
 f\ \bot = f\ \emptyset = \emptyset
 $$
 
-e in particolare $\emptyset$ è l'elemento minimo di $D$.
-
 \paragraph{Massimo punto fisso}
-La funzione $f$ non ha massimo punto fisso: infatti, sia $\{0\}$ che $\{1\}$
-sono punti fissi, ma:
-\begin{itemize}
-  \item $\{0\} \not\subseteq \{1\}$;
-  \item $\{1\} \not\subseteq \{0\}$; anche se
-  \item $\emptyset \subseteq \{0\}$ e $\emptyset \subseteq \{1\}$.
-\end{itemize}
-
-\let\lt\undefined
+Ipotizziamo per assurdo che $f$ abbia massimo punto fisso $z \in D$.
+Una condizione necessaria per l'esistenza di $z$ è che $D$ sia un reticolo 
+(non necessariamente completo). Per verificare questa condizione basta dimostrare che esiste un $greatest\ lower\ bound\ (glb)$ per ogni coppia di elementi non comparabili, l'esistenza di un $least\ upper\ bound$ è già stata dimostrata. Notiamo che $\not \exists\ glb(\{1\},\{0\})$ perchè $D$ non è chiuso all'insù. Pertanto non esiste neppure $z$ e si ha quindi un assurdo.
+\cvd
