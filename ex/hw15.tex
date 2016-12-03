@@ -85,4 +85,20 @@ dimostrare che esistono $greatest\ lower\ bound\ (\sqcap)$ e
 $least\ upper\ bound\ (\sqcup)$ per ogni coppia di elementi non comparabili.
 Notiamo che $\not \exists\ \sqcup(\{1\},\{0\})$ perchè $D$ non è chiuso all'insù. 
 Pertanto non esiste neppure $z$ e si ha quindi un assurdo.
+
+\textbf{Prova alternativa.} È possibile vedere che non esiste massimo
+punto fisso analizzando attentamente i punti fissi di $f$. Essendo $f$ la
+funzione identità, i suoi punti fissi sono proprio gli elementi in $D$:
+\begin{itemize}
+  \item $\emptyset$
+  \item $\{0\}$
+  \item $\{1\}$
+\end{itemize}
+Ma non esiste un massimo punto fisso tra questi, poichè per ogni punto fisso
+$f$ si ha che $\exists{d}\in{D}.\ f \not\sqsubseteq d$:
+\begin{itemize}
+  \item $\emptyset \not\sqsubseteq \{0\}$
+  \item $\{0\} \not\sqsubseteq \{1\}$
+  \item $\{1\} \not\sqsubseteq \{0\}$
+\end{itemize}
 \cvd
