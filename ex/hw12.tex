@@ -40,7 +40,7 @@ prova vengono considerate separatamente:
 	F(\fixp{G}) \sqsubseteq \fixp{G}
 	$$
 	si otterrebbe proprio il risultato cercato.
-  Possiamo applicare $\FPIL$ perchè:
+  Notiamo che valgono le seguenti proprietà:
   \begin{itemize}
    \item $F$ è una funzione totale continua su CPO 
 ($\states \hookrightarrow \states, \sqsubseteq$) perchè $cond$ è continua
@@ -121,7 +121,7 @@ quindi $\fixp{G} \in
   \end{array}
   $$
   Perciò si ha che anche il caso $\B{b}' = \semfalse$ è verificato.
-
+  Quindi per $\FPIL$ vale \\ $\fixp{F} \sqsubseteq \fixp{G}$.
 
 	\item $\boxed{\fixp{F} \sqsupseteq \fixp{G}}$
 	Si tenta di usare il \FPIL; infatti, dimostrando che
@@ -129,7 +129,7 @@ quindi $\fixp{G} \in
 	G(\fixp{F}) \sqsubseteq \fixp{F}
 	$$
 	si otterrebbe proprio il risultato cercato.
-        Possiamo applicare $\FPIL$ perchè:
+        Notiamo che valgono le seguenti proprietà:
         \begin{itemize}
          \item $G$ è una funzione totale continua su CPO 
           ($\states \hookrightarrow \states, \sqsubseteq$) perchè $cond$ 
@@ -208,6 +208,7 @@ quindi $\fixp{G} \in
         s''
         \end{array}
         $$
+        Quindi per $\FPIL$ vale $\fixp{F} \sqsupseteq \fixp{G}$.
 \end{itemize}
 
 \end{proof}
