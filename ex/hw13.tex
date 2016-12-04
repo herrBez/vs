@@ -67,8 +67,8 @@ unione di catene, quindi sottoinsiemi, contenute in $P$.
             $\forall x \in S.\forall y \in P. y \leq x \Rightarrow y \in S$.
             Poichè $S \subseteq \bigcup Y$, l'asserto è dimostrato.
           \item $(\impliedby)$ \\
-            $x \in S$ per definizione di $S$. Poichè per definizione è vero che
-            $S \subseteq \bigcup Y$, allora vale $x \in \bigcup Y$.
+            $x \in S$ per definizione di $S$. Poichè per definizione
+            $S \subseteq \bigcup Y$ allora vale $x \in \bigcup Y$.
         \end{itemize}
 	\end{enumerate}
 
@@ -94,7 +94,7 @@ Per dimostrare questa seconda proprietà, è sufficiente mostrare che
 $f(X) \subseteq P$ è down-closed:
 
 \begin{itemize}
-  \item Se $\not \exists{x}\in X. p\in P \land p \leq x$, in
+  \item Se $\not \exists{x}\in X. p\in P \land p \leq x$; ciò vuol dire che in
     questo caso $f(X) = \emptyset$ (che per definizione è down-closed);
   \item Se $\exists{x}\in X.\ p \leq x$ per qualche $p \in P$, allora $f(X)$ è
     ancora down-closed. Ipotizziamo per assurdo (rispetto alla ipotesi da
@@ -107,7 +107,7 @@ $f(X) \subseteq P$ è down-closed:
       \item se $s \in f(X)$ allora $\exists{x}\in X.\ s \leq x$
       \item se $y \leq s$ allora $y \leq s \leq x$
     \end{itemize}
-    Ma se $y \leq x$, allora $y \in f(X)$ per definizione di $f(X)$.
+    Ma se $p \leq x$, allora $p \in f(X)$ per definizione di $f(X)$.
 \end{itemize}
 
 $$
@@ -143,39 +143,22 @@ powerset di $P$.
      y \in f(Y) & & \\
     \end{array}
     $$
-    
-    
-  \item Una catena derivante da un powerset può essere generalizzata ad un
-    gruppo di insiemi in cui  vi è insieme ``massimo'' contenente tutti gli
-    elementi di qualsiasi altro insieme della catena.
 
-	
-
-    Ma, in particolare, è possibile notare che tale insieme è uguale all'unione
-    di sè stesso e tutti gli insiemi in esso contenuti facenti parte della
-    catena. Ciò vuol dire che
-    $$
-    \sqcup\{f\ d | d \in Y\} = f(\sqcup Y)
-    $$
-    per ogni catena in $\powerset{P}$.
-\end{enumerate}
-
-Dimostro che 
+\item Dimostro che per ogni catena $Y \in \powerset{P}$ vale:  
 $$
 \sqcup\{f\ d | d \in Y\} = f(\sqcup Y)
 $$
 ovvero sostituendo le definizioni e applicandole al caso specifico:
 $$
-\sqcup\{f\ d | d \in Y\} =
-  \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\}
+\sqcup\{f\ d | d \in Y\} = \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S, p \leq x\}
 $$
 
 $$
-f(\sqcup Y) = \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x\}
+f(\bigcup Y) = \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x\}
 $$
 Dimostro che i due insiemi coincidono ovvero:
 $$
-\bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\} =  \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x\}
+\bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S, p \leq x\} =  \{p \in P\ |\ \exists x \in \bigcup Y, p \leq x\}
 $$
 \begin{itemize}
 	\item $\boxed{\subseteq}$ Bisogna dimostrare che:
@@ -185,7 +168,7 @@ $$
 	
 	$$
 	\begin{array}{llr}
-	x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\} & \iff & (\text{è vero se appartiene ad almeno un sottoinsieme non vuoto di Y})\\
+	x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\} & \iff & (\text{è vero se appartiene ad almeno un sottinsieme di Y})\\
 	\exists S \in Y: x \in \{p \in P\ |\ \exists x \in S. p \leq x\} & \implies & (S \subseteq \bigcup Y)\\
 	x \in \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x \} & \iff & (\text{ Definizione di: } f(\bigcup Y)) \\
 	x \in f(\bigcup Y)
@@ -208,7 +191,7 @@ $$
 	$$
 \end{itemize}
 
-
+\end{enumerate}
 
 \end{proof}
 
