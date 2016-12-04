@@ -58,12 +58,18 @@ unione di catene, quindi sottoinsiemi, contenute in $P$.
 	$$
 	Si noti che
 	$x \in \bigcup Y \iff \exists S \in dc(P).
-		S \subseteq \bigcup Y \land x \in S$
-	siccome $\bigcup Y$ è proprio l'unione delle catene in $dc(P)$ (ed $S$ è una
-	di queste).
-	Ma allora dal fatto che $S$ è down-closed ottengo che $\forall x \in S.
-        \forall y \in P. y \leq x \Rightarrow y \in S$.
-	Visto che $S \subseteq \bigcup Y$, l'asserto è dimostrato.
+		S \subseteq \bigcup Y \land x \in S$:
+	\begin{itemize}
+          \item $(\implies)$ \\
+            $\bigcup Y$ è proprio l'unione delle catene in $dc(P)$ (ed $S$ è una
+            di queste). Ma allora dal fatto che $S$ è down-closed 
+            (per definizione) ottengo che 
+            $\forall x \in S.\forall y \in P. y \leq x \Rightarrow y \in S$.
+            Poichè $S \subseteq \bigcup Y$, l'asserto è dimostrato.
+          \item $(\impliedby)$ \\
+            $x \in S$ per definizione di $S$. Poichè per definizione
+            $S \subseteq \bigcup Y$ allora vale $x \in \bigcup Y$.
+        \end{itemize}
 	\end{enumerate}
 
 
