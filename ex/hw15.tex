@@ -21,7 +21,7 @@ $\sqsubseteq$.
     \item $\sqsubseteq$ è transitivo su $D$;
     \item $\sqsubseteq$ è antisimmetrico su $D$;
   \end{itemize}
-  \item ogni catena in $D$ ha least upper bound:
+  \item ogni catena \emph{non vuota} in $D$ ha least upper bound:
   \begin{itemize}
     \item $\sqcup\{\emptyset\} = \{\emptyset\}$
     \item $\sqcup\{\{0\}\} = \{0\}$
@@ -71,7 +71,7 @@ $$
     Ciò è banalmente vero perchè $f$ è l'identità.
 \end{itemize}
 \paragraph{Minimo punto fisso}
-Essendo $f$ continua su CPO \setRel{D}{\sqsubseteq}, il teorema di Knaster-Tarski ci 
+Essendo $f$ continua su CPO \setRel{D}{\sqsubseteq} ed avendo $D$ un elemento minimo ($\emptyset$), il teorema di Knaster-Tarski ci 
 assicura l'esistenza del minimo punto fisso (è unico):  
 $$
 f\ \bot = f\ \emptyset = \emptyset
@@ -88,17 +88,32 @@ Pertanto non esiste neppure $z$ e si ha quindi un assurdo.
 
 \textbf{Prova alternativa.} È possibile vedere che non esiste massimo
 punto fisso analizzando attentamente i punti fissi di $f$. Essendo $f$ la
-funzione identità, i suoi punti fissi sono proprio gli elementi in $D$:
+funzione identità, l'insieme dei punti fissi suoi punti fissi $P$ sono proprio gli elementi in $D$:
 \begin{itemize}
   \item $\emptyset$
   \item $\{0\}$
   \item $\{1\}$
 \end{itemize}
-Ma non esiste un massimo punto fisso tra questi, poichè per ogni punto fisso
-$f$ si ha che $\exists{d}\in{D}.\ f \not\sqsubseteq d$:
+Dimostro che tra di essi non c'é il massimo punto fisso ovvero non esiste un 
+\begin{mydef}(Massimo punto fisso)
+Un elemento $d \in D$ si dice massimo punto fisso di una funzione $f$ se:
+\begin{enumerate}
+	\item $d$ è un punto fisso di $f$ ovvero $d \in P$.
+	\item $\forall p' \in P: p' \sqsubseteq d$ ovvero $\neg \exists p' \in P : p' \not \sqsubseteq d$
+\end{enumerate}
+\qed
+\end{mydef}
+\begin{Oss}
+	Per dimostrare che un punto fisso $p \in P$ non è un massimo punto fisso è sufficiente trovare un controesempio alla 
+	seconda condizione, ovvero trovare un elemento $p' \in P$ tale che $p' \not \sqsubseteq p$
+\qed
+\end{Oss}
+
+Ma non esiste un punto fisso $p \in P$ tale che la seconda condizione è soddisfatta, infatti
 \begin{itemize}
-  \item $\emptyset \not\sqsubseteq \{0\}$
-  \item $\{0\} \not\sqsubseteq \{1\}$
-  \item $\{1\} \not\sqsubseteq \{0\}$
+	\item Per $\boxed{p = \emptyset}$ siccome $\{0\} \not \sqsubseteq \emptyset$, $\emptyset$ non è un massimo punto fisso.
+	\item Per $\boxed{p = \{0\}}$ siccome $\{1\} \not \sqsubseteq \{0\}$ e $\{1\}$ è un punto fisso, $\{0\}$ non è il massimo punto fisso.
+	\item Per $\boxed{p = \{1\}}$ siccome $\{0\} \not \sqsubseteq \{1\}$ e $\{0\}$ è un punto fisso, $\{1\}$ non è il massimo punto fisso.
 \end{itemize}
+Siccome nessuno degli elementi di $P$ è massimo allora sotto queste ipotesi non esiste massimo punto fisso.
 \cvd
