@@ -56,9 +56,13 @@ unione di catene, quindi sottoinsiemi, contenute in $P$.
 	$$
 	\forall x \in \bigcup Y.\ \forall y \in P.(y \leq x \Rightarrow y \in \bigcup Y)
 	$$
-	Siccome $x \in \bigcup Y \iff \exists S \in dc(P). S \in \bigcup Y : x \in S$ (siccome $\bigcup Y$ è stato ottenuto come unione di vari insiemi).
-	Ma siccome $S$ è down-closed (per la costruzione di $\bigcup Y$) ottengo che $\forall y \in P, y \leq x \Rightarrow y \in S$, ma siccome
-	$S \in \bigcup Y$ l'asserto è dimostrato.
+	Si noti che
+	$x \in \bigcup Y \iff \exists S \in dc(P).
+		S \subseteq \bigcup Y \land x \in S$
+	(siccome $\bigcup Y$ è stato ottenuto come unione di vari insiemi).
+	Ma allora dal fatto che $S$ è down-closed (per la costruzione di
+	$\bigcup Y$) ottengo che $\forall y \in P. y \leq x \Rightarrow y \in S$.
+	Visto che $S \subseteq \bigcup Y$, l'asserto è dimostrato.
 	\end{enumerate}
 
 
