@@ -34,7 +34,9 @@ altrimenti viene eseguito un nuovo ciclo.
 
 \item Devo dimostrare che:
 $$
-\forall s, s'. (\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{*} s' \iff  \confSs{\wbS{b}{S}}{s} \Rar{*} s')
+\forall s, s'. (\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{m} s'
+  \iff
+\confSs{\wbS{b}{S}}{s} \Rar{n} s')
 $$
 \begin{proof} \mbox{ }
 
@@ -54,13 +56,17 @@ Ma questo termine evolverà in modo deterministico:
 
 \noindent(Fine nota) \vspace{1em} \\
 
-Vengono quindi dimostrate le due implicazioni, considerando i versi
-dell'implicazione separatamente.
+L'esercizio viene svolto per induzione sulla lunghezza della derivazione
+$m$ o $n$ a seconda del verso della doppia implicazione che si prende in
+considerazione.
+
+I casi $m = 0$, $n = 0$ vengono dati banalmente per veri poichè sono
+vacuamente verificati.
 
 $$
 \boxed{\implies}
 $$
-Assumo che $\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{*} s'$.
+Assumo che $\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{m} s'$.
 Quindi applicando l'assioma $\exitifSOS$ si ottiene:
 $$
 \confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s}
@@ -95,7 +101,8 @@ ora in base alla valutazione di $b$ nello stato $s$ distinguo due casi:
 	\end{array}
 	$$
 	per via del determinismo e dell'ipotesi $\implies$.
-	Ora applicando il lemma di decomposizione si ottiene che $\exists s''$:
+	Ora applicando il lemma di decomposizione si ottiene che
+  $\exists s''\in\states$:
 	\begin{enumerate}
 	\item $\confSs{S}{s} \Rar{*} s''$
 	\label{hw6:Ssgoestos''}
@@ -132,13 +139,29 @@ ora in base alla valutazione di $b$ nello stato $s$ distinguo due casi:
 		$$
 		\begin{array}{ll}
 		\confSs{(\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})})}{s''} & \ifffSOS\\
-		\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{*} s'
+		\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{m_1} s'
 		\end{array}
 		$$
-		che per induzione\footnote{Si guardi la parentesi matematica per una spiegazione più dettagliata.} sulla lunghezza della derivazione implica che
+    Sotto le stesse ipotesi, il termine \confSs{\wbS{b}{S}}{s} evolve come
+    segue:
+    $$
+    \begin{array}{ll}
+    \confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS \\
+    \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} & \ifttSOS \\
+    \confSs{S; \wbS{b}{S}}{s} \Rar{*} & \text{Lemma di composizione applicato a \ref{hw6:Ssgoestos''}} \\
+    \confSs{\wbS{b}{S}}{s''}
+    \end{array}
+    $$
+		Siccome è necessario dimostrare la stessa tesi iniziale con premessa avente
+    lunghezza di derivazione $m_1$ strettamente inferiore di $m$, possiamo
+    applicare l'ipotesi induttiva (dove $n_1 \leq n$):
 		$$
-		\confSs{\wbS{b}{S}}{s} \Rar{*} s'
+		\confSs{\wbS{b}{S}}{s''} \Rar{n_1} s'
 		$$
+    E quindi si ha:
+    $$
+    \confSs{\wbS{b}{S}}{s} \Rar{n} s'
+    $$
 	\end{itemize}
 	
 \end{itemize}
