@@ -10,12 +10,29 @@
 L'esercizio va risolto dimostrando la seguente asserzione:
 
 $\forall{s,s'} \in \states.
-  (\confSs{\wbS{b}{S_1}}{s} \Rar{*} s')
+  (\confSs{\wbS{b}{S_1}}{s} \Rar{n_1} s')
   \iff
-  (\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{*} s')
+  (\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \Rar{n_2} s')
 $
 
-Dunque, fissando due stati $s$ ed $s'$ in \states, è possibile discriminare due
+La dimostrazione procede per induzione sulla lunghezza di derivazione $n_1$ ed
+$n_2$ degli statement.
+
+$$
+\boxed{n_1 = 0, n_2 = 0}
+$$
+
+In entrambi i casi la proprietà è vacuamente vera poichè:
+\begin{itemize}
+  \item $\confSs{\wbS{b}{S_1}}{s} \not\Rar{0} s'$
+  \item $\confSs{\wbS{b}{(\ifABC{b}{S_1}{S_2})}}{s} \not\Rar{0} s'$
+\end{itemize}
+
+$$
+\boxed{n_1 > 0, n_2 > 0}
+$$
+
+Fissando due stati $s$ ed $s'$ in \states, è possibile discriminare due
 casi in funzione della valutazione di $b$ nello stato $s$.
 
 \subsection{\B{b} = \semfalse}
