@@ -168,7 +168,8 @@ ora in base alla valutazione di $b$ nello stato $s$ distinguo due casi:
 $$
 \boxed{\impliedby}
 $$
-Assumo che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$. Applicando un unfolding ($\whileSOS$) ottengo:
+Assumo che $\confSs{\wbS{b}{S}}{s} \Rar{n} s'$. Applicando un unfolding
+($\whileSOS$) ottengo:
 $$
 \confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s}
 $$
@@ -194,16 +195,16 @@ $$
 \item $\boxed{\B{b} = \semtrue}$
 $$
 \begin{array}{ll}
-\confSs{\wbS{b}{S}}{s} \Rar{*} & \\ 
+\confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS \\
 \confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{} & \ifttSOS\\
 \confSs{S; \wbS{b}{S}}{s} & \\
 \end{array}
-$$	
+$$
 Siccome le regole SOS sono deterministiche ottengo che
 $$
 \confSs{S; \wbS{b}{S}}{s} \Rar{*} s'
 $$
-e quindi per il lemma di decomposizione $\exists s''$:
+e quindi per il lemma di decomposizione $\exists s''\in\states$:
 \begin{enumerate}
 \item 
 $\confSs{S}{s} \Rar{*} s''$
@@ -211,7 +212,7 @@ $\confSs{S}{s} \Rar{*} s''$
 \item $\confSs{\wbS{b}{S}}{s''} \Rar{*} s' $
 \label{hw6:FattoB}
 \end{enumerate}
-Inizio anche a sviluppare 
+Inizio anche a sviluppare il lato sinistro dell'implicazione
 $$
 \begin{array}{ll}
 	\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{ } & \exitifSOS\\
@@ -219,7 +220,7 @@ $$
 	\confSs{S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})})}{s} & \\
 \end{array}
 $$
-Usando il fatto \ref{hw6:FattoA}  e il lemma di composizione ottengo che:
+Usando il fatto \ref{hw6:FattoA} e il lemma di composizione ottengo che:
 $$
 \begin{array}{ll}
 \confSs{S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{b'})})}{s} \Rar{*} & \\
@@ -230,7 +231,7 @@ Ora invece di procedere come di consueto distinguo ulteriori due casi:
 \begin{itemize}
 \item $\boxed{\B{b}'' = \semfalse}$
 Applicando questa ipotesi al fatto $\ref{hw6:FattoB}$ ottengo che $\boxed{s'' \equiv s'}$.
-Al contempo applicando questa ipotesi ottengo anche:
+Al contempo applicando questa ipotesi al lato sinistro ottengo anche:
 $$
 \begin{array}{ll}
 	\confSs{S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{b'})})}{s} \Rar{*} & \\
@@ -239,19 +240,31 @@ $$
 \end{array}
 $$
 quindi ho dimostrato che $\wbSE{b}{S}{\neg b} \Rar{*} s'$ perchè $s' \equiv s''$.
-\item $\boxed{\B{b}'' = \semtrue}$	
+\item $\boxed{\B{b}'' = \semtrue}$
 In questo caso ottengo che
 $$
-\confSs{\wbS{b}{S}}{s''} \Rar{*} s'
+\confSs{\wbS{b}{S}}{s''} \Rar{n_1} s'
 $$
 e a destra ottengo
 $$
 \confSs{\wbSE{b}{S}{\neg b}}{s''}
 $$
-ma quindi, per induzione\footnote{Si guardi la parentesi matematica per una
-spiegazione più dettagliata.} sulla lunghezza della derivazione ottengo che
+Chiaramente, ci si trova di fronte alla stessa tesi che si voleva dimostrare
+inizialmente, ovvero:
 $$
-\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{*} s'
+\confSs{\wbS{b}{S}}{s''} \Rar{n_1} s'
+  \implies
+\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{m_1} s'
+$$
+Tuttavia, questa volta la derivazione inizia da uno stato $s''$ più avanzato
+nella computazione rispetto alla tesi iniziale. Ciò è equivalente a dire che
+$n_1 < n$. Posso quindi applicare l'ipotesi induttiva, per la quale è vero che:
+$$
+\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{m_1} s'
+$$
+Ma allora, per induzione sulla lunghezza della derivazione, si ha proprio che
+$$
+\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{m} s'
 $$
 \end{itemize}
 \end{itemize}
