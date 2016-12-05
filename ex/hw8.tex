@@ -9,18 +9,22 @@
 È necessario dimostrare che
 $$
 \forall s,s' \in \states. 
-  \Big(\confSs{\wbS{b}{S}}{s} \Rar{*} s'
+  \Big(\confSs{\wbS{b}{S}}{s} \Rar{m} s'
   \iff
-  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{*} s' \Big)
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{n} s' \Big)
 $$
 }
 \begin{proof}
-Vengano fissati due stati $s, s' \in \states$. La prova procede dunque andando
-a verificare entrambi i versi della doppia implicazione.
+L'esercizio si svolge effettuando la prova per induzione sulle lunghezze delle
+derivazioni $m$ ed $n$, a seconda del verso che si considera.
+
+I casi base $m = 0$, $n = 0$ non vengono mostrati per esteso in quanto
+vacuamente verificati; di seguito verranno illustrati i casi con lunghezze di
+derivazioni maggiori di $0$.
 $$
 \boxed{\implies}
 $$
-Si assuma che $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$. Vengono studiati i due casi
+Si assuma che $\confSs{\wbS{b}{S}}{s} \Rar{m} s'$. Vengono studiati i due casi
 che si possono verificare a seconda della valutazione della guardia booleana $b$
 nello stato di memoria $s$:
 \begin{itemize}
@@ -114,14 +118,14 @@ nello stato di memoria $s$:
   \begin{array}{lr}
   \confSs{ (S;\ \ifABC{b}{S}{\skipForFriends});
             \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
-         }{s} \Rar{*}& (\compoSOS\ applicato\ *\ volte) \\
+         }{s} \Rar{}& (\compoSOS\ applicato\ *\ volte) \\
   \confSs{ (\ifABC{b}{S}{\skipForFriends});
             \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
          }{s''}
   \end{array}
   $$
-  a questo punto i termini verranno derivati applicando in ambo i casi la regola
-  $\ifttSOS$:
+  a questo punto i termini verranno derivati, a partire da $s''$, applicando
+  in ambo i casi la regola $\ifttSOS$:
   \begin{enumerate}
     \item \confSs{S;\wbS{b}{S}}{s''} (per la parte sinistra dell'equivalenza)
     \label{hw8:item3}
@@ -133,7 +137,7 @@ nello stato di memoria $s$:
   \begin{enumerate}[label=(\alph*)]
     \item $\confSs{S}{s''} \Rar{*} s'''$
     \label{hw8:item4}
-    \item $\confSs{\wbS{b}{S}}{s'''} \Rar{*} s'$ (per l'ipotesi iniziale)
+    \item $\confSs{\wbS{b}{S}}{s'''} \Rar{m_1} s'$ (per l'ipotesi iniziale)
     \label{hw8:item5}
   \end{enumerate}
   Applicando il lemma di composizione a \ref{hw8:item4} si ottiene
@@ -144,25 +148,20 @@ nello stato di memoria $s$:
   $$
   Si è arrivati ad un punto nel quale si vuole provare
   l'asserzione iniziale su una derivazione di lunghezza strettamente inferiore,
-  nello specifico partendo da uno stato $s'''$.
+  nello specifico partendo da uno stato $s'''$:
+  $$
+    \confSs{\wbS{b}{S}}{s'''} \Rar{m_1} s'
+    \implies
+    \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s'''} \Rar{n_1} s'
+  $$
 
-  Tale verso della doppia implicazione è dimostrato per induzione sulla
-  lunghezza della derivazione:
-  \begin{itemize}
-    \item il caso base ($\B{b} = \semfalse$ e derivazioni lunghe 3 passi di
-      riduzione) è stato verificato;
-    \item il passo induttivo (ottenibile ponendo $\B{b} = \semtrue$) porta a
-      dover dimostrare la stessa proprietà eseguendo lo statement iniziale a
-      partire da $s'''$, stato più avanzato nella derivazione rispetto a $s$.
-
-      Poichè la derivazione che da $s'''$ porta a $s'$ è strettamente più
-      corta di quella che porta da $s$ a $s'$\footnote{si è volutamente deciso
-      di adottare un livello di informalità per esprimere in modo più
-      conciso che si parte da una configurazione in un certo stato per
-      arrivare ad un'altra configurazione in un secondo stato}, il passo
-      induttivo è valido proprio per induzione sulla lunghezza della
-      derivazione.
-  \end{itemize}
+  Il passo induttivo porta a dover dimostrare la stessa tesi su una
+  derivazione lunga $m_1 < m$. Ma allora l'ipotesi induttiva è applicabile e,
+  dal momento che la configurazione sulla destra iniziale evolve in \\
+  $\confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s'''}$, si ha che
+  $$
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{n} s'
+  $$
 \end{itemize}
 
 %%%%%%%%
