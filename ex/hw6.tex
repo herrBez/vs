@@ -16,7 +16,7 @@ to true then the loop is terminated (with no change to the current state).
 	$$
 \end{enumerate}
 }
-{
+{}
 	\begin{enumerate}
 \item In analogia con quanto fatto per $\wbS{b}{S}$ definisco $\wbSE{b}{S}{b'}$ come unfolding:
 $$
@@ -228,46 +228,7 @@ spiegazione più dettagliata.} sulla lunghezza della derivazione ottengo che
 $$
 \confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{*} s'
 $$
-\paragraph{Parentesi matematica (Perchè l'induzione funziona)}
-
-Il tutto può essere visto come induzione sul numero di passi di derivazione
-della configurazione: $$\confSs{\wbS{b}{S}}{s} \Rar{n} s'$$
-Sia $n$ il numero di passi necessari per arrivare ad $s'$, allora:
-\begin{itemize}
-\item Se $\boxed{\B{b} = \semfalse}$ $n = 3$.
-\item Se $\boxed{\B{b} = \semtrue \land \B{b}'' = \semfalse}$, $n = 2 + l + 2 + 1$ dove $l$ è il numero
-di passi per $\confSs{S}{s} \Rar{l} s$
-\end{itemize}
-che sono i casi base della dimostrazione.
-
-Il passo induttivo, ovvero il caso in cui $\B{b} = \B{b}'' = \semtrue$
-richiede almeno (nel caso induttivo più breve):
-$$
-n = 2 + l + 2 + k + 2 + 1
-$$
-passi, 
-con $k$ tale che $\confSs{\wbS{b}{S}}{s''} \Rar{k} s'''$.
-Quindi in generale se $\confSs{\wbS{b}{S}}{s} \Rar{*} s'$ richiede $w$ iterazioni per essere calcolata:
-$$
-n = 2 + \left(\sum_{i=1}^{w} (l_i + 2)\right) + 1
-$$
-dove 
-$$
-\confSs{S}{s_{i-1}} \Rar{l_i} \confSs{S}{s_i}
-$$
-con $\boxed{s_0 = s}$ e $\boxed{s_w = s'}$. Naturalmente se $w = 0$
-allora $s_0 = s_w = s = s'$.
-Siccome $S$ deve contenere almeno un'istruzione, questa ha bisogno almeno di $1$ ($\forall i \leq w\ \text{ vale } l_i \geq 1$) passo per
-essere derivato completamente (nel caso di $\skipForFriends$ e $x := a$), quindi 
-ad ogni iterazione completata vengono rimossi almeno $(l_i + 2) \geq 3$ passi da eseguire, 
-per cui dopo aver 'eseguito' un'iterazione può essere applicata l'ipotesi induttiva.
-Nel caso specifico della dimostrazione
-$$
-\confSs{\wbS{b}{S}}{s} \Rar{2} \confSs{S; \wbS{b}{S}}{s} \Rar{l+2} \confSs{\wbS{b}{S}}{s''}
-$$
-cui posso applicare l'ipotesi induttiva.
 \end{itemize}
 \end{itemize}
 \end{proof}
 \end{enumerate}
-}
