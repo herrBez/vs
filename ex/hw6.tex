@@ -1,16 +1,18 @@
 \newcommand{\exitifSOS}{\SOSRule{exitif}{}{SOS}}
 \exercise{Esercizio 6}
-{Assume that the language \while{} includes a new iterative command:
+{Si assuma che il linguaggio \while{} includa un nuovo comando iterativo:
 $$
 \wbSE{b}{S}{b'}
 $$
-where $b, b' \in \bexp$ and $S \in \stm$, whose informal semantics goes as follows:
-this behaves like a standard while-loop $\wbS{b}{S}$ where at the end of any iteration
-of the body $S$ of the Boolean expression $b'$ is evaluated and if $b'$ is evaluated
-to true then the loop is terminated (with no change to the current state).
+dove $b, b' \in \bexp$ e $S \in \stm$, la cui semanticac informale è definita
+come segue:
+``si comporta come un while-loop standard $\wbS{b}{S}$ in cui, alla fine di
+ogni iterazione del corpo $S$, l'espressione booleana $b'$ viene valutata e se
+$b'$ è valutata a $\semtrue$ allora il loop termina (senza modifiche allo
+stato corrente''.
 \begin{enumerate}[label=$\arabic*$.]
-	\item Define the small-step operational semantics of this new iterative command.
-	\item Prove the following semantic equivalence:
+	\item Si definisca la SOS di questo nuovo comando iterativo.
+	\item Si provi la seguente equivalenza semantica:
 	$$
 	\wbSE{b}{S}{\neg b} \eqSOS \wbS{b}{S}
 	$$
