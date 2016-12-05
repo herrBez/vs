@@ -172,7 +172,7 @@ $$
 \boxed{\impliedby}
 $$
 Si assuma che
-$\confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{*} s'$. Vengono
+$\confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{n} s'$. Vengono
 studiati i due casi che si possono verificare a seconda della valutazione
 della guardia booleana $b$ nello stato di memoria $s$:
 
@@ -182,7 +182,7 @@ della guardia booleana $b$ nello stato di memoria $s$:
   \item $\boxed{\B{b} = \semtrue}$
   $$
   \begin{array}{lr}
-  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} & \whileSOS \\
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{}& \whileSOS \\
   \confSs{\ifABC{b}
             {((S;\ \ifABC{b}{S}{\skipForFriends});
               \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})})}
@@ -277,9 +277,9 @@ della guardia booleana $b$ nello stato di memoria $s$:
   Per il lemma di decomposizione, si ha che $\exists{t}\in\states$:
   \begin{enumerate}[label=(\alph*)]
     \nextitem{e}
-    \item $\confSs{S}{s} \Rar{*} t$
+    \item $\confSs{S}{s'''} \Rar{*} t$
     \label{hw8:item11}
-    \item $\confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{t} \Rar{*} s'$
+    \item $\confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{t} \Rar{n_1} s'$
     \label{hw8:item12}
   \end{enumerate}
   Chiaramente, per il lemma di composizione applicato a \ref{hw8:item11} si ha:
@@ -300,30 +300,26 @@ della guardia booleana $b$ nello stato di memoria $s$:
   \confSs{\wbS{b}{S}}{t}
   \end{array}
   $$
-  A questo punto, è possibile concludere la dimostrazione; infatti, partendo
-  da:
+  A questo punto, è possibile concludere la dimostrazione; si è infatti
+  arrivati a dover dimostrare:
   $$
-  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{*} s'
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{t} \Rar{n_1} s'
   \implies
-  \confSs{\wbS{b}{S}}{s} \Rar{*} s'
+  \confSs{\wbS{b}{S}}{t} \Rar{m_1} s'
   $$
-  Si vuole dimostrare che
+  Essendo partiti da:
   $$
-  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{t} \Rar{*} s'
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{n} s'
   \implies
-  \confSs{\wbS{b}{S}}{t} \Rar{*} s'
+  \confSs{\wbS{b}{S}}{s} \Rar{m} s'
   $$
-  Ma questo vale per induzione sulla lunghezza della derivazione poichè:
-  \begin{itemize}
-    \item il caso base ($\B{b} = \semfalse$) è stato verificato;
-    \item il passo induttivo (ottenibile ponendo $\B{b} = \semtrue$) porta a
-      dover dimostrare la stessa proprietà eseguendo lo statement iniziale a
-      partire da $t$, stato più avanzato nella derivazione rispetto a $s$.
-
-      Poichè la derivazione che da $t$ porta a $s'$ è strettamente più corta di
-      quella che porta da $s$ a $s'$, il passo induttivo è valido proprio per
-      induzione sulla lunghezza della derivazione.
-  \end{itemize}
+  Ma, essendo $n_1 < n$, posso applicare l'ipotesi induttiva e verificare la
+  relativa conclusione $\confSs{\wbS{b}{S}}{t}$. Perciò, siccome
+  il lato destro evolve proprio a tale configurazione tramite $m - m_1$ passi
+  di derivazione, si ha che:
+  $$
+  \confSs{\wbS{b}{S}}{s} \Rar{m} s'
+  $$
 \end{itemize}
 
 \end{proof}
