@@ -8,9 +8,18 @@ $$
 {
 È necessario dimostrare che
 $$
-\forall s,s' \in \states. \Big(\confSs{\wbS{b}{S}}{s} \Rar{*} s' \iff \confSs{\wbS{b}{(S;\wbS{b}{S})}}{s} \Rar{*} s' \Big)
+\forall s,s' \in \states. \Big(\confSs{\wbS{b}{S}}{s} \Rar{n_1} s'
+  \iff
+\confSs{\wbS{b}{(S;\wbS{b}{S})}}{s} \Rar{n_2} s' \Big)
 $$
 \begin{proof}
+La prova si svolge per induzione sulla lunghezza della derivazione
+(rispettivamente per $n_1$ e $n_2$ a seconda del verso della doppia
+implicazione che si va a considerare).
+
+Il caso $n = 0$ non viene mostrato per esteso in entrambi i versi in quanto è
+vacuamente vero. Di seguito verranno dunque visti entrambi i versi delle
+implicazioni per $n > 0$.
 $$
 \boxed{\implies}
 $$
