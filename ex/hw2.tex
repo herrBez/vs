@@ -4,7 +4,7 @@
  $\B{b}' = \semfalse$.
 }
 {
-Assumo che \confSs{\wbS{b}{S}}{s} $\Rar{*}$ $s'$.
+Assumo che \confSs{\wbS{b}{S}}{s} $\Rar{n}$ $s'$ per un qualche $n$.
 
 Allo statement di partenza posso applicare solo la regola \whileSOS
 (essendo la semantica SOS deterministica), da cui ottengo:
@@ -22,23 +22,24 @@ che dipendentemente dalla valutazione di $b$ può:
 Procedo per induzione sulla lunghezza della derivazione.
 
 \begin{itemize}
-  \item $\boxed{\text{Caso Base}: n = 3}$ ovvero $\boxed{\B{b} = \semfalse}$
-  $$
-  \begin{array}{lrr}
-  \confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS & \\
-  \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} \Rar{} & \ifffSOS & \\
-  \confSs{\skipForFriends}{s} \Rar{} & \skipSOS & \\
-  s & & \\
-  \end{array}
-  $$
+  \item $\boxed{\text{Caso Base}: n = 0}$ L'ipotesi è vacuamente verificata
+    poichè \confSs{\wbS{b}{S}}{s} $\not\Rar{0}$ $s'$.
 
-Siccome $s = s'$ e $\B{b} = \semfalse$ l'asserto è dimostrato.
-
-  \item $\boxed{\text{Passo Induttivo}: n \rightarrow n + l + 2,
-    \text{ dove } \confSs{S}{s} \Rar{l} s'' \text{, ovvero } \B{b} = \semtrue}$
+  \item $\boxed{\text{Passo Induttivo}: n > 0}$
     \begin{itemize}
+      \item Caso banale: $\boxed{\B{b} = \semfalse}$
+        $$
+        \begin{array}{lrr}
+        \confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS & \\
+        \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s}
+            \Rar{} & \ifffSOS & \\
+        \confSs{\skipForFriends}{s} \Rar{} & \skipSOS & \\
+        s & & \\
+        \end{array}
+        $$
+        Siccome $s = s'$ e $\B{b} = \B{b}' = \semfalse$ l'asserto è dimostrato.
       \item Ipotesi Induttiva: \confSs{\wbS{b}{S}}{t} \Rar{n} $s'$ then
-      $\B{b}' = \semfalse$, con $t\in\states$
+        $\B{b}' = \semfalse$, con $t\in\states$
     \end{itemize}
     $$
     \begin{array}{lrr}
@@ -51,15 +52,13 @@ Siccome $s = s'$ e $\B{b} = \semfalse$ l'asserto è dimostrato.
 
    Per il lemma di decomposizione so che $\exists s''\in\states$:
    \begin{itemize}
-   \item \confSs{S}{s} \Rar{*} $s''$ (ovvero $\exists l:$
-     \confSs{S}{s} \Rar{l} $s''$)
-   \item \confSs{\wbS{b}{S}}{s''} \Rar{*} $s'$
+   \item $\exists l\in\mathbb{N}. \confSs{S}{s} \Rar{l} s''$
+   \item $\exists k\in\mathbb{N}. \confSs{\wbS{b}{S}}{s''} \Rar{k} s'$
    \end{itemize}
-   siccome la derivazione di \confSs{\wbS{b}{S}}{s''} \Rar{n} $s'$ è più
-   corta di quella di partenza (\confSs{\wbS{b}{S}}{s} \Rar{n+l+2}
-   $s'$) di $l$ passi, posso applicare l'ipotesi
-   induttiva e concludere che $\B{b}'$ deve necessariamente essere
-   uguale a \semfalse.
+   siccome la derivazione di \confSs{\wbS{b}{S}}{s''} \Rar{k} $s'$ è più
+   corta di quella di partenza (\confSs{\wbS{b}{S}}{s} \Rar{n}
+   $s'$), posso applicare l'ipotesi induttiva e concludere che $\B{b}'$ deve
+   necessariamente essere uguale a \semfalse.
 
   \end{itemize} 
  \end{proof}
