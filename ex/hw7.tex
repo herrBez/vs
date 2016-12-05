@@ -68,7 +68,16 @@ stato $s$:
 	\begin{enumerate}[label=(\Roman*)]
 		\item $\B{b}' = \semfalse$
 		\label{hw7:Bbs':ff}
-	\end{enumerate}  
+	\end{enumerate}
+	% HERE
+	Per ipotesi $\B{b} = \semtrue$, quindi si ha
+	$$
+	\begin{array}{lr}
+	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{ } & \whileSOS\\
+	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s} \Rar{ }& \ifttSOS \\
+	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} &
+	\end{array}
+	$$
 	Per il lemma di composizione applicato a (\ref{eq:hw7:imp}) si ricava che:
 	\begin{equation}
 	\confSs{(S; \wbS{b}{S}); (\wbS{b}{(S; \wbS{b}{S})})}{s} \Rar{*} \confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} 
@@ -77,20 +86,12 @@ stato $s$:
 	da cui si ottiene, grazie a \ref{hw7:Bbs':ff}, che:
 	$$
 	\begin{array}{lr}
+	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} & (\ref{hw7:c}) \\
 	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} \Rar{} & \whileSOS\\
 	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s'} \Rar{}& \ifffSOS\\
 	\confSs{\skipForFriends}{s'} \Rar{} & \skipSOS\\
 	s' & \\
 	\label{hw:arary}
-	\end{array}
-	$$  
-	Per ipotesi $\B{b} = \semtrue$, quindi si ha
-	$$
-	\begin{array}{lr}
-	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{ } & \whileSOS\\
-	\confSs{\ifABC{b}{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{\skipForFriends}}{s} \Rar{ }& \ifttSOS \\
-	\confSs{(S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})}}{s} \Rar{*} & (\ref{hw7:c}) \\
-	\confSs{\wbS{b}{(S; \wbS{b}{S})}}{s'} & 
 	\end{array}
 	$$
 	Unendo questa derivazione al fatto che
