@@ -1,0 +1,119 @@
+\newcommand{\lt}{\ensuremath{\subseteq}}
+
+\exercise{Esercizio 15}
+{
+  Sia $D$ un CPO e $f: D \to D$ una funzione continua. Il teorema di
+  Knaster-Tarski assicura che il minimo punto fisso di $f$ esiste.
+  Fornire un controesempio al fine di mostrare che, nelle stesse condizioni, il
+  massimo punto fisso di $f$ potrebbe non esistere.
+}
+{
+}
+
+Sia $D \equiv \{\emptyset,\ \{0\},\ \{1\}\}$ con relazione di ordinamento
+$\lt$.
+
+\setRel{D}{\lt} è un CPO poichè:
+\begin{itemize}
+  \item \setRel{D}{\lt} è un POSET:
+  \begin{itemize}
+    \item $\lt$ è riflessivo su $D$;
+    \item $\lt$ è transitivo su $D$;
+    \item $\lt$ è antisimmetrico su $D$;
+  \end{itemize}
+  \item ogni catena \emph{non vuota} in $D$ ha least upper bound:
+  \begin{itemize}
+    \item $\sqcup\{\emptyset\} = \{\emptyset\}$
+    \item $\sqcup\{\{0\}\} = \{0\}$
+    \item $\sqcup\{\{1\}\} = \{1\}$
+    \item $\sqcup\{\emptyset, \{0\}\} = \{0\}$
+    \item $\sqcup\{\emptyset, \{1\}\} = \{1\}$
+  \end{itemize}
+\end{itemize}
+
+$\emptyset$ è l'elemento minimo di \setRel{D}{\lt} poichè
+è contenuto in sè stesso, in $\{0\}$ ed in $\{1\}$.
+\\
+Si consideri la seguente funzione (identità) $f: D \to D$:
+$$
+f\ x = x
+$$
+
+\paragraph{Continuità} $f$ è continua perchè: 
+\begin{itemize}
+  \item f è monotona, infatti preserva l'ordine parziale su $D$:
+  \begin{itemize}
+    \item riflessività:
+    $$
+      \forall x \in D.x \lt x \Rightarrow f\ x \lt f\ x
+    $$
+    \item transitività:
+    $$
+      (\forall x,y,z \in D.(x \lt y\ \text{and}\ y \lt z) \Rightarrow
+      x \lt z)
+      \Rightarrow 
+      ((f\ x \lt f\ y\ \text{and}\ f\ y \lt f\ z) \Rightarrow
+      f\ x \lt f\ z)
+    $$
+    \item antisimmetria:
+     $$
+      (\forall x,y \in D.(x \lt y\ \text{and}\ y \lt x) \Rightarrow
+      x = y)
+      \Rightarrow 
+      ((f\ x \lt f\ y\ \text{and}\ f\ y \lt f\ x) \Rightarrow
+      f\ x = f\ y)
+    $$
+  \end{itemize}
+  \item Per ogni catena non vuota\footnote{vale anche per la catena vuota} $Y \in D$ vale:
+    $$ 
+      \sqcup\{f\ d\ |\ d \in Y\} = f(\sqcup Y)
+    $$
+    Ciò è banalmente vero perchè $f$ è l'identità.
+\end{itemize}
+\paragraph{Minimo punto fisso}
+Essendo $f$ continua su CPO \setRel{D}{\lt} ed avendo $D$ un elemento minimo ($\emptyset$), il teorema di Knaster-Tarski ci 
+assicura l'esistenza del minimo punto fisso (è unico):  
+$$
+f\ \bot = f\ \emptyset = \emptyset
+$$
+
+\paragraph{Massimo punto fisso}
+Ipotizziamo per assurdo che $f$ abbia massimo punto fisso $z \in D$.
+Una condizione necessaria per l'esistenza di $z$ è che $D$ sia un reticolo 
+(non necessariamente completo). Per verificare questa condizione basta 
+dimostrare che esistono $greatest\ lower\ bound\ (\sqcap)$ e 
+$least\ upper\ bound\ (\sqcup)$ per ogni coppia di elementi non comparabili.
+Notiamo che $\not \exists\ \sqcup(\{1\},\{0\})$ perchè $D$ non è chiuso all'insù. 
+Pertanto non esiste neppure $z$ e si ha quindi un assurdo.
+
+\textbf{Prova alternativa.} È possibile vedere che non esiste massimo
+punto fisso analizzando attentamente i punti fissi di $f$. Essendo $f$ la
+funzione identità, l'insieme dei punti fissi suoi punti fissi $P$ sono proprio gli elementi in $D$:
+\begin{itemize}
+  \item $\emptyset$
+  \item $\{0\}$
+  \item $\{1\}$
+\end{itemize}
+Dimostro che tra di essi non c'é il massimo punto fisso.
+\begin{mydef}(Massimo punto fisso)
+Un elemento $d \in D$ si dice massimo punto fisso di una funzione $f$ se:
+\begin{enumerate}
+	\item $d$ è un punto fisso di $f$ ovvero $d \in P$.
+	\item $\forall p' \in P: p' \lt d$ ovvero $\neg \exists p' \in P : p' \not \lt d$
+\end{enumerate}
+\qed
+\end{mydef}
+\begin{Oss}
+	Per dimostrare che un punto fisso $p \in P$ non è un massimo punto fisso è sufficiente trovare un controesempio alla 
+	seconda condizione, ovvero trovare un elemento $p' \in P$ tale che $p' \not \lt p$
+\qed
+\end{Oss}
+
+Ma non esiste un punto fisso $p \in P$ tale che la seconda condizione è soddisfatta, infatti
+\begin{itemize}
+	\item Per $\boxed{p = \emptyset}$ siccome $\{0\} \not \lt \emptyset$, $\emptyset$ non è un massimo punto fisso.
+	\item Per $\boxed{p = \{0\}}$ siccome $\{1\} \not \lt \{0\}$ e $\{1\}$ è un punto fisso, $\{0\}$ non è il massimo punto fisso.
+	\item Per $\boxed{p = \{1\}}$ siccome $\{0\} \not \lt \{1\}$ e $\{0\}$ è un punto fisso, $\{1\}$ non è il massimo punto fisso.
+\end{itemize}
+Siccome nessuno degli elementi di $P$ è massimo allora sotto queste ipotesi non esiste massimo punto fisso.
+\cvd
