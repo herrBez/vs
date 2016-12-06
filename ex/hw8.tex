@@ -1,0 +1,325 @@
+\exercise{Esercizio 8}
+{
+  Provare o fornire un controesempio per la seguente equivalenza semantica: \\
+  $$
+   \wbS{b}{S} \eqSOS{} \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+  $$
+}
+{
+È necessario dimostrare che
+$$
+\forall s,s' \in \states. 
+  \Big(\confSs{\wbS{b}{S}}{s} \Rar{m} s'
+  \iff
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{n} s' \Big)
+$$
+}
+\begin{proof}
+L'esercizio si svolge effettuando la prova per induzione sulle lunghezze delle
+derivazioni $m$ ed $n$, a seconda del verso che si considera.
+
+I casi base $m = 0$, $n = 0$ non vengono mostrati per esteso in quanto
+vacuamente verificati; di seguito verranno illustrati i casi con lunghezze di
+derivazioni maggiori di $0$.
+$$
+\boxed{\implies}
+$$
+Si assuma che $\confSs{\wbS{b}{S}}{s} \Rar{m} s'$. Vengono studiati i due casi
+che si possono verificare a seconda della valutazione della guardia booleana $b$
+nello stato di memoria $s$:
+\begin{itemize}
+  \item $\boxed{\B{b} = \semfalse}$
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{S}}{s} \Rar{ } & \whileSOS \\
+  \confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{ }& \ifffSOS \\
+  \confSs{\skipForFriends}{s} \Rar{} & \skipSOS\\
+  s
+  \end{array}
+  $$
+  Quindi si ottiene che $s \equiv{} s'$.
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} & \whileSOS \\
+  \confSs{\ifABC{b}
+            {((S;\ \ifABC{b}{S}{\skipForFriends});
+              \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})})}
+            {\skipForFriends}
+         }{s} \Rar{ }& \ifffSOS \\
+  \confSs{\skipForFriends}{s} \Rar{} & \skipSOS\\
+  s
+  \end{array}
+  $$
+  Di conseguenza si ottiene che nel caso $\B{b} = \semfalse$ i due
+  statement sono equivalenti.
+
+% => case: true
+  \item $\boxed{\B{b} = \semtrue}$
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{S}}{s} \Rar{ }  & \whileSOS \\
+  \confSs{\ifABC{b}{(S;\wbS{b}{S})}{\skipForFriends}}{s} \Rar{ } & \ifttSOS\\
+  \confSs{S; \wbS{b}{S}}{s} \Rar{*} & (\text{Assunzione + Determinismo})\\
+  s'
+  \end{array}
+  $$
+  Mentre per lo statement a destra dell'equivalenza da provare si ha:
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} & \whileSOS \\
+  \confSs{\ifABC{b}
+            {((S;\ \ifABC{b}{S}{\skipForFriends});
+              \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})})}
+            {\skipForFriends}
+         }{s} \Rar{ }& \ifttSOS \\
+  \confSs{  (S;\ \ifABC{b}{S}{\skipForFriends});
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s}
+  \end{array}
+  $$
+  Per il lemma di decomposizione applicato a
+  \begin{equation}
+  \confSs{S; \wbS{b}{S}}{s} \Rar{*} s'
+    \label{eq:hw8:imp}
+  \end{equation}
+  si ottiene che $\exists s'' \in \states$ tale che:
+  \begin{enumerate}[label=(\alph*)]
+    \item $\confSs{S}{s} \Rar{*} s''$
+    \label{hw8:item1}
+    \item $\confSs{\wbS{b}{S}}{s''} \Rar{*} s'$
+    \label{hw8:item2}
+  \end{enumerate}
+  Da \ref{hw8:item2} si ha, per l'esercizio 2, che:
+  \begin{enumerate}[label=(\Roman*)]
+    \item $\B{b}' = \semfalse$
+    \label{hw8:Bbs':ff}
+  \end{enumerate}
+  Per il lemma di composizione applicato a \ref{hw8:item1} si ricava che:
+  $$
+  \confSs{(S;\ \ifABC{b}{S}{\skipForFriends})}{s}
+    \Rar{*}
+  \confSs{\ifABC{b}{S}{\skipForFriends}}{s''}
+  $$
+  Andando ulteriormente a derivare entrambi il primo termine
+  $\confSs{\wbS{b}{S}}{s''}$ a partire dallo stato $s''$ raggiunto dopo una
+  esecuzione dello statement $S$, si ottiene:
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{S}}{s''} \Rar{ }  & \whileSOS \\
+  \confSs{\ifABC{b}{(S;\wbS{b}{S})}{\skipForFriends}}{s''} \Rar{*} & (\text{Assunzione + Determinismo})\\
+  s'
+  \end{array}
+  $$
+  Se la guardia $b$ verrà valutata a \semfalse, è banalmente dimostrabile che
+  entrambi i termini terminano in uno stato $s' \equiv{} s''$.
+  Altrimenti, se $\B{b}' = \semtrue$, per il termine destro dell'equivalenza 
+  si ha:
+  $$
+  \begin{array}{lr}
+  \confSs{ (S;\ \ifABC{b}{S}{\skipForFriends});
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s} \Rar{}& (\compoSOS\ applicato\ *\ volte) \\
+  \confSs{ (\ifABC{b}{S}{\skipForFriends});
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s''}
+  \end{array}
+  $$
+  a questo punto i termini verranno derivati, a partire da $s''$, applicando
+  in ambo i casi la regola $\ifttSOS$:
+  \begin{enumerate}
+    \item \confSs{S;\wbS{b}{S}}{s''} (per la parte sinistra dell'equivalenza)
+    \label{hw8:item3}
+    \item \confSs{S;\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s''}
+      (per la parte destra dell'equivalenza)
+  \end{enumerate}
+  Si può applicare il lemma di decomposizione al termine \ref{hw8:item3},
+  ottenendo che $\exists{s'''} \in \states$ tale che:
+  \begin{enumerate}[label=(\alph*)]
+    \item $\confSs{S}{s''} \Rar{*} s'''$
+    \label{hw8:item4}
+    \item $\confSs{\wbS{b}{S}}{s'''} \Rar{m_1} s'$ (per l'ipotesi iniziale)
+    \label{hw8:item5}
+  \end{enumerate}
+  Applicando il lemma di composizione a \ref{hw8:item4} si ottiene
+  $$
+  \confSs{(S;\ \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s''}
+    \Rar{*}
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s'''}
+  $$
+  Si è arrivati ad un punto nel quale si vuole provare
+  l'asserzione iniziale su una derivazione di lunghezza strettamente inferiore,
+  nello specifico partendo da uno stato $s'''$:
+  $$
+    \confSs{\wbS{b}{S}}{s'''} \Rar{m_1} s'
+    \implies
+    \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s'''} \Rar{n_1} s'
+  $$
+
+  Il passo induttivo porta a dover dimostrare la stessa tesi su una
+  derivazione lunga $m_1 < m$. Ma allora l'ipotesi induttiva è applicabile e,
+  dal momento che la configurazione sulla destra iniziale evolve in \\
+  $\confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s'''}$, si ha che
+  $$
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{n} s'
+  $$
+\end{itemize}
+
+%%%%%%%%
+%% SECOND PART
+%%%%%%%%
+
+$$
+\boxed{\impliedby}
+$$
+Si assuma che
+$\confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{n} s'$. Vengono
+studiati i due casi che si possono verificare a seconda della valutazione
+della guardia booleana $b$ nello stato di memoria $s$:
+
+\begin{itemize}
+  \item $\boxed{\B{b} = \semfalse}$ questo caso è analogo a quanto visto per
+    $\boxed{\implies}$.
+  \item $\boxed{\B{b} = \semtrue}$
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{}& \whileSOS \\
+  \confSs{\ifABC{b}
+            {((S;\ \ifABC{b}{S}{\skipForFriends});
+              \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})})}
+            {\skipForFriends}
+         }{s} \Rar{ }& \ifttSOS \\
+  \confSs{  (S;\ \ifABC{b}{S}{\skipForFriends});
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s} \\
+  \Rar{ } (\text{Assunzione + Determinismo})\\
+  s'
+  \end{array}
+  $$
+  Per il lemma di decomposizione applicato a
+  \begin{equation}
+  \confSs{  (S;\ \ifABC{b}{S}{\skipForFriends});
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s}
+    \Rar{*} s'
+  \label{eq:hw8:isimpl}
+  \end{equation}
+  si ottiene che $\exists s'' \in \states$ tale che:
+  \begin{enumerate}[label=(\alph*)]
+    \item $\confSs{S;\ \ifABC{b}{S}{\skipForFriends}}{s} \Rar{*} s''$
+    \label{hw8:item6}
+    \item $\confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s''}
+      \Rar{*} s'$
+    \label{hw8:item7}
+  \end{enumerate}
+  Applicando lemma di decomposizione ad \ref{hw8:item6}
+  si ottiene che $\exists{s'''}\in\states$ tale che:
+  \begin{enumerate}[label=(\alph*)]
+    \nextitem{c}
+    \item $\confSs{S}{s} \Rar{*} s'''$
+    \label{hw8:item8}
+    \item $\confSs{\ifABC{b}{S}{\skipForFriends}}{s'''} \Rar{*} s''$
+    \label{hw8:item9}
+  \end{enumerate}
+  Chiaramente, per il lemma di composizione applicato a \ref{hw8:item8} sono
+  valide le seguenti implicazioni:
+  \begin{equation}
+  \confSs{S}{s} \Rar{*} s'''
+    \implies
+  \confSs{S; \wbS{b}{S}}{s} \Rar{*} \confSs{\wbS{b}{S}}{s'''}
+  \label{eq:hw8:item10}
+  \end{equation}
+  \begin{equation}
+  \confSs{S}{s} \Rar{*} s'''
+    \implies
+  \confSs{S; \ifABC{b}{S}{\skipForFriends}}{s} \Rar{*}
+        \confSs{\ifABC{b}{S}{\skipForFriends}}{s'''}
+  \label{eq:hw8:itemX}
+  \end{equation}
+  Ottenuto questo risultato, si passa a valutare il lato sinistro
+  dell'equivalenza:
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{S}}{s} \Rar{ }  & \whileSOS \\
+  \confSs{\ifABC{b}{(S;\wbS{b}{S})}{\skipForFriends}}{s} \Rar{ } & \ifttSOS\\
+  \confSs{S; \wbS{b}{S}}{s} \Rar{*} & (\text{\ref{eq:hw8:item10}})\\
+  \confSs{\wbS{b}{S}}{s'''}
+  \end{array}
+  $$
+  In $s'''$ verrà valutata la guardia $b$ in entrambi i lati dell'equivalenza.
+  Come visto in precedenza, nel caso in cui $\B{b}''' = \semfalse$,
+  l'equivalenza è facilmente verificabile.
+
+  Altrimenti (ovvero se $\B{b}''' = \semtrue$) le due configurazioni evolvono
+  come segue. \\
+  Per il lato destro si ha:
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} & \whileSOS \\
+  \confSs{\ifABC{b}
+            {((S;\ \ifABC{b}{S}{\skipForFriends});
+              \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})})}
+            {\skipForFriends}
+         }{s} \Rar{ }& \ifttSOS \\
+  \confSs{  (S;\ \ifABC{b}{S}{\skipForFriends});
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s} \Rar{ } \\
+  \Rar{ } (\text{$\compoSOS$, (\ref{eq:hw8:itemX})})\\
+  \confSs{  \ifABC{b}{S}{\skipForFriends};
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s'''} \Rar{ } & \ifttSOS \\
+  \confSs{  S;
+            \wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}
+         }{s'''} \Rar{ } \\
+  \Rar{ } (\text{Assunzione + Determinismo})\\
+  s'
+  \end{array}
+  $$
+  Per il lemma di decomposizione, si ha che $\exists{t}\in\states$:
+  \begin{enumerate}[label=(\alph*)]
+    \nextitem{e}
+    \item $\confSs{S}{s'''} \Rar{*} t$
+    \label{hw8:item11}
+    \item $\confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{t} \Rar{n_1} s'$
+    \label{hw8:item12}
+  \end{enumerate}
+  Chiaramente, per il lemma di composizione applicato a \ref{hw8:item11} si ha:
+  \begin{equation}
+  \confSs{S; \wbS{b}{S}}{s'''} \Rar{*} \confSs{\wbS{b}{S}}{t}
+  \label{eq:hw8:item13}
+  \end{equation}
+  Per quanto riguarda il lato sinistro dell'equivalenza, si ottiene:
+  $$
+  \begin{array}{lr}
+  \confSs{\wbS{b}{S}}{s} \Rar{ }  & \whileSOS \\
+  \confSs{\ifABC{b}{(S;\wbS{b}{S})}{\skipForFriends}}{s} \Rar{ } & \ifttSOS\\
+  \confSs{S; \wbS{b}{S}}{s} \Rar{*} & (\text{\ref{eq:hw8:item10}})\\
+  \confSs{\wbS{b}{S}}{s'''}  & \whileSOS \\
+  \confSs{\ifABC{b}{(S;\wbS{b}{S})}{\skipForFriends}}{s'''}
+      \Rar{ } & \ifttSOS\\
+  \confSs{S;\wbS{b}{S}}{s'''} \Rar{*} & (\text{\ref{eq:hw8:item13}}) \\
+  \confSs{\wbS{b}{S}}{t}
+  \end{array}
+  $$
+  A questo punto, è possibile concludere la dimostrazione; si è infatti
+  arrivati a dover dimostrare:
+  $$
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{t} \Rar{n_1} s'
+  \implies
+  \confSs{\wbS{b}{S}}{t} \Rar{m_1} s'
+  $$
+  Essendo partiti da:
+  $$
+  \confSs{\wbS{b}{(S;\ \ifABC{b}{S}{\skipForFriends})}}{s} \Rar{n} s'
+  \implies
+  \confSs{\wbS{b}{S}}{s} \Rar{m} s'
+  $$
+  Ma, essendo $n_1 < n$, posso applicare l'ipotesi induttiva e verificare la
+  relativa conclusione $\confSs{\wbS{b}{S}}{t}$. Perciò, siccome
+  il lato destro evolve proprio a tale configurazione tramite $m - m_1$ passi
+  di derivazione, si ha che:
+  $$
+  \confSs{\wbS{b}{S}}{s} \Rar{m} s'
+  $$
+\end{itemize}
+
+\end{proof}
