@@ -113,6 +113,7 @@
 	\paragraph{Svolgimento} #3}
 
 \newcommand{\syntacticCategory}[1]{\ensuremath{\mbox{\textbf{#1}}}}
+\newcommand{\while}{\syntacticCategory{While}}
 \newcommand{\states}{\syntacticCategory{States}}
 \newcommand{\stm}{\syntacticCategory{Stm}}
 \newcommand{\aexp}{\syntacticCategory{Aexp}}
@@ -172,6 +173,15 @@ $\Box$
                        \textrm{\normalfont{\texttt{, }}}
                        #3)}
 \newcommand{\setRel}[2]{\ensuremath{\langle{}#1, #2\rangle{}}}
+
+% % Special for exercise 6
+\newcommand{\wbSE}[3]{\mbox{\normalfont{\texttt{while }}}
+	#1
+	\textrm{\normalfont{\texttt{ do }}}
+	#2
+	\textrm{\normalfont{\texttt{ exitif }}}
+	#3
+}
 
 \RequirePackage{tabularx}
 \newcommand{\boxer}[1]{\ensuremath{\boxed{#1}}}

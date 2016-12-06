@@ -1,0 +1,273 @@
+\newcommand{\exitifSOS}{\SOSRule{exitif}{}{SOS}}
+\exercise{Esercizio 6}
+<<<<<<< 7aeeae3cde0043abe68fa996083de0c12509bc47
+{Si assuma che il linguaggio \while{} includa un nuovo comando iterativo:
+$$
+\wbSE{b}{S}{b'}
+$$
+dove $b, b' \in \bexp$ e $S \in \stm$, la cui semanticac informale è definita
+come segue:
+``si comporta come un while-loop standard $\wbS{b}{S}$ in cui, alla fine di
+ogni iterazione del corpo $S$, l'espressione booleana $b'$ viene valutata e se
+$b'$ è valutata a $\semtrue$ allora il loop termina (senza modifiche allo
+stato corrente''.
+\begin{enumerate}[label=$\arabic*$.]
+	\item Si definisca la SOS di questo nuovo comando iterativo.
+	\item Si provi la seguente equivalenza semantica:
+	$$
+	\wbSE{b}{S}{\neg b} \eqSOS \wbS{b}{S}
+	$$
+\end{enumerate}
+}
+{}
+	\begin{enumerate}
+\item In analogia con quanto fatto per $\wbS{b}{S}$ definisco $\wbSE{b}{S}{b'}$ come unfolding:
+$$
+\wbSE{b}{S}{b'} \Rar{ } \ifABC{b}{(S; (\ifABC{b'}{\skipForFriends}{(\wbSE{b}{S}{b'})}))}{\skipForFriends}
+$$
+e chiamo questo assioma $\exitifSOS$.
+
+Argomento brevemente perché la regola definita è quella cercata:
+se la guardia $b$ viene valutata $\semtrue$ allora viene eseguito il corpo
+$S$. Una volta terminata la valutazione di $S$ viene valutata la guardia $b'$:
+se è vera si esce dal corpo senza cambiare lo stato ($\skipForFriends$),
+altrimenti viene eseguito un nuovo ciclo.
+
+\item Devo dimostrare che:
+$$
+\forall s, s'. (\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{m} s'
+  \iff
+\confSs{\wbS{b}{S}}{s} \Rar{n} s')
+$$
+\begin{proof} \mbox{ }
+
+\paragraph{Nota} La semantica SOS aumentata con la regola $\exitifSOS$ è ancora
+deterministica per induzione strutturale: $\wbSE{b}{S}{b'}$ viene infatti
+derivato\footnote{N.B. nessuna altra derivazione è possibile} come
+$$
+\ifABC{b}{(S; (\ifABC{b'}{\skipForFriends}{(\wbSE{b}{S}{b'})}))}{\skipForFriends}
+$$
+Ma questo termine evolverà in modo deterministico:
+\begin{itemize}
+  \item è noto che \texttt{if-then-else} e \texttt{skip} vengono derivati in
+    modo deterministico;
+  \item la sottoespressione $\wbSE{b}{S}{b'}$ viene derivata in modo
+    deterministico per ipotesi induttiva.
+\end{itemize}
+
+\noindent(Fine nota) \vspace{1em} \\
+
+L'esercizio viene svolto per induzione sulla lunghezza della derivazione
+$m$ o $n$ a seconda del verso della doppia implicazione che si prende in
+considerazione.
+
+I casi $m = 0$, $n = 0$ vengono dati banalmente per veri poichè sono
+vacuamente verificati.
+
+$$
+\boxed{\implies}
+$$
+Assumo che $\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{m} s'$.
+Quindi applicando l'assioma $\exitifSOS$ si ottiene:
+$$
+\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s}
+$$
+ora in base alla valutazione di $b$ nello stato $s$ distinguo due casi:
+\begin{itemize}
+	\item $\boxed{\B{b} = \semfalse}$:
+	$$
+	\begin{array}{lll}
+	\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s} & \Rar{} & \ifffSOS \\
+	\confSs{\skipForFriends}{s} & \Rar{}& \skipSOS \\
+	s
+	\end{array}
+	$$
+	Da cui segue per il determinismo delle regole SOS che $s' \equiv s$.
+	Applicando la stessa assunzione a $\confSs{\wbS{b}{S}}{s}$ otteniamo:
+	$$
+	\begin{array}{ll}
+	\confSs{\wbS{b}{S}}{s} \Rar{}& \whileSOS \\
+	\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{} & \ifffSOS \\ 
+	\confSs{\skipForFriends}{s} \Rar{}& \skipSOS \\
+	s
+	\end{array}
+	$$
+	che è proprio ciò che si voleva dimostrare.
+	\item $\boxed{\B{b} = \semtrue}$
+	Procedendo con lo sviluppo della derivazione si ottiene:
+	$$
+	\begin{array}{lll}
+	\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s} & \Rar{} & \ifttSOS \\
+	\confSs{S; \ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}}{s} & \Rar{*} & s'\\
+	\end{array}
+	$$
+	per via del determinismo e dell'ipotesi $\implies$.
+	Ora applicando il lemma di decomposizione si ottiene che
+  $\exists s''\in\states$:
+	\begin{enumerate}
+	\item $\confSs{S}{s} \Rar{*} s''$
+	\label{hw6:Ssgoestos''}
+	\item $\confSs{\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}}{s''} \Rar{*} s'$
+	\label{hw6:ifnegb}
+	\end{enumerate}
+	visto che è un $\texttt{if}$ devo distinguere due casi:
+	\begin{itemize}
+		\item $\boxed{\B{\neg b}'' = \semtrue, \text{ ovvero } \B{b}'' = \semfalse}$
+		In questo caso ottengo che:
+		$$
+		\begin{array}{ll}
+		\confSs{\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}}{s''} & \ifttSOS \\
+		\confSs{\skipForFriends}{s''} & \skipForFriends \\
+		s''
+		\end{array}
+		$$
+		da cui per il determinismo delle regole SOS segue che $\boxed{s'' \equiv s'}$. Ma procedendo
+		a valutare $\confSs{\wbS{b}{S}}{s}$ ottengo:
+		$$
+		\begin{array}{ll}
+		\confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS \\
+		\confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} & \ifttSOS \\
+		\confSs{S; \wbS{b}{S}}{s} \Rar{*} & \text{Lemma di composizione applicato a \ref{hw6:Ssgoestos''}} \\
+		\confSs{\wbS{b}{S}}{s''} & \whileSOS \\
+		\confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s''} & \ifffSOS \\
+		\confSs{\skipForFriends}{s''} \Rar{} & \skipSOS \\
+		s''
+		\end{array}
+		$$
+		che era proprio ciò che bisognava dimostrare.
+		\item $\boxed{\B{\neg b}'' = \semfalse, \text{ ovvero } \B{b}'' = \semtrue}$
+		Procedo a valutare \ref{hw6:ifnegb}:
+		$$
+		\begin{array}{ll}
+		\confSs{(\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})})}{s''} & \ifffSOS\\
+		\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{m_1} s'
+		\end{array}
+		$$
+    Sotto le stesse ipotesi, il termine \confSs{\wbS{b}{S}}{s} evolve come
+    segue:
+    $$
+    \begin{array}{ll}
+    \confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS \\
+    \confSs{\ifABC{b}{S; \wbS{b}{S}}{\skipForFriends}}{s} & \ifttSOS \\
+    \confSs{S; \wbS{b}{S}}{s} \Rar{*} & \text{Lemma di composizione applicato a \ref{hw6:Ssgoestos''}} \\
+    \confSs{\wbS{b}{S}}{s''}
+    \end{array}
+    $$
+		Siccome è necessario dimostrare la stessa tesi iniziale con premessa avente
+    lunghezza di derivazione $m_1$ strettamente inferiore di $m$, possiamo
+    applicare l'ipotesi induttiva (dove $n_1 \leq n$):
+		$$
+		\confSs{\wbS{b}{S}}{s''} \Rar{n_1} s'
+		$$
+    E quindi si ha:
+    $$
+    \confSs{\wbS{b}{S}}{s} \Rar{n} s'
+    $$
+	\end{itemize}
+	
+\end{itemize}
+$$
+\boxed{\impliedby}
+$$
+Assumo che $\confSs{\wbS{b}{S}}{s} \Rar{n} s'$. Applicando un unfolding
+($\whileSOS$) ottengo:
+$$
+\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s}
+$$
+In cui posso discriminare due casi in base a $\B{b}$:
+\begin{itemize}
+\item $\boxed{\B{b} = \semfalse}$
+$$
+\begin{array}{ll}
+\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} & \ifffSOS\\
+\confSs{\skipForFriends}{s} & \skipSOS\\
+s & \\
+\end{array}
+$$
+Da cui segue che $\boxed{s' \equiv{ } s}$
+$$
+\begin{array}{ll}
+\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{ } & \exitifSOS\\
+\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s} \Rar{} & \ifffSOS \\
+\confSs{\skipForFriends}{s} \Rar{}& \skipSOS\\
+s & \\
+\end{array}
+$$
+\item $\boxed{\B{b} = \semtrue}$
+$$
+\begin{array}{ll}
+\confSs{\wbS{b}{S}}{s} \Rar{} & \whileSOS \\
+\confSs{\ifABC{b}{(S; \wbS{b}{S})}{\skipForFriends}}{s} \Rar{} & \ifttSOS\\
+\confSs{S; \wbS{b}{S}}{s} & \\
+\end{array}
+$$
+Siccome le regole SOS sono deterministiche ottengo che
+$$
+\confSs{S; \wbS{b}{S}}{s} \Rar{*} s'
+$$
+e quindi per il lemma di decomposizione $\exists s''\in\states$:
+\begin{enumerate}
+\item 
+$\confSs{S}{s} \Rar{*} s''$
+\label{hw6:FattoA}
+\item $\confSs{\wbS{b}{S}}{s''} \Rar{*} s' $
+\label{hw6:FattoB}
+\end{enumerate}
+Inizio anche a sviluppare il lato sinistro dell'implicazione
+$$
+\begin{array}{ll}
+	\confSs{\wbSE{b}{S}{\neg b}}{s} \Rar{ } & \exitifSOS\\
+	\confSs{\ifABC{b}{(S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})}))}{\skipForFriends}}{s} \Rar{} & \ifttSOS \\
+	\confSs{S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{\neg b})})}{s} & \\
+\end{array}
+$$
+Usando il fatto \ref{hw6:FattoA} e il lemma di composizione ottengo che:
+$$
+\begin{array}{ll}
+\confSs{S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{b'})})}{s} \Rar{*} & \\
+\confSs{\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{b'})}}{s''}
+\end{array}
+$$
+Ora invece di procedere come di consueto distinguo ulteriori due casi:
+\begin{itemize}
+\item $\boxed{\B{b}'' = \semfalse}$
+Applicando questa ipotesi al fatto $\ref{hw6:FattoB}$ ottengo che $\boxed{s'' \equiv s'}$.
+Al contempo applicando questa ipotesi al lato sinistro ottengo anche:
+$$
+\begin{array}{ll}
+	\confSs{S; (\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{b'})})}{s} \Rar{*} & \\
+	\confSs{\ifABC{\neg b}{\skipForFriends}{(\wbSE{b}{S}{b'})}}{s''} \Rar{} & \ifttSOS \\
+	\confSs{\skipForFriends}{s''} \Rar{ } s'' & \\
+\end{array}
+$$
+quindi ho dimostrato che $\wbSE{b}{S}{\neg b} \Rar{*} s'$ perchè $s' \equiv s''$.
+\item $\boxed{\B{b}'' = \semtrue}$
+In questo caso ottengo che
+$$
+\confSs{\wbS{b}{S}}{s''} \Rar{n_1} s'
+$$
+e a destra ottengo
+$$
+\confSs{\wbSE{b}{S}{\neg b}}{s''}
+$$
+Chiaramente, ci si trova di fronte alla stessa tesi che si voleva dimostrare
+inizialmente, ovvero:
+$$
+\confSs{\wbS{b}{S}}{s''} \Rar{n_1} s'
+  \implies
+\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{m_1} s'
+$$
+Tuttavia, questa volta la derivazione inizia da uno stato $s''$ più avanzato
+nella computazione rispetto alla tesi iniziale. Ciò è equivalente a dire che
+$n_1 < n$. Posso quindi applicare l'ipotesi induttiva, per la quale è vero che:
+$$
+\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{m_1} s'
+$$
+Ma allora, per induzione sulla lunghezza della derivazione, si ha proprio che
+$$
+\confSs{\wbSE{b}{S}{\neg b}}{s''} \Rar{m} s'
+$$
+\end{itemize}
+\end{itemize}
+\end{proof}
+\end{enumerate}
