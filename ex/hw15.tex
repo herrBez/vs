@@ -1,4 +1,4 @@
-\newcommand{\lt}{\ensuremath{\sqsubseteq}}
+\newcommand{\lt}{\ensuremath{\subseteq}}
 
 \exercise{Esercizio 15}
 {
@@ -11,15 +11,15 @@
 }
 
 Sia $D \equiv \{\emptyset,\ \{0\},\ \{1\}\}$ con relazione di ordinamento
-$\sqsubseteq$.
+$\lt$.
 
-\setRel{D}{\sqsubseteq} è un CPO poichè:
+\setRel{D}{\lt} è un CPO poichè:
 \begin{itemize}
-  \item \setRel{D}{\sqsubseteq} è un POSET:
+  \item \setRel{D}{\lt} è un POSET:
   \begin{itemize}
-    \item $\sqsubseteq$ è riflessivo su $D$;
-    \item $\sqsubseteq$ è transitivo su $D$;
-    \item $\sqsubseteq$ è antisimmetrico su $D$;
+    \item $\lt$ è riflessivo su $D$;
+    \item $\lt$ è transitivo su $D$;
+    \item $\lt$ è antisimmetrico su $D$;
   \end{itemize}
   \item ogni catena \emph{non vuota} in $D$ ha least upper bound:
   \begin{itemize}
@@ -31,7 +31,7 @@ $\sqsubseteq$.
   \end{itemize}
 \end{itemize}
 
-$\emptyset$ è l'elemento minimo di \setRel{D}{\sqsubseteq} poichè
+$\emptyset$ è l'elemento minimo di \setRel{D}{\lt} poichè
 è contenuto in sè stesso, in $\{0\}$ ed in $\{1\}$.
 \\
 Si consideri la seguente funzione (identità) $f: D \to D$:
@@ -45,22 +45,22 @@ $$
   \begin{itemize}
     \item riflessività:
     $$
-      \forall x \in D.x \sqsubseteq x \Rightarrow f\ x \sqsubseteq f\ x
+      \forall x \in D.x \lt x \Rightarrow f\ x \lt f\ x
     $$
     \item transitività:
     $$
-      (\forall x,y,z \in D.(x \sqsubseteq y\ \text{and}\ y \sqsubseteq z) \Rightarrow
-      x \sqsubseteq z)
+      (\forall x,y,z \in D.(x \lt y\ \text{and}\ y \lt z) \Rightarrow
+      x \lt z)
       \Rightarrow 
-      ((f\ x \sqsubseteq f\ y\ \text{and}\ f\ y \sqsubseteq f\ z) \Rightarrow
-      f\ x \sqsubseteq f\ z)
+      ((f\ x \lt f\ y\ \text{and}\ f\ y \lt f\ z) \Rightarrow
+      f\ x \lt f\ z)
     $$
     \item antisimmetria:
      $$
-      (\forall x,y \in D.(x \sqsubseteq y\ \text{and}\ y \sqsubseteq x) \Rightarrow
+      (\forall x,y \in D.(x \lt y\ \text{and}\ y \lt x) \Rightarrow
       x = y)
       \Rightarrow 
-      ((f\ x \sqsubseteq f\ y\ \text{and}\ f\ y \sqsubseteq f\ x) \Rightarrow
+      ((f\ x \lt f\ y\ \text{and}\ f\ y \lt f\ x) \Rightarrow
       f\ x = f\ y)
     $$
   \end{itemize}
@@ -71,7 +71,7 @@ $$
     Ciò è banalmente vero perchè $f$ è l'identità.
 \end{itemize}
 \paragraph{Minimo punto fisso}
-Essendo $f$ continua su CPO \setRel{D}{\sqsubseteq} ed avendo $D$ un elemento minimo ($\emptyset$), il teorema di Knaster-Tarski ci 
+Essendo $f$ continua su CPO \setRel{D}{\lt} ed avendo $D$ un elemento minimo ($\emptyset$), il teorema di Knaster-Tarski ci 
 assicura l'esistenza del minimo punto fisso (è unico):  
 $$
 f\ \bot = f\ \emptyset = \emptyset
@@ -99,21 +99,21 @@ Dimostro che tra di essi non c'é il massimo punto fisso ovvero non esiste un
 Un elemento $d \in D$ si dice massimo punto fisso di una funzione $f$ se:
 \begin{enumerate}
 	\item $d$ è un punto fisso di $f$ ovvero $d \in P$.
-	\item $\forall p' \in P: p' \sqsubseteq d$ ovvero $\neg \exists p' \in P : p' \not \sqsubseteq d$
+	\item $\forall p' \in P: p' \lt d$ ovvero $\neg \exists p' \in P : p' \not \lt d$
 \end{enumerate}
 \qed
 \end{mydef}
 \begin{Oss}
 	Per dimostrare che un punto fisso $p \in P$ non è un massimo punto fisso è sufficiente trovare un controesempio alla 
-	seconda condizione, ovvero trovare un elemento $p' \in P$ tale che $p' \not \sqsubseteq p$
+	seconda condizione, ovvero trovare un elemento $p' \in P$ tale che $p' \not \lt p$
 \qed
 \end{Oss}
 
 Ma non esiste un punto fisso $p \in P$ tale che la seconda condizione è soddisfatta, infatti
 \begin{itemize}
-	\item Per $\boxed{p = \emptyset}$ siccome $\{0\} \not \sqsubseteq \emptyset$, $\emptyset$ non è un massimo punto fisso.
-	\item Per $\boxed{p = \{0\}}$ siccome $\{1\} \not \sqsubseteq \{0\}$ e $\{1\}$ è un punto fisso, $\{0\}$ non è il massimo punto fisso.
-	\item Per $\boxed{p = \{1\}}$ siccome $\{0\} \not \sqsubseteq \{1\}$ e $\{0\}$ è un punto fisso, $\{1\}$ non è il massimo punto fisso.
+	\item Per $\boxed{p = \emptyset}$ siccome $\{0\} \not \lt \emptyset$, $\emptyset$ non è un massimo punto fisso.
+	\item Per $\boxed{p = \{0\}}$ siccome $\{1\} \not \lt \{0\}$ e $\{1\}$ è un punto fisso, $\{0\}$ non è il massimo punto fisso.
+	\item Per $\boxed{p = \{1\}}$ siccome $\{0\} \not \lt \{1\}$ e $\{0\}$ è un punto fisso, $\{1\}$ non è il massimo punto fisso.
 \end{itemize}
 Siccome nessuno degli elementi di $P$ è massimo allora sotto queste ipotesi non esiste massimo punto fisso.
 \cvd
