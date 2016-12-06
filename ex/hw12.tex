@@ -1,0 +1,231 @@
+\exercise{Esercizio 12}
+{Prove that
+$$
+	 \wbS{b}{(S; \wbS{b}{S})} \eqDS \wbS{b}{S}
+$$
+}
+{
+Per dimostrare che 
+$$
+	 \wbS{b}{(S; \wbS{b}{S})} \eqDS \wbS{b}{S}
+$$	
+è necessario dimostrare che
+$$
+\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} = \dsCtxt{\wbS{b}{S}}
+$$
+Il termine sulla destra è per quanto visto nei precedenti esercizi:
+$$
+\dsCtxt{\wbS{b}{S}} =
+\fixp{F} \text{ dove } F = \lambda g. \cond{b}{g \circ \dsCtxt{S}}{id}
+$$
+mentre quello sulla sinistra è:
+$$
+\dsCtxt{\wbS{b}{(S; \wbS{b}{S}})} = \fixp{G} \text{ dove }
+$$
+dove
+$$
+G = \lambda g. \cond{b}{g \circ \fixp{F} \circ \dsCtxt{S}}{id}
+$$
+
+Si noti che in questo caso non è possibile dimostrare che $\fixp{F} = \fixp{G}$
+a partire da $F = G$ perchè $F$ e $G$ non sono banalmente equivalenti.
+
+\begin{proof}
+Per dimostrare che $\fixp{F} = \fixp{G}$ sono equivalenti, le due direzioni di
+prova vengono considerate separatamente:
+\begin{itemize}
+	\item $\boxed{\fixp{F} \sqsubseteq \fixp{G}}$
+	Si tenta di usare il \FPIL; infatti, dimostrando che
+	$$
+	F(\fixp{G}) \sqsubseteq \fixp{G}
+	$$
+	si otterrebbe proprio il risultato cercato.
+  Notiamo che valgono le seguenti proprietà:
+  \begin{itemize}
+   \item $F$ è una funzione totale continua su CPO 
+($\states \hookrightarrow \states, \sqsubseteq$) perchè $cond$ è continua
+  \item $\text{FIX}$ ha tipo
+$$
+((\states \hookrightarrow \states) \rightarrow 
+(\states \hookrightarrow \states)) \rightarrow
+(\states \hookrightarrow \states)
+$$ 
+quindi $\fixp{G} \in 
+(\states \hookrightarrow \states)$.
+  \end{itemize}
+  Si proceda a sviluppare $F(\fixp{G})$:
+  $$
+  F(\fixp{G})\ s = \caseFun{\fixp{G} \circ \dsCtxt{S}\ s}
+                        {\B{b} = \semtrue}
+                        {\idDS\ s = s}
+                        {\B{b} = \semfalse}
+  $$
+  Sviluppando anche $\fixp{G}$, si ottiene:
+  $$
+  \fixp{G}\ s =
+  G(\fixp{G})\ s = \caseFun{(\fixp{G} \circ \fixp{F} \circ \dsCtxt{S})\ s}
+                        {\B{b} = \semtrue}
+                        {\idDS\ s = s}
+                        {\B{b} = \semfalse}
+  $$
+  Si noti che, nel caso in cui $\B{b} = \semfalse$, si ha una perfetta
+  equivalenza tra i due termini.
+  Di conseguenza, è opportuno procedere la dimostrazione andando ad evolvere i
+  casi $\B{b} = \semtrue$. Per il termine sulla sinistra si ha:
+  $$
+  (\fixp{G} \circ \dsCtxt{S})\ s
+      = \caseFun{\fixp{G}\ s'}
+                {\dsCtxt{S}\ s = s'}
+                {\undefDS}
+                {\dsCtxt{S}\ s = \undefDS}
+  $$
+  E per il lato destro:
+  $$
+  (\fixp{G} \circ \fixp{F} \circ \dsCtxt{S})\ s
+      = \caseFun{(\fixp{G} \circ \fixp{F})\ s'}
+                {\dsCtxt{S}\ s = s'}
+                {\undefDS}
+                {\dsCtxt{S}\ s = \undefDS}
+  $$
+  Come in precedenza, uno dei due casi è banalmente verificabile (ovvero quello
+  in cui $\dsCtxt{S}\ s = \undefDS$). Si procede andando quindi ad evolvere il
+  termine quando $\dsCtxt{S}\ s = s'$.
+  $$
+  \fixp{G}\ s' =
+  G(\fixp{G})\ s' = \caseFun{(\fixp{G} \circ \fixp{F} \circ \dsCtxt{S})\ s'}
+                        {\B{b}' = \semtrue}
+                        {\idDS\ s' = s'}
+                        {\B{b}' = \semfalse}
+  $$
+  Invece, per il termine sulla destra:
+  $$
+  (\fixp{G} \circ \fixp{F})\ s' =
+  (\fixp{G}) \circ F (\fixp{F})\ s' =
+                \caseFun{(\fixp{G} \circ \fixp{F} \circ \dsCtxt{S})\ s'}
+                        {\B{b}' = \semtrue}
+                        {(\fixp{G}) \circ \idDS\ s' = (\fixp{G})\ s'}
+                        {\B{b}' = \semfalse}
+  $$
+  In questo caso, è facile notare che per $\B{b}' = \semtrue$ vale
+  $$
+  (\fixp{G} \circ \fixp{F})\ s' = \fixp{G}\ s'
+  $$
+  Per il caso $\B{b}' = \semfalse$ è invece sufficiente analizzare con più
+  attenzione il termine ottenuto a partire da ($\fixp{G} \circ \fixp{F})\ s'$:
+  $$
+  \begin{array}{lr}
+  (\fixp{G})\ s' = & (\text{applicazione punto fisso}) \\
+  (G (\fixp{G}))\ s' = & \B{b}' = \semfalse \\
+  \idDS\ s' = & \text{definizione di \idDS} \\
+  s'
+  \end{array}
+  $$
+  Perciò si ha che anche il caso $\B{b}' = \semfalse$ è verificato.
+  Quindi per $\FPIL$ vale \\ $\fixp{F} \sqsubseteq \fixp{G}$.
+
+	\item $\boxed{\fixp{F} \sqsupseteq \fixp{G}}$
+	Si tenta di usare il \FPIL; infatti, dimostrando che
+	$$
+	G(\fixp{F}) \sqsubseteq \fixp{F}
+	$$
+	si otterrebbe proprio il risultato cercato.
+        Notiamo che valgono le seguenti proprietà:
+        \begin{itemize}
+         \item $G$ è una funzione totale continua su CPO 
+          ($\states \hookrightarrow \states, \sqsubseteq$) perchè $cond$ 
+          è continua
+         \item $\text{FIX}$ ha tipo
+          $$
+          ((\states \hookrightarrow \states) \rightarrow 
+          (\states \hookrightarrow \states)) \rightarrow
+          (\states \hookrightarrow \states)
+          $$ 
+          quindi $\fixp{F} \in 
+          (\states \hookrightarrow \states)$.
+        \end{itemize}
+        Innanzitutto si sviluppi $(G\ \fixp{F})$ su un stato $s$ qualsiasi:
+        $$
+        \begin{array}{ll}
+          (G \ \fixp{F})\ s & = (\cond{b}{\fixp{F} \circ\  \fixp{F} \circ \
+          \dsCtxt{S}}{id})\ s \\
+          & \\
+          & = \caseFun{(\fixp{F} \circ{} \fixp{F} \circ{} \dsCtxt{S})\ s}{\B{b} =
+          \semtrue}{s}{\B{b} = \semfalse}
+        \end{array}
+        $$
+        Nel caso $\B{b} = \semtrue$ è possibile distinguere due casi in base
+        alla valutazione di $\dsCtxt{S}$ applicata allo stato $s$:
+        $$
+        \begin{array}{ll}
+        \dots = 
+        & \caseFun{(\fixp{F} \circ \fixp{F} \circ \dsCtxt{S})\ s}{\B{b} =
+          \semtrue}{s}{\B{b} = \semfalse}  \\
+        \\
+        & = \left\lbrace 
+          \begin{array}{ll}
+            undef & \mbox{if } \B{b} = \semtrue \land (\dsCtxt{S}\  s) = undef  \\
+            &  \\                  
+            (\fixp{F} \circ \fixp{F})\ s' & \mbox{if } \B{b} = \semtrue \land (\dsCtxt{S}\ s) = s'  \\
+                  & \\
+            \idDS\ s = s & \B{b} = \semfalse\\
+          \end{array}
+          \right. \\
+        \end{array}
+        $$
+
+        % TODO @Stefano: Vuoi scrivere gli altri due casi?
+        % In sostanza sarebbe da mostrare l'evoluzione di (FIX F) andando a
+        % distinguere solamente i casi B[[b]]s e \dsCtxt{S}\ s)
+        Mentre l'equivalenza è banalmente verificata per i due casi $\undefDS$
+        e $\idDS$, occorre studiare con attenzione il caso
+        $(\fixp{F} \circ \fixp{F})\ s'$ (dato
+        $\B{b} = \semtrue \land (\dsCtxt{S}\ s) = s'$):
+        $$
+        \begin{array}{ll}
+        \fixp{F} (\fixp{F}\ s') =
+        & \caseFun{\undefDS}
+                  {\fixp{F}\ s' = \undefDS}
+                  {\fixp{F}\ s''}
+                  {\fixp{F}\ s' = s''}  \\
+        \\
+        \end{array}
+        $$
+
+        Notando che $\fixp{F}\ s'' = F(\fixp{F})\ s''$, per l'esercizio 9 si
+        ha che $\B{b}'' = \semfalse$. Quindi:
+        $$
+        F(\fixp{F})\ s'' = \idDS{}\ s'' = s''
+        $$
+
+        Ma, sotto le stesse ipotesi, è possibile mostrare che
+        $\fixp{F}\ s  =s''$.
+        $$
+        \begin{array}{lr}
+        \fixp{F}\ s = & \text{def. punto fisso} \\
+        F(\fixp{F}\ s) = & (\B{b} = \semtrue) \\
+        (\fixp{F} \circ \dsCtxt{S})\ s = & (\dsCtxt{S} = s') \\
+        \fixp{F} \ s' = & (\fixp{F}\ s' = s'') \\
+        s''
+        \end{array}
+        $$
+        Quindi per $\FPIL$ vale $\fixp{F} \sqsupseteq \fixp{G}$.
+\end{itemize}
+
+\end{proof}
+\paragraph{Derivazione di G}
+$$
+\begin{array}{ll}
+\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} & \\
+\dsCtxt{\ifABC{b}{((S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})})}{\skipForFriends}} & \\
+\cond{b}{\dsCtxt{((S; \wbS{b}{S}); \wbS{b}{(S; \wbS{b}{S})})}}{\dsCtxt{\skipForFriends}}\\
+\cond{b}{\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} \circ \dsCtxt{S; \wbS{b}{S}}}{id} & \\
+\cond{b}{\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} \circ \dsCtxt{\wbS{b}{S}} \circ \dsCtxt{S}}{id} & \\
+\cond{b}{\dsCtxt{\wbS{b}{(S; \wbS{b}{S})}} \circ \fixp{F} \circ \dsCtxt{S}}{id} & \\
+\cond{b}{g \circ \fixp{F} \circ \dsCtxt{S}}{id} & \\
+\end{array}
+$$
+quindi:
+$$
+G = \cond{b}{g \circ \fixp{F} \circ \dsCtxt{S}}{id}
+$$
+}

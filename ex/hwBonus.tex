@@ -1,0 +1,48 @@
+\exercise{Esercizio Bonus}
+{Prove that
+$$
+	\wbS{b}{S} \eqDS \wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}
+$$
+}
+{
+Per dimostrare che 
+$$
+	\wbS{b}{S} \eqDS \wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}
+$$	
+devo dimostrare che
+$$
+\dsCtxt{\wbS{b}{S}} = \dsCtxt{\wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}}
+$$
+Il termine sulla sinistra è per quanto visto nei precedenti esercizi:
+$$
+\dsCtxt{\wbS{b}{S}} = \fixp{F} \text{ dove } F = \lambda g. \cond{b}{g \circ \dsCtxt{S}}{id}
+$$
+mentre quello sulla destra è:
+$$
+\dsCtxt{\wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}} = \fixp{G} \text{ dove } 
+$$
+dove 
+$$
+G = \lambda g. \cond{b}{g \circ \cond{b}{\dsCtxt{S}}{id} \circ \dsCtxt{S}}{id} 
+$$
+
+Noto che in questo caso non posso dimostrare che $\fixp{F} = \fixp{G}$ a partire da $F = G$ perchè
+$F$ e $G$ non sono equivalenti
+
+\paragraph{Derivazione di G}
+$$
+\begin{array}{ll}
+\dsCtxt{\wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}} & \\
+\dsCtxt{\ifABC{b}{((S;  \ifABC{b}{S}{\skipForFriends}); \wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})} )}{\skipForFriends}} & \\
+\cond{b}{\dsCtxt{((S;  \ifABC{b}{S}{\skipForFriends}); \wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}}}{\dsCtxt{\skipForFriends}} \\
+\cond{b}{\dsCtxt{\wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}} \circ \dsCtxt{(S;  \ifABC{b}{S}{\skipForFriends})}}{id} & \\
+\cond{b}{\dsCtxt{\wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}} \circ \dsCtxt{\ifABC{b}{S}{\skipForFriends}} \circ \dsCtxt{S} }{id} & \\
+\cond{b}{\dsCtxt{\wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}} \circ \cond{b}{\dsCtxt{S}}{\dsCtxt{\skipForFriends}} \circ \dsCtxt{S} }{id} & \\
+\cond{b}{\dsCtxt{\wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}} \circ \cond{b}{\dsCtxt{S}}{id} \circ \dsCtxt{S} }{id} & \\
+\end{array}
+$$
+per avere una definizione composizionale sostituisco $\dsCtxt{\wbS{b}{(S; \ifABC{b}{S}{\skipForFriends})}} $ con $g$ e ottengo:
+$$
+\cond{b}{g \circ \cond{b}{\dsCtxt{S}}{\dsCtxt{\skipForFriends}} \circ \dsCtxt{S} }{id}
+$$
+}
