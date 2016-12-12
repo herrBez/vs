@@ -1,0 +1,201 @@
+\newcommand{\powerset}[1]{\raisebox{.15\baselineskip}{\Large\ensuremath{\wp}}(#1)}
+
+\exercise{Esercizio 13}
+{
+  Sia \setRel{P}{\leq} un poset con bottom $\bot$. Un sottoinsieme
+  $S \subseteq P$ è \textit{down-closed} se
+  $$
+  \forall{x\in S}.\forall{y}\in P.(y \leq x \implies y \in S).
+  $$
+  Si osservi, in particolare, che $\emptyset$ è down-closed. Sia (per
+  definizione) $dc(P) = \{S \subseteq P | S \text{ è down-closed}\}$.
+  \begin{enumerate}
+    \item Provare che \setRel{dc(P)}{\subseteq} è un CPO. \vspace{.3em} \\
+  \noindent Si consideri ora il powerset CPO \setRel{\powerset{P}}{\subseteq} e
+    la funzione $f : \powerset{P} \to dc(P)$ definita come segue:
+    $$
+    f(X) = \{p \in P | \exists{x}\in X.p \leq x\}.
+    $$
+    \item Provare che $f$ è ben definita, cioè che per ogni
+      $X \in \powerset{P}$, $f(X) \in dc(P)$.
+    \item Provare che $f$ è continua.
+  \end{enumerate}
+}
+{}
+
+Di seguito verrà fornita una prova per ciascuno dei tre quesiti sopra elencati.
+
+\begin{proof}
+
+$$
+\boxed{\text{\setRel{dc(P)}{\subseteq} è un CPO}}
+$$
+
+Innanzitutto occorre notare che \setRel{dc(P)}{\subseteq} è un poset poichè è:
+
+\begin{itemize}
+  \item riflessivo ($\subseteq$ è una relazione riflessiva);
+  \item transitivo ($\subseteq$ è una relazione transitiva);
+  \item anti-simmetrico (due sottoinsiemi mutuamente contenuti l'uno nell'altro
+    sono lo stesso insieme).
+\end{itemize}
+
+Resta ora da provare che esiste il lub di ogni catena $Y$ di tale poset, ovvero:
+$$
+\forall{Y}\subseteq dc(P).
+          (\forall{d_1,d_2}\in Y.d_1 \subseteq d_2 \lor d_2 \subseteq d_1)
+              \implies
+          (\exists{d}\in dc(P). d = \sqcup Y)
+$$
+
+Dimostro che $\bigcup Y$\footnote{dove $\bigcup Y$ è, più precisamente,
+$\bigcup\limits_{S\in{Y}}S$} è un elemento di $dc(P)$, ovvero:
+\begin{enumerate}
+	\item $\bigcup Y$ è un sottoinsieme di $P$, ma questo è vero in quanto 
+unione di catene, quindi sottoinsiemi, contenute in $P$.
+	\item $\bigcup Y$ è down-closed:
+	$$
+	\forall x \in \bigcup Y.\ \forall y \in P.(y \leq x \Rightarrow y \in \bigcup Y)
+	$$
+	Si noti che
+	$x \in \bigcup Y \iff \exists S \in dc(P).
+		S \subseteq \bigcup Y \land x \in S$:
+	\begin{itemize}
+          \item $(\implies)$ \\
+            $\bigcup Y$ è proprio l'unione delle catene in $dc(P)$ (ed $S$ è una
+            di queste). Ma allora dal fatto che $S$ è down-closed 
+            (per definizione) ottengo che 
+            $\forall x \in S.\forall y \in P. y \leq x \Rightarrow y \in S$.
+            Poichè $S \subseteq \bigcup Y$, l'asserto è dimostrato.
+          \item $(\impliedby)$ \\
+            $x \in S$ per definizione di $S$. Poichè per definizione
+            $S \subseteq \bigcup Y$ allora vale $x \in \bigcup Y$.
+        \end{itemize}
+	\end{enumerate}
+
+
+Sia per ipotesi $\sqcup Y = \bigcup Y$: dimostriamo effettivamente che tale
+insieme è il lub di Y:
+\begin{itemize}
+  \item $\bigcup Y \in dc(P)$ è un upper bound per $Y$, poichè
+    $\forall{S}\in Y.\ S \subseteq \bigcup Y$ (tutti gli elementi di $S$ sono
+    contenuti in $\bigcup Y$);
+  \item Sia $d'\in dc(P)$ un altro upper bound per $Y$. Siccome la relazione di
+    ordinamento è $\subseteq$, ciò vuol dire che tutti gli elementi degli
+    insiemi in $Y$ sono in $d'$. Ma tutti gli elementi degli insiemi in $Y$
+    equivalgono a $\bigcup Y$: $\bigcup Y \subseteq d'$.
+\end{itemize}
+
+$$
+\boxer{\forall{X} \in \powerset{P}. f(X) \in dc(P)}
+$$
+
+Per dimostrare questa seconda proprietà, è sufficiente mostrare che
+$f(X) \subseteq P$ è down-closed:
+
+\begin{itemize}
+  \item Se $\not \exists{x}\in X. p\in P \land p \leq x$; ciò vuol dire che in
+    questo caso $f(X) = \emptyset$ (che per definizione è down-closed);
+  \item Se $\exists{x}\in X.\ p \leq x$ per qualche $p \in P$, allora $f(X)$ è
+    ancora down-closed. Ipotizziamo per assurdo (rispetto alla ipotesi da
+    dimostrare e alla definizione di down-closed) che
+    $$
+    \exists{s\in f(X)}.\exists{y}\in P.\ y \leq s \land y \not \in f(X)
+    $$
+    Ciò non è possibile, poichè:
+    \begin{itemize}
+      \item se $s \in f(X)$ allora $\exists{x}\in X.\ s \leq x$
+      \item se $y \leq s$ allora $y \leq s \leq x$
+    \end{itemize}
+    Ma se $p \leq x$, allora $p \in f(X)$ per definizione di $f(X)$.
+\end{itemize}
+
+$$
+\boxer{\text{Continuità di } f}
+$$
+
+Affinchè $f$ sia continua è necessario che (1) sia monotona e che (2) il lub
+della sua immagine coincida con l'immagine del suo lub per ogni catena del
+powerset di $P$.
+
+\begin{enumerate}
+  \item $f$ è monotona: si considerino due insiemi
+    $X,Y\in \powerset{P}. X \subseteq Y$. Per la definizione di $f$, $f(X)$ conterrà
+    tutti gli elementi di $X$ che sono minori o uguali di un certo maggiorante
+    $x$.
+    Ma $Y$, contenendo in particolare anche $x$, contiene anch'esso tutti gli
+    elementi di $X$ che soddisfano tale proprietà, da cui
+    $f(X) \subseteq f(Y)$.
+
+    Si considerino due insiemi $X, Y \in \powerset{P}$ tali che:
+    $X \subseteq Y$. Dimostro che $f(X) \subseteq f(Y)$, ovvero:
+    $$
+    \forall y.(y \in f(X) \implies y \in f(Y))
+    $$
+    
+    Sia $y$ un elemento qualsiasi fissato di $f(X)$:
+    $$
+    \begin{array}{llr}
+     y \in f(X) & \iff & \text{(Definizione di $f(X))$}\\
+     y \in \{p \in P\ |\ \exists x \in X. p \leq x \} & \implies & \text{(Siccome $X \subseteq Y$) } \\
+     y \in \{p \in P\ |\ \exists x \in Y. p \leq x \} & \iff &
+     \text{(Definizione di $f(Y)$)} \\
+     y \in f(Y) & & \\
+    \end{array}
+    $$
+
+\item Dimostro che per ogni catena $Y \in \powerset{P}$ vale:  
+$$
+\sqcup\{f\ d | d \in Y\} = f(\sqcup Y)
+$$
+ovvero sostituendo le definizioni e applicandole al caso specifico:
+$$
+\sqcup\{f\ d | d \in Y\} = \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\}
+$$
+
+$$
+f(\sqcup Y) = \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x\}
+$$
+Dimostro che i due insiemi coincidono ovvero:
+$$
+\bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\} =  \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x\}
+$$
+\begin{itemize}
+	\item $\boxed{\subseteq}$ Bisogna dimostrare che:
+	$$
+	\forall x . (x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x 
+        \in S. p \leq x\} \implies x \in \{p \in P\ |\ \exists x \in \bigcup 
+        Y. p \leq x\})
+	$$
+	
+	$$
+	\begin{array}{llr}
+	x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\} & \iff & (\text{è vero se appartiene ad almeno un sottinsieme non vuoto $S$ di Y})\\
+	\exists S \in Y. x \in \{p \in P\ |\ \exists x \in S. p \leq x\} & \implies & (S \subseteq \bigcup Y)\\
+	x \in \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x \} & \iff & (\text{ Definizione di: } f(\bigcup Y)) \\
+	x \in f(\bigcup Y)
+	\end{array}
+	$$
+	\item $\boxed{\supseteq}$ Bisogna dimostrare che:
+	$$
+	\forall x .(x \in \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x\} 
+        \implies x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p 
+        \leq x\}) 
+	$$ 
+	
+	$$
+	\begin{array}{lll}
+	x \in \{p \in P\ |\ \exists x \in \bigcup Y. p \leq x\} & \iff & \\
+	x \in \{p \in P\ |\ \exists S \in Y.\exists x \in S. p \leq x \} & \implies & \\
+	\exists S \in Y.x \in \{p \in P\ |\ p \leq x \} & \implies & \\
+	x \in \bigcup_{S \in Y} \{p \in P\ |\ \exists x \in S. p \leq x\} & & \\
+	
+	\end{array}
+	$$
+\end{itemize}
+
+\end{enumerate}
+
+\end{proof}
+
+\let\powerset\undefined
